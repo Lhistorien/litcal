@@ -1,0 +1,73 @@
+CRITICAL - 2025-01-24 17:58:33 --> ErrorException: Undefined variable $meta_title
+[Method: GET, Route: home]
+in APPPATH\Views\v_home.php on line 6.
+ 1 APPPATH\Views\v_home.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $meta_title', 'C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php', 6)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('v_home', [], true)
+ 5 APPPATH\Controllers\c_Home.php(9): view('v_home')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\c_Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\c_Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-01-24 17:58:34 --> ErrorException: Undefined variable $meta_title
+[Method: GET, Route: home]
+in APPPATH\Views\v_home.php on line 6.
+ 1 APPPATH\Views\v_home.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $meta_title', 'C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php', 6)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('v_home', [], true)
+ 5 APPPATH\Controllers\c_Home.php(9): view('v_home')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\c_Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\c_Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-01-24 18:03:00 --> ErrorException: Undefined variable $meta_title
+[Method: GET, Route: home]
+in APPPATH\Views\v_home.php on line 6.
+ 1 APPPATH\Views\v_home.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $meta_title', 'C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php', 6)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('v_home', [], true)
+ 5 APPPATH\Controllers\c_Home.php(14): view('v_home')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\c_Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\c_Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-01-24 18:04:21 --> ErrorException: Undefined variable $meta_title
+[Method: GET, Route: home]
+in APPPATH\Views\v_home.php on line 6.
+ 1 APPPATH\Views\v_home.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $meta_title', 'C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php', 6)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\litcal\\app\\Views\\v_home.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('v_home', [], true)
+ 5 APPPATH\Controllers\c_Home.php(14): view('v_home')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\c_Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\c_Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-01-24 23:28:27 --> CodeIgniter\View\Exceptions\ViewException: App\Libraries\DisplayBook::displayBook has no params.
+[Method: GET, Route: /]
+in SYSTEMPATH\View\Cell.php on line 280.
+ 1 SYSTEMPATH\View\Cell.php(280): CodeIgniter\View\Exceptions\ViewException::forMissingCellParameters('App\\Libraries\\DisplayBook', 'displayBook')
+ 2 SYSTEMPATH\View\Cell.php(104): CodeIgniter\View\Cell->renderSimpleClass(Object(App\Libraries\DisplayBook), 'displayBook', [...], 'App\\Libraries\\DisplayBook')
+ 3 SYSTEMPATH\Common.php(1187): CodeIgniter\View\Cell->render('\\App\\Libraries\\DisplayBook::displayBook', [...], 0, 'AppLibrariesDisplayBookdisplayBook0e5d37dbf43b98c70611a75bba941cc4')
+ 4 APPPATH\Views\home.php(50): view_cell('\\App\\Libraries\\DisplayBook::displayBook', [...])
+ 5 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\litcal\\app\\Views\\home.php')
+ 6 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('home', [], true)
+ 8 APPPATH\Controllers\Home.php(15): view('home', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

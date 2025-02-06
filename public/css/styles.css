@@ -1,0 +1,24 @@
+.table-container {
+    width: 100%;         
+    overflow-x: auto;     
+    margin-bottom: 20px;  
+}
+
+table.table.table-striped {
+    width: 100%;           
+    table-layout: auto;    
+}
+
+table.table.table-striped th, 
+table.table.table-striped td {
+    word-wrap: break-word;
+    text-align: left;
+    padding: 8px;
+}
+
+table.table.table-striped .editable input {
+    width: 100%;
+    border: 1px solid #ccc;
+    background: white;
+    padding: 2px;
+}
