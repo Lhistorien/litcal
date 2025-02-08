@@ -14,18 +14,19 @@ class RoleController extends BaseController
         $roleId = $this->request->getPost('roleId');  
         $newRoleName = $this->request->getPost('newRoleName');
 
-        $validationResult = $roleModel->updateRole($roleId, $newRoleName);
+        $result = $roleModel->updateRole($roleId, $newRoleName);
 
-        if ($validationResult === true) {
+        if ($result === true) {
             return $this->response->setJSON(['success' => true]);
         } else {
             return $this->response->setJSON([
                 'success' => false, 
                 'message' => 'Erreur de validation',
-                'errors' => $validationResult
+                'errors' => $result
             ]);
         }
     }    
+
     public function addRole()
     {
         $roleModel = new RoleModel();
@@ -46,4 +47,3 @@ class RoleController extends BaseController
         }
     }    
 }
-

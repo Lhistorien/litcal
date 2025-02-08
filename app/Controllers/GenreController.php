@@ -14,25 +14,19 @@ class GenreController extends BaseController
         $newValue = $this->request->getPost('newValue');
         
         $genreModel = new GenreModel();
-        
-        $validationResult = $genreModel->validateGenreRules($field, $newValue);
-        
-        if ($validationResult !== true) {
+
+        $result = $genreModel->updateGenre($genreId, $field, $newValue);
+    
+        if ($result['success']) {
+            return $this->response->setJSON(['success' => true]);
+        } else {
             return $this->response->setJSON([
                 'success' => false,
                 'message' => 'Erreur de validation',
-                'errors' => $validationResult
+                'errors' => $result['errors']
             ]);
         }
-
-        $updated = $genreModel->updateGenre($genreId, $field, $newValue);
-
-        if ($updated) {
-            return $this->response->setJSON(['success' => true]);
-        } else {
-            return $this->response->setJSON(['success' => false, 'message' => 'Échec de la mise à jour']);
-        }
-    }
+    }    
 
     public function addGenre()
     {

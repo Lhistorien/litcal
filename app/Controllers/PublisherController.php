@@ -42,13 +42,14 @@ class PublisherController extends BaseController
         $publisherModel = new PublisherModel();
     
         $publisherName = $this->request->getPost('publisherName');
+        $website = $this->request->getPost('website') ?? null; 
     
-        $result = $publisherModel->addPublisher($publisherName);
+        $result = $publisherModel->addPublisher($publisherName, $website);
     
         if (!$result['success']) {
             return redirect()->back()->withInput()->with('errors', $result['errors']);
         }
     
-        return redirect()->back()->with('success', 'Le rôle a été ajouté avec succès.');
+        return redirect()->back()->with('success', 'L\'éditeur a été ajouté avec succès.');
     }    
 }

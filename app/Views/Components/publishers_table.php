@@ -2,22 +2,30 @@
 
 <div class="table-container">
     <table id="publishersTable" class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Status</th>
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Site Web</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($publishers as $publisher): ?>
+            <tr data-id="<?= esc($publisher->id) ?>"> 
+                <td><?= esc($publisher->id) ?></td>
+                <td class="editable" data-field="publisherName"><?= esc($publisher->publisherName) ?></td>
+                <td class="editable" data-field="website">
+                    <?php if (!empty($publisher->website)): ?>
+                        <a href="<?= esc($publisher->website) ?>" target="_blank"><?= esc($publisher->website) ?></a>
+                    <?php else: ?>
+                        <em>Aucun</em>
+                    <?php endif; ?>
+                </td>
+                <td class="editable" data-field="status"><?= esc($publisher->status) ?></td>
             </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($publishers as $publisher): ?>
-                <tr data-id="<?= esc($publisher->id) ?>"> 
-                    <td><?= esc($publisher->id) ?></td>
-                    <td class="editable" data-field="publisherName"><?= esc($publisher->publisherName) ?></td>
-                    <td class="editable" data-field="status"><?= esc($publisher->status) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
+        <?php endforeach; ?>
+    </tbody>
     </table>
 </div>
 
@@ -26,18 +34,20 @@
 <div class="table-container">
     <form action="/dashboard/publishers/add" method="POST">
         <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Nom de l'éditeur</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" name="publisherName" class="form-control" required></td>
-                    <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
-                </tr>
-            </tbody>
+        <thead>
+            <tr>
+                <th scope="col">Nom de l'éditeur</th>
+                <th scope="col">Site Web</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" name="publisherName" class="form-control" required></td>
+                <td><input type="url" name="website" class="form-control"></td>
+                <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
+            </tr>
+        </tbody>
         </table>
     </form>
 </div>

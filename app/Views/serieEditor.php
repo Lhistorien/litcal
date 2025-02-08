@@ -25,6 +25,27 @@
     </table>
 </div>
 
+<h3>Ajouter une série à la base de données</h3>
+
+<div class="table-container">
+    <form action="/series/add" method="POST">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom de la série</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="serieName" class="form-control" required></td>
+                    <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
 <script>
     $(document).ready(function () {
         var table = $('#seriesTable').DataTable({
@@ -59,15 +80,24 @@
                 if (e.type === "blur" || e.key === "Enter") 
                 {
                     var newValue = input.val().trim();
+
+                    if (currentElement.data("field") === 'status') {
+                        newValue = parseInt(newValue, 10);  
+                    }
+
+                    if (currentElement.data("field") === 'status' && (newValue !== 0 && newValue !== 1)) {
+                        alert("La valeur du statut doit être 0 ou 1.");
+                        return;  
+                    }
                     if (newValue !== originalValue) 
                     {
                         var serieId = currentElement.closest("tr").data("id");
                         var field = currentElement.data("field");
-
+                        console.log('newValue:', newValue);
                         $.ajax({
                             url: "/series/update",
                             type: "POST",
-                            data: { serierId: serieId, field: field, newValue: newValue },  
+                            data: { serieId: serieId, field: field, newValue: newValue },  
                             success: function (response) {
                                 if (response.success) {
                                     currentElement.text(newValue);

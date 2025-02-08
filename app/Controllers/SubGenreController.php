@@ -14,38 +14,22 @@ class SubGenreController extends BaseController
         $newValue = $this->request->getPost('newValue');
         
         $subGenreModel = new SubGenreModel();
-        $validationErrors = $subGenreModel->validateSubGenreRules($field, $newValue);
-    
-        if ($validationErrors !== true) {
+        $result = $subGenreModel->updateSubGenre($subGenreId, $field, $newValue);
+
+        if ($result !== true) {
             return $this->response->setJSON([
                 'success' => false,
                 'message' => 'Erreur de validation',
-                'errors'  => $validationErrors
+                'errors'  => $result
             ]);
         }
-    
-        $subGenre = $subGenreModel->find($subGenreId); 
-        if (!$subGenre) {
-            log_message('error', 'Sous-genre non trouvé pour ID: ' . $subGenreId);
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Sous-genre non trouvé pour l\'ID spécifié'
-            ]);
-        }
-    
-        $updated = $subGenreModel->updateSubGenre($subGenreId, $field, $newValue);
-    
-        if ($updated) {
-            return $this->response->setJSON(['success' => true]);
-        } else {
-            return $this->response->setJSON(['success' => false, 'message' => 'Échec de la mise à jour']);
-        }
+        
+        return $this->response->setJSON(['success' => true]);
     }
 
     public function addSubgenre()
     {
         $subGenreModel = new SubGenreModel();
-
         $subgenreName = $this->request->getPost('subgenreName');
 
         $result = $subGenreModel->addSubgenre($subgenreName);
@@ -55,7 +39,8 @@ class SubGenreController extends BaseController
         }
 
         return redirect()->back()->with('success', 'Le sous-genre a été ajouté avec succès.');
-    }    
+    }
+
     public function associateSubgenreToGenre()
     {
         $subGenreId = $this->request->getPost('subgenre');
@@ -69,5 +54,5 @@ class SubGenreController extends BaseController
         }
     
         return redirect()->back()->with('success', 'Association créée avec succès.');
-    }    
+    }
 }

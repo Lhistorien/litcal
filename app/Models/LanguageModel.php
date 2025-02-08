@@ -41,11 +41,11 @@ class LanguageModel extends Model
 
         return $this->update($abbreviation, [$field => $newValue]);
     }
+
     public function addLanguage($data)
     {
         $validation = Services::validation();
-        $validation->setRules
-        (
+        $validation->setRules(
             LanguageValidation::$LanguageRules,
             LanguageValidation::$LanguageMessages
         );

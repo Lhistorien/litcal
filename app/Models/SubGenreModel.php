@@ -25,6 +25,47 @@ class SubGenreModel extends Model
         return new SubGenreEntity($data);
     }
 
+    private function validateSubGenre($data, $field)
+    {
+        $validation = \Config\Services::validation();
+    
+        if ($field === 'subgenreName') {
+            $rules = SubgenreValidation::getRules();
+            $messages = SubgenreValidation::getMessages();
+        } elseif (isset(EditSubGenreValidation::$EditSubGenreRules[$field])) {
+            $rules = [$field => EditSubGenreValidation::$EditSubGenreRules[$field]];
+            $messages = isset(EditSubGenreValidation::$EditSubGenreMessages[$field])
+                ? [$field => EditSubGenreValidation::$EditSubGenreMessages[$field]]
+                : [];
+        } else {
+            return ['error' => "Aucune règle définie pour le champ '$field'"];
+        }
+    
+        $validation->setRules($rules, $messages);
+    
+        if (!$validation->run($data)) {
+            return $validation->getErrors();
+        }
+    
+        return true;
+    }
+
+    public function addSubgenre($subgenreName)
+    {
+        $validationResult = $this->validateSubGenre(['subgenreName' => $subgenreName], 'subgenreName');
+        
+        if ($validationResult !== true) {
+            return [
+                'success' => false,
+                'errors' => $validationResult
+            ];
+        }
+        
+        $this->insert(['subgenreName' => $subgenreName]);
+
+        return ['success' => true];
+    }
+
     public function updateSubGenre($subGenreId, $field, $newValue)
     {
         if (empty($subGenreId) || !is_numeric($subGenreId)) {
@@ -37,9 +78,12 @@ class SubGenreModel extends Model
             return false;
         }
     
-        $data = [
-            $field => $newValue
-        ];
+        $validationResult = $this->validateSubGenre([$field => $newValue], $field);
+        if ($validationResult !== true) {
+            return $validationResult;
+        }
+        
+        $data = [$field => $newValue];
     
         log_message('debug', 'Mise à jour du sous-genre (ID: ' . $subGenreId . ') avec les données: ' . json_encode($data));
     
@@ -51,30 +95,7 @@ class SubGenreModel extends Model
         }
     
         return true;
-    }
-
-    public function validateSubGenreRules($field, $newValue)
-    {
-        $validation = \Config\Services::validation();
-        
-        if ($field == 'subgenreName') {
-            $validation->setRules([
-                'newValue' => EditSubgenreValidation::$EditSubGenreRules['newValue']
-            ]);
-        }
-        
-        if ($field == 'status') {
-            $validation->setRules([
-                'newValue' => EditSubgenreValidation::$EditSubGenreRules['status']
-            ]);
-        }
-    
-        if (!$validation->run(['newValue' => $newValue])) {
-            return $validation->getErrors(); 
-        }
-        
-        return true; 
-    }
+    }    
 
     public function getAllSubgenres()
     {
@@ -90,7 +111,6 @@ class SubGenreModel extends Model
                     ->groupBy('subgenre.id')
                     ->findAll();  
     }
-    
 
     public function getSubgenresWithGenres()
     {
@@ -111,23 +131,6 @@ class SubGenreModel extends Model
         return $result;
     }
 
-    public function addSubgenre($subgenreName)
-    {
-        $validation = \Config\Services::validation();
-    
-        $validation->setRules(SubgenreValidation::getRules(), SubgenreValidation::getMessages());
-        
-        if (!$validation->run(['subgenreName' => $subgenreName])) {
-            return [
-                'success' => false,
-                'errors' => $validation->getErrors()
-            ];
-        }
-    
-        $this->insert(['subgenreName' => $subgenreName]);
-        
-        return ['success' => true];
-    }
     public function associateSubgenreToGenre($subgenreId, $genreId)
     {
         if (empty($subgenreId) || empty($genreId) || !is_numeric($subgenreId) || !is_numeric($genreId)) {

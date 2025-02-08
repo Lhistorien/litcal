@@ -17,6 +17,7 @@ class PublisherModel extends Model
     protected $allowedFields = 
     [
         'publisherName',
+        'website',
         'comment',
         'status',
     ];
@@ -55,6 +56,10 @@ class PublisherModel extends Model
         {
             $rules = EditPublisherValidation::$EditPublisherRules['status'];
         }
+        elseif ($field == 'website') 
+        {
+            $rules = EditPublisherValidation::$EditPublisherRules['website'];
+        }
 
         $validation->setRules([$field => $rules], EditPublisherValidation::$EditPublisherMessages);
 
@@ -66,22 +71,27 @@ class PublisherModel extends Model
         return true;
     }
 
-    public function addPublisher($publisherName)
+    public function addPublisher($publisherName, $website = null)
     {
         $validation = \Config\Services::validation();
         
+        $data = ['publisherName' => $publisherName];
+    
+        if (!empty($website)) {
+            $data['website'] = $website;
+        }
+    
         $validation->setRules(PublisherValidation::getRules(), PublisherValidation::getMessages());
         
-        if (!$validation->run(['publisherName' => $publisherName])) {
+        if (!$validation->run($data)) {
             return [
                 'success' => false,
                 'errors' => $validation->getErrors()
             ];
         }
         
-        $this->insert(['publisherName' => $publisherName]);
+        $this->insert($data);
         
         return ['success' => true];
     }
-    
 }

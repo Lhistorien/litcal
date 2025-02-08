@@ -36,7 +36,7 @@ class RoleModel extends Model
 
         $existingRole = $this->find($roleId);
         if (!$existingRole) {
-            return false;
+            return ['Rôle introuvable.'];
         }
     
         return $this->where('id', $roleId) 

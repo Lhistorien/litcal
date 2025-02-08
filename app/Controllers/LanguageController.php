@@ -30,6 +30,7 @@ class LanguageController extends BaseController
             return $this->response->setJSON(['success' => false, 'message' => 'Échec de la mise à jour', 'errors' => $result]);
         }
     }
+
     public function addLanguage()
     {
         $languageModel = new LanguageModel();
@@ -58,5 +59,5 @@ class LanguageController extends BaseController
                 'message' => 'Erreur lors de l\'ajout du langage.'
             ]);
         }
-    }    
+    }
 }

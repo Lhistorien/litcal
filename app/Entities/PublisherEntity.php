@@ -10,6 +10,7 @@ class PublisherEntity extends Entity
     [
         'id'       => null,
         'publisherName'   => null,
+        'website' => null,
         'status'    => null,
     ];  
 }

@@ -35,7 +35,7 @@ $routes->get('dashboard', 'DashboardController::index');
 $routes->post('dashboard/roles/update', 'RoleController::updateRole');
 $routes->post('dashboard/roles/add', 'RoleController::addRole');
 $routes->post('dashboard/publishers/update', 'PublisherController::updatePublisher');
-$routes->post('/dashboard/publishers/add', 'PublisherController::addPublisher');
+$routes->post('dashboard/publishers/add', 'PublisherController::addPublisher');
 $routes->post('dashboard/languages/update', 'LanguageController::updateLanguage');
 $routes->post('dashboard/languages/add', 'LanguageController::addLanguage');
 $routes->post('dashboard/genres/update', 'GenreController::updateGenre');
@@ -45,3 +45,12 @@ $routes->post('dashboard/subgenres/add', 'SubGenreController::addSubgenre');
 $routes->post('dashboard/subgenres/associate', 'SubGenreController::associateSubgenreToGenre');
 
 $routes->get('series', 'SerieController::index');
+$routes->post('series/update', 'SerieController::updateSerie'); 
+$routes->post('series/add', 'SerieController::addSerie');
+
+$routes->get('authors', 'AuthorController::index');
+$routes->post('authors/update', 'AuthorController::updateAuthor'); 
+$routes->post('authors/add', 'AuthorController::addAuthor');
+
+$routes->get('books', 'BookController::index');
+$routes->post('books/add', 'BookController::addBook');
