@@ -4,9 +4,8 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 use \App\Entities\BookEntity;
-use App\Validation\EditBookrValidation;
+use App\Validation\EditBookValidation;
 use App\Validation\BookValidation;
-use CodeIgniter\Database\RawSql;
 
 class BookModel extends Model
 {
@@ -36,19 +35,19 @@ class BookModel extends Model
     public function getBooksWithPublisherNameAndAuthors()
     {
         $books = $this->select('book.*, publisher.publisherName, author.authorName, role.roleName, language.languageName, language.abbreviation, 
-                                serie.serieName, bookserie.volume, genre.genreName, subgenre.subgenreName')
-                      ->join('publisher', 'publisher.id = book.publisher')
-                      ->join('bookauthor', 'bookauthor.book = book.id')
-                      ->join('author', 'author.id = bookauthor.author')
-                      ->join('role', 'role.id = bookauthor.role')
-                      ->join('language', 'language.abbreviation = book.language', 'left')  
-                      ->join('bookserie', 'bookserie.book = book.id', 'left')
-                      ->join('serie', 'serie.id = bookserie.serie', 'left')
-                      ->join('bookgenre', 'bookgenre.book = book.id', 'left')
-                      ->join('genre', 'genre.id = bookgenre.genre', 'left')
-                      ->join('booksubgenre', 'booksubgenre.book = book.id', 'left')
-                      ->join('subgenre', 'subgenre.id = booksubgenre.subgenre', 'left')
-                      ->findAll();
+                                serie.serieName, bookserie.volume, genre.genreName, subgenre.subgenreName, book.isbn, book.format')
+                        ->join('publisher', 'publisher.id = book.publisher')
+                        ->join('bookauthor', 'bookauthor.book = book.id')
+                        ->join('author', 'author.id = bookauthor.author')
+                        ->join('role', 'role.id = bookauthor.role')
+                        ->join('language', 'language.abbreviation = book.language', 'left')  
+                        ->join('bookserie', 'bookserie.book = book.id', 'left')
+                        ->join('serie', 'serie.id = bookserie.serie', 'left')
+                        ->join('bookgenre', 'bookgenre.book = book.id', 'left')
+                        ->join('genre', 'genre.id = bookgenre.genre', 'left')
+                        ->join('booksubgenre', 'booksubgenre.book = book.id', 'left')
+                        ->join('subgenre', 'subgenre.id = booksubgenre.subgenre', 'left')
+                        ->findAll();
     
         $result = [];
     
@@ -106,29 +105,40 @@ class BookModel extends Model
         return new BookEntity($data);
     }
 
-    public function updateBook($bookId, $field, $newValue)
+    public function updateBook($bookId, $data)
     {
-        if (!in_array($field, $this->allowedFields)) {
+        // var_dump(json_encode($data));
+        // die();
+        if (empty($data)) {
             return [
                 'success' => false,
-                'errors' => ['Le champ est invalide']
+                'errors' => ['Aucune donnée à mettre à jour']
             ];
         }
-
-        $validationResult = $this->validateBookRules($field, $newValue, $bookId);
-        if ($validationResult !== true) {
-            return [
-                'success' => false,
-                'errors' => $validationResult
-            ];
+    
+        foreach ($data as $field => $newValue) {
+            if (!in_array($field, $this->allowedFields)) {
+                return [
+                    'success' => false,
+                    'errors' => ['Le champ ' . $field . ' est invalide']
+                ];
+            }
+    
+            // $validationResult = $this->validateBookRules($field, $newValue, $bookId);
+            // if ($validationResult !== true) {
+            //     return [
+            //         'success' => false,
+            //         'errors' => $validationResult
+            //     ];
+            // }
         }
-
-        $data = [
-            $field => $newValue
-        ];
-
-        return $this->update($bookId, $data) ? ['success' => true] : ['success' => false, 'errors' => ['Échec de la mise à jour']];
+    
+        // Utilisation de 'where' pour préciser l'enregistrement à mettre à jour
+        return $this->update($bookId, ['status' => 0]) 
+            ? ['success' => true] 
+            : ['success' => false, 'errors' => ['Échec de la mise à jour']];
     }
+    
 
     public function validateBookRules($field, $newValue, $bookId = null)
     {
@@ -151,96 +161,276 @@ class BookModel extends Model
     
         return true;
     }
-    public function addBook($data) 
+    public function addBook($data)
     {
+        log_message('debug', 'Received data: ' . json_encode($data));
+    
+        // Validation
+        $validation = \Config\Services::validation();
+        $validation->setRules(BookValidation::$BookRules, BookValidation::$BookMessages);
+    
+        if (!$validation->run($data)) {
+            log_message('error', 'Validation failed. Errors: ' . json_encode($validation->getErrors()));
+            return ['validation' => false, 'errors' => $validation->getErrors()];
+        }
+    
+        log_message('info', 'Validation successful.');
+    
         // Démarrer la transaction
         $this->db->transStart();
     
-        // 1. Insérer dans Book
+        // Préparer les données du livre
         $bookData = [
             'title' => $data['title'],
             'publisher' => $data['publisher'],
             'publication' => $data['publication'],
-            'preorder' => $data['preorder'] ?? 0,  // Valeur par défaut si non fournie
+            'preorder' => $data['preorder'] ?? 0,
             'language' => $data['language'],
-            'ISBN' => $data['ISBN'] ?? null,
+            'isbn' => isset($data['isbn']) ? preg_replace('/\D/', '', $data['isbn']) : null,
             'price' => $data['price'] ?? null,
             'format' => $data['format'],
             'link' => $data['link'] ?? null,
             'description' => $data['description'],
             'cover' => $data['cover'] ?? null,
-            'cover_url' => $data['cover_url'] ?? null,
-            'status' => 1 // Statut par défaut
         ];
     
-        $this->db->insert('Book', $bookData);
-        $bookId = $this->db->insert_id(); // Récupérer l'ID du livre créé
-    
-        // 2. Insérer dans BookAuthor
-        if (isset($data['authors'])) {
-            foreach ($data['authors'] as $author) {
-                $authorData = [
-                    'book' => $bookId,
-                    'author' => $author['author_id'],
-                    'role' => 'Writer' // Rôle par défaut 'Writer'
-                ];
-                $this->db->insert('BookAuthor', $authorData);
-            }
+        if (!$this->insert($bookData)) {
+            $this->db->transRollback();
+            return ['validation' => false, 'errors' => "Échec de l'ajout du livre."];
         }
     
-        if (isset($data['actor_name']) && isset($data['actor_role'])) {
-            foreach ($data['actor_name'] as $index => $actorId) {
-                $actorData = [
-                    'book' => $bookId,
-                    'author' => $actorId, // Ici, on suppose que 'actor_name' correspond à l'ID de l'auteur ou à un identifiant associé
-                    'role' => $data['actor_role'][$index] // Le rôle vient de 'actor_role' à l'index correspondant
-                ];
-                $this->db->insert('BookAuthor', $actorData);
-            }
+        $bookId = $this->insertID();
+    
+        // 🔹 Ajout des relations et vérification après chaque opération
+        if (!$this->addAuthors($bookId, $data['author'] ?? [])) {
+            $this->db->transRollback();
+            return ['validation' => false, 'errors' => "Échec de l'ajout des auteurs."];
         }
     
-        // 3. Insérer dans BookSerie si nécessaire
-        if (isset($data['serie']) && isset($data['tome'])) {
-            $serieData = [
-                'book' => $bookId,
-                'serie' => $data['serie'],  // L'ID de la série
-                'volume' => $data['tome']   // Le volume du livre dans la série
-            ];
-            $this->db->insert('BookSerie', $serieData);
+        if (!$this->addActors($bookId, $data['actor_name'] ?? [], $data['actor_role'] ?? [])) {
+            $this->db->transRollback();
+            return ['validation' => false, 'errors' => "Échec de l'ajout des acteurs."];
         }
     
-        // 4. Insérer dans BookGenre si nécessaire
-        if (isset($data['genres'])) {
-            foreach ($data['genres'] as $genre) {
-                $genreData = [
-                    'book' => $bookId,
-                    'genre' => $genre
-                ];
-                $this->db->insert('BookGenre', $genreData);
-            }
+        if (!$this->addSeries($bookId, $data['serie'] ?? null, $data['volume'] ?? null)) {
+            $this->db->transRollback();
+            return ['validation' => false, 'errors' => "Échec de l'ajout de la série."];
         }
     
-        // 5. Insérer dans BookSubgenre si nécessaire
-        if (isset($data['subgenres'])) {
-            foreach ($data['subgenres'] as $subgenre) {
-                $subgenreData = [
-                    'book' => $bookId,
-                    'subgenre' => $subgenre
-                ];
-                $this->db->insert('BookSubgenre', $subgenreData);
-            }
+        if (!$this->addGenres($bookId, $data['genre'] ?? [])) {
+            $this->db->transRollback();
+            return ['validation' => false, 'errors' => "Échec de l'ajout des genres."];
         }
     
-        // 6. Finaliser la transaction
+        if (!$this->addSubGenres($bookId, $data['subgenre'] ?? [])) {
+            $this->db->transRollback();
+            return ['validation' => false, 'errors' => "Échec de l'ajout des sous-genres."];
+        }
+    
+        // Finaliser la transaction
         $this->db->transComplete();
     
-        // Vérifier si la transaction s'est terminée correctement
-        if ($this->db->TransStatus() === FALSE) {
-            // En cas d'erreur, retourner false ou gérer l'erreur
-            return false;
+        if ($this->db->transStatus() === false) {
+            return ['validation' => false, 'errors' => "Une erreur s'est produite, l'ajout a été annulé."];
         }
     
-        // Retourner l'ID du livre créé
-        return $bookId;
+        return ['validation' => true, 'bookId' => $bookId];
     }    
+
+    private function addAuthors($bookId, $authors)
+    {
+        if (!empty($authors)) {
+            $bookAuthors = [];
+            foreach ($authors as $authorId) {
+                $bookAuthors[] = [
+                    'book' => $bookId,
+                    'author' => $authorId,
+                    'role' => 1,
+                ];
+            }
+            if (!$this->db->table('bookauthor')->insertBatch($bookAuthors)) {
+                return false; // ⛔ Retourner false en cas d'échec
+            }
+        }
+        return true;
+    }
+
+    private function addActors($bookId, $actorNames, $actorRoles)
+    {
+        if (!empty($actorNames) && !empty($actorRoles)) {
+            $bookActors = [];
+            foreach ($actorNames as $key => $actorId) {
+                $role = $actorRoles[$key] ?? null;
+                if (!empty($actorId) && !empty($role)) {  // On évite d'insérer des valeurs vides
+                    $bookActors[] = [
+                        'book' => $bookId,
+                        'author' => $actorId,
+                        'role' => $role,
+                    ];
+                } else {
+                    log_message('error', "Données invalides pour l'auteur: $actorId avec rôle: " . json_encode($role));
+                }
+            }
+            if (!$this->db->table('bookauthor')->insertBatch($bookActors)) {
+                return false; // ⛔ Retourner false en cas d'échec
+            }
+        }
+        return true;
+    }
+
+    private function addSeries($bookId, $serie, $volume)
+    {
+        if (!empty($serie) && isset($volume)) {
+            $bookSeries = [
+                'book' => $bookId,
+                'serie' => $serie,
+                'volume' => $volume,
+            ];
+            if (!$this->db->table('bookserie')->insert($bookSeries)) {
+                return false; // ⛔ Retourner false en cas d'échec
+            }
+        }
+        return true;
+    }
+
+    private function addGenres($bookId, $genres)
+    {
+        if (!empty($genres)) {
+            $bookGenres = [];
+            foreach ($genres as $genreId) {
+                $bookGenres[] = [
+                    'book' => $bookId,
+                    'genre' => $genreId,
+                ];
+            }
+            if (!$this->db->table('bookgenre')->insertBatch($bookGenres)) {
+                return false; // ⛔ Retourner false en cas d'échec
+            }
+        }
+        return true;
+    }
+
+    private function addSubGenres($bookId, $subGenres)
+    {
+        if (!empty($subGenres)) {
+            $bookSubGenres = [];
+            foreach ($subGenres as $subGenreId) {
+                $bookSubGenres[] = [
+                    'book' => $bookId,
+                    'subgenre' => $subGenreId,
+                ];
+            }
+            if (!$this->db->table('booksubgenre')->insertBatch($bookSubGenres)) {
+                return false; // ⛔ Retourner false en cas d'échec
+            }
+        }
+        return true;
+    }
+    // public function getBookById($id)
+    // {
+    //     $books = $this->getBooksWithPublisherNameAndAuthors();
+    
+    //     foreach ($books as $book) {
+    //         if ($book['id'] == $id) {
+    //             return $book;
+    //         }
+    //     }
+    
+    //     return null; 
+    // }
+    public function getBookById($id)
+    {
+        $book = $this->select('book.*, publisher.publisherName, author.authorName, role.roleName, language.languageName, language.abbreviation, 
+        serie.serieName, bookserie.volume, genre.genreName, subgenre.subgenreName, book.isbn, book.format')
+            ->join('publisher', 'publisher.id = book.publisher')
+            ->join('bookauthor', 'bookauthor.book = book.id')
+            ->join('author', 'author.id = bookauthor.author')
+            ->join('role', 'role.id = bookauthor.role')
+            ->join('language', 'language.abbreviation = book.language', 'left')  
+            ->join('bookserie', 'bookserie.book = book.id', 'left')
+            ->join('serie', 'serie.id = bookserie.serie', 'left')
+            ->join('bookgenre', 'bookgenre.book = book.id', 'left')
+            ->join('genre', 'genre.id = bookgenre.genre', 'left')
+            ->join('booksubgenre', 'booksubgenre.book = book.id', 'left')
+            ->join('subgenre', 'subgenre.id = booksubgenre.subgenre', 'left')
+            ->where('book.id', $id)
+            ->first();
+
+                $result=[];
+                // $bookId = $book->id;
+        
+
+                    $result[$id] = [
+                        'id' => $book->id,
+                        'title' => $book->title,
+                        'publisherName' => $book->publisherName,
+                        'preorder' => $book->preorder,
+                        'publication' => $book->publication,
+                        'languageAbbreviation' => $book->language,  
+                        'languageName' => $book->languageName,  
+                        'isbn' => $book->isbn,
+                        'cover' => $book->cover,
+                        'description' => $book->description,
+                        'link' => $book->link,
+                        'price' => $book->price,
+                        'format' => $book->format,
+                        'comment' => $book->comment,
+                        'status' => $book->status,
+                        'authors' => [],
+                        'serieName' => $book->serieName,  
+                        'volume' => $book->volume,
+                        'genres' => [],
+                        'subgenres' => [],
+                    ];
+        
+                $authorEntry = [
+                    'name' => $book->authorName,
+                    'role' => $book->roleName
+                ];
+                // Permet d'éviter les doublons
+                if (!in_array($authorEntry, $result[$id]['authors'])) {
+                    $result[$id]['authors'][] = $authorEntry;
+                }
+        
+                if (!empty($book->genreName) && !in_array($book->genreName, $result[$id]['genres'])) {
+                    $result[$id]['genres'][] = $book->genreName;
+                }
+        
+                if (!empty($book->subgenreName) && !in_array($book->subgenreName, $result[$id]['subgenres'])) {
+                    $result[$id]['subgenres'][] = $book->subgenreName;
+                }
+            
+                return array_values($result);
+    }
+    public function getBooksByAuthor($authorId)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->select('Book.id, Book.title, Book.publication, Role.roleName');
+        $builder->join('BookAuthor', 'Book.id = BookAuthor.book');
+        $builder->join('Role', 'BookAuthor.role = Role.id');
+        $builder->where('BookAuthor.author', $authorId);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+    public function getRecentBooks()
+    {
+        $date30DaysAgo = date('Y-m-d', strtotime('-30 days'));
+        $today = date('Y-m-d');
+        
+        return $this->where('publication >=', $date30DaysAgo)
+                    ->where('publication <=', $today)
+                    ->where('status', 1)
+                    ->findAll();
+    }
+    
+    public function getUpcomingBooks()
+    {
+        $today = date('Y-m-d');
+        $date30DaysLater = date('Y-m-d', strtotime('+30 days'));
+        
+        return $this->where('publication >', $today)
+                    ->where('publication <=', $date30DaysLater)
+                    ->where('status', 1)
+                    ->findAll();
+    }
 }

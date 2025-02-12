@@ -1,0 +1,665 @@
+DEBUG - 2025-02-10 19:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:50:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:50:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:54:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:54:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:54:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:54:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:54:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:55:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:55:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:56:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:56:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:56:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:57:37 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9791028140526.jpg
+            [full_path] => 9791028140526.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpF9DB.tmp
+            [error] => 0
+            [size] => 155966
+        )
+
+)
+
+DEBUG - 2025-02-10 19:57:37 --> File name: 9791028140526.jpg
+DEBUG - 2025-02-10 19:57:37 --> File temporary path: C:\xampp\tmp\phpF9DB.tmp
+DEBUG - 2025-02-10 19:57:37 --> File validation passed.
+DEBUG - 2025-02-10 19:57:37 --> File moved to: cover/1739217457_82b58c4adad617d89d7e.jpg
+DEBUG - 2025-02-10 19:57:37 --> Received data: {"title":"L'\u00e9troit chemin entre les souhaits","publisher":"1","publication":"2025-03-12","preorder":0,"language":"FR","isbn":"9791028140526","price":"24","format":"Softcover","link":"https:\/\/www.bragelonne.fr\/catalogue\/9791028140526-the-narrow-road-between-desires-tp\/","description":"Bast sait marchander. Il conna\u00eet les subtilit\u00e9s des compromis et des concessions aussi bien que le fond de sa poche et \u00e0 le voir faire, on dirait un peintre devant son chevalet. Mais m\u00eame un ma\u00eetre n\u2019est pas \u00e0 l\u2019abri d\u2019un faux pas\u2026 En acceptant un pr\u00e9sent sans contrepartie, Bast provoque un s\u00e9isme qui va \u00e9branler jusqu\u2019aux fondations de son monde. Pour la premi\u00e8re fois de sa vie, ce n\u00e9gociateur hors pair se retrouve redevable.\r\n\r\nL\u2019espace d\u2019une journ\u00e9e, de l\u2019aube au cr\u00e9puscule, accompagnez le plus s\u00e9duisant des Faes des Quatre Coins de la civilisation tandis qu\u2019il manigance et trafique, d\u00e9fiant le danger avec la gr\u00e2ce d\u2019un danseur de ballet.\r\n\r\nVoici donc l\u2019histoire de Bast. Il y retrace les anciennes mani\u00e8res de faire et de d\u00e9faire en n\u2019\u00e9coutant que son c\u0153ur. Y compris lorsque celui-ci l\u2019entra\u00eene sur des chemins hasardeux. Et au diable la prudence si elle doit le tenir \u00e9loign\u00e9 du p\u00e9ril comme des plaisirs !","author":["32"],"actor_name":["33"],"actor_role":["4"],"serie":"11","volume":"HS","genre":["1"],"subgenre":[],"cover":"cover\/1739217457_82b58c4adad617d89d7e.jpg"}
+DEBUG - 2025-02-10 19:57:37 --> Author: ["32"]
+DEBUG - 2025-02-10 19:57:37 --> Genre: ["1"]
+DEBUG - 2025-02-10 19:57:37 --> Subgenre: []
+DEBUG - 2025-02-10 19:57:37 --> Price: "24"
+INFO - 2025-02-10 19:57:37 --> Validation successful.
+DEBUG - 2025-02-10 19:57:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:57:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:57:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:57:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:57:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:58:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:58:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:58:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:58:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:59:03 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9791028123482.jpg
+            [full_path] => 9791028123482.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php4920.tmp
+            [error] => 0
+            [size] => 228577
+        )
+
+)
+
+DEBUG - 2025-02-10 19:59:03 --> File name: 9791028123482.jpg
+DEBUG - 2025-02-10 19:59:03 --> File temporary path: C:\xampp\tmp\php4920.tmp
+DEBUG - 2025-02-10 19:59:03 --> File validation passed.
+DEBUG - 2025-02-10 19:59:03 --> File moved to: cover/1739217543_54a90b88b829f5e38c24.jpg
+DEBUG - 2025-02-10 19:59:03 --> Received data: {"title":"La Foi des R\u00e9prouv\u00e9s","publisher":"1","publication":"2025-03-12","preorder":0,"language":"FR","isbn":"9791028123482","price":"12,9","format":"Pocket","link":"https:\/\/www.bragelonne.fr\/catalogue\/9791028123482-la-foi-des-reprouves\/","description":"Kahlan est aux portes de la mort. Richard, qui se m\u00e9fie des proph\u00e9ties plus que quiconque, a soudain une vision : il doit emmener sa femme loin de l\u2019arm\u00e9e qui les prot\u00e8ge et livrer son peuple \u00e0 son funeste destin. Kahlan refuse cependant d\u2019abandonner la cause des Contr\u00e9es du Milieu. Rompant le dernier serment fait \u00e0 son mari, la M\u00e8re Inquisitrice se retrouvera face \u00e0 l\u2019architecte de la terreur qui balaie le pays : l\u2019empereur fou, Jagang, celui qui marche dans les r\u00eaves, a jur\u00e9 de d\u00e9verser sa rage sur le Nouveau Monde\u2026","author":["34"],"actor_name":[""],"actor_role":[""],"serie":"12","volume":"6","genre":["1"],"subgenre":[],"cover":"cover\/1739217543_54a90b88b829f5e38c24.jpg"}
+DEBUG - 2025-02-10 19:59:03 --> Author: ["34"]
+DEBUG - 2025-02-10 19:59:03 --> Genre: ["1"]
+DEBUG - 2025-02-10 19:59:03 --> Subgenre: []
+DEBUG - 2025-02-10 19:59:03 --> Price: "12,9"
+INFO - 2025-02-10 19:59:03 --> Validation successful.
+ERROR - 2025-02-10 19:59:03 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 19:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 19:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:00:43 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9791028138158.jpg
+            [full_path] => 9791028138158.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpCFE0.tmp
+            [error] => 0
+            [size] => 116842
+        )
+
+)
+
+DEBUG - 2025-02-10 20:00:43 --> File name: 9791028138158.jpg
+DEBUG - 2025-02-10 20:00:43 --> File temporary path: C:\xampp\tmp\phpCFE0.tmp
+DEBUG - 2025-02-10 20:00:43 --> File validation passed.
+DEBUG - 2025-02-10 20:00:43 --> File moved to: cover/1739217643_b20c331664cb9bbda119.jpg
+DEBUG - 2025-02-10 20:00:43 --> Received data: {"title":"Le Bapt\u00eame du feu","publisher":"1","publication":"2025-03-12","preorder":0,"language":"FR","isbn":"9791028138158","price":"9,95","format":"Pocket","link":"https:\/\/www.bragelonne.fr\/catalogue\/9791028138158-le-bapteme-du-feu-traduction-revisee\/","description":"La jeune Ciri a \u00e9t\u00e9 enlev\u00e9e et contrainte de s\u2019unir \u00e0 l\u2019empereur de Nilfgaard. Malgr\u00e9 ses blessures, le sorceleur se lance sur ses traces sans h\u00e9siter. Il emm\u00e8ne dans cette mission d\u00e9sesp\u00e9r\u00e9e son fid\u00e8le ami barde Jaskier, ainsi que d\u2019autres compagnons de fortune. Ils ne seront pas de trop : les ravages de la guerre s\u00e9vissent de tous c\u00f4t\u00e9s, et les magiciennes rescap\u00e9es tentent co\u00fbte que co\u00fbte de pr\u00e9server l\u2019avenir de la magie\u2026","author":["1"],"actor_name":[""],"actor_role":[""],"serie":"1","volume":"5","genre":["1"],"subgenre":["1"],"cover":"cover\/1739217643_b20c331664cb9bbda119.jpg"}
+DEBUG - 2025-02-10 20:00:43 --> Author: ["1"]
+DEBUG - 2025-02-10 20:00:43 --> Genre: ["1"]
+DEBUG - 2025-02-10 20:00:43 --> Subgenre: ["1"]
+DEBUG - 2025-02-10 20:00:43 --> Price: "9,95"
+INFO - 2025-02-10 20:00:43 --> Validation successful.
+ERROR - 2025-02-10 20:00:43 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 20:00:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:00:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:01:32 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9791028136840.jpg
+            [full_path] => 9791028136840.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php8E9D.tmp
+            [error] => 0
+            [size] => 111225
+        )
+
+)
+
+DEBUG - 2025-02-10 20:01:32 --> File name: 9791028136840.jpg
+DEBUG - 2025-02-10 20:01:32 --> File temporary path: C:\xampp\tmp\php8E9D.tmp
+DEBUG - 2025-02-10 20:01:32 --> File validation passed.
+DEBUG - 2025-02-10 20:01:32 --> File moved to: cover/1739217692_36f03c4c81201328f923.jpg
+DEBUG - 2025-02-10 20:01:32 --> Received data: {"title":"La Tour de l'Hirondelle","publisher":"1","publication":"2025-03-12","preorder":0,"language":"FR","isbn":"9791028136840","price":"9,95","format":"Pocket","link":"https:\/\/www.bragelonne.fr\/catalogue\/9791028136840-la-tour-de-lhirondelle-traduction-revisee\/","description":"Convaincu que Ciri s\u2019appr\u00eate \u00e0 \u00e9pouser l\u2019empereur de Nilfgaard, le sorceleur poursuit sa route vers le sud. Mais ce p\u00e9riple est long et dangereux, car nombreux sont les ennemis qui se dressent devant lui. Tandis que les tra\u00eetres se d\u00e9voilent et que les complots s\u2019encha\u00eenent, les doutes sur la v\u00e9ritable destin\u00e9e de Ciri hantent tous les esprits. D\u2019autant qu\u2019elle est en r\u00e9alit\u00e9 prisonni\u00e8re d\u2019un redoutable chasseur de primes\u2026","author":["1"],"actor_name":[""],"actor_role":[""],"serie":"1","volume":"6","genre":["1"],"subgenre":["1"],"cover":"cover\/1739217692_36f03c4c81201328f923.jpg"}
+DEBUG - 2025-02-10 20:01:32 --> Author: ["1"]
+DEBUG - 2025-02-10 20:01:32 --> Genre: ["1"]
+DEBUG - 2025-02-10 20:01:32 --> Subgenre: ["1"]
+DEBUG - 2025-02-10 20:01:32 --> Price: "9,95"
+INFO - 2025-02-10 20:01:32 --> Validation successful.
+ERROR - 2025-02-10 20:01:32 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 20:01:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:01:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:01:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:01:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:01:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:01:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:02:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:02:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:03:50 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9791028136420.jpg
+            [full_path] => 9791028136420.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpA9BE.tmp
+            [error] => 0
+            [size] => 183966
+        )
+
+)
+
+DEBUG - 2025-02-10 20:03:50 --> File name: 9791028136420.jpg
+DEBUG - 2025-02-10 20:03:50 --> File temporary path: C:\xampp\tmp\phpA9BE.tmp
+DEBUG - 2025-02-10 20:03:50 --> File validation passed.
+DEBUG - 2025-02-10 20:03:50 --> File moved to: cover/1739217830_2d832bf3f66f3b1646f8.jpg
+DEBUG - 2025-02-10 20:03:50 --> Received data: {"title":"Le Ma\u00eetre du Temps - L'Int\u00e9grale","publisher":"1","publication":"2025-03-12","preorder":0,"language":"FR","isbn":"9791028136420","price":"19,95","format":"Softcover","link":"https:\/\/www.bragelonne.fr\/catalogue\/9791028136420-le-maitre-du-temps-lintegrale\/","description":"Dans un monde domin\u00e9 par le conflit entre l\u2019Ordre et le Chaos, se dessine une histoire d\u2019amour impossible sur fond de magie blanche et noire.\r\n\r\nLa sombre forteresse du Nord abrite le Cercle des magiciens depuis une \u00e9ternit\u00e9. Mais dans leurs rangs, l\u2019\u00e9nigmatique Tarod, le plus redoutable des jeunes adeptes, ressent une attirance myst\u00e9rieuse pour les forces obscures. Il est bient\u00f4t le seul \u00e0 sentir la menace d\u2019un adversaire antique, cach\u00e9 dans les ab\u00eemes du Temps. Une menace tr\u00e8s s\u00e9duisante, qui fait vaciller ses convictions\u2026 Mais pas autant que la belle Cyllan, une jeune roturi\u00e8re rencontr\u00e9e par hasard, qui fait basculer son destin. \u00c0 moins que tout cela ait \u00e9t\u00e9 pr\u00e9m\u00e9dit\u00e9 ?\r\n\r\nDans l\u2019entrelacs d\u2019intrigues et de vengeances mesquines qui va en d\u00e9couler, au d\u00e9tour d\u2019un des couloirs du Temps, c\u2019est la survie du monde face aux dieux anciens qui est en train de se jouer ; et pour Tarod, c\u2019est l\u2019heure du choix.","author":["35"],"actor_name":[""],"actor_role":[""],"serie":"13","volume":"I","genre":["1"],"subgenre":[],"cover":"cover\/1739217830_2d832bf3f66f3b1646f8.jpg"}
+DEBUG - 2025-02-10 20:03:50 --> Author: ["35"]
+DEBUG - 2025-02-10 20:03:50 --> Genre: ["1"]
+DEBUG - 2025-02-10 20:03:50 --> Subgenre: []
+DEBUG - 2025-02-10 20:03:50 --> Price: "19,95"
+INFO - 2025-02-10 20:03:50 --> Validation successful.
+ERROR - 2025-02-10 20:03:50 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 20:03:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:03:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:07:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:29:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:30:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 20:30:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:05:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:08:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:08:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:11:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:11:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:11:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:14:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:15:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:15:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:16:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:17:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:18:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:18:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:18:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:33:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:33:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:33:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:33:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:34:56 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 81nvXnS6jyL._SL1500_.jpg
+            [full_path] => 81nvXnS6jyL._SL1500_.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php1120.tmp
+            [error] => 0
+            [size] => 171091
+        )
+
+)
+
+DEBUG - 2025-02-10 21:34:56 --> File name: 81nvXnS6jyL._SL1500_.jpg
+DEBUG - 2025-02-10 21:34:56 --> File temporary path: C:\xampp\tmp\php1120.tmp
+DEBUG - 2025-02-10 21:34:56 --> File validation passed.
+DEBUG - 2025-02-10 21:34:56 --> File moved to: cover/1739223296_343d1a9f531e174885c2.jpg
+DEBUG - 2025-02-10 21:34:56 --> Received data: {"title":"Un nouveau jour se l\u00e8ve toujours","publisher":"12","publication":"2025-02-12","preorder":0,"language":"FR","isbn":"","price":"0,99","format":"Ebook","link":"https:\/\/www.amazon.fr\/nouveau-jour-toujours-nouvelle-Saint-Valentin-ebook\/dp\/B0DWDWNWT3?dib=eyJ2IjoiMSJ9.31klH_5moj4EzUkHU7Dc77QrRvZWdIKkyAyepjNB1HB_VUnp0uKU11LGza1UoN1vtzqXGLIep9SQTiF3OTwefXTORtxVuM6bNQJ4vAUvy8fmwbxSIAsZC_vJ7QuLt6UQstLNGCRy1FsBqbGD3GHzxpeRWqhZRukSUkBLYbG55OZQlbE3xdrDr8I69rYU8gQxPQt44BPJ874t5zGYLLKQXiLS0PdanHF1qdllCFAvpf0.kcDkglzQu59BPV41EAYL9VLaMgnLq-LEVQMo99a0WOE&dib_tag=se&keywords=black+ink+editions&qid=1739223144&refinements=p_n_publication_date%3A183198031&rnid=183195031&s=books&sr=1-3","description":"Le jour de la Saint-Valentin et sur un malentendu orchestr\u00e9, voil\u00e0 comment vont se rencontrer Victor et Anita.\r\n\r\nLui trompe le destin et le fa\u00e7onne de ses mains. Elle est veuve d\u2019un grand homme d\u2019affaires et ne ressemble en rien \u00e0 la proie id\u00e9ale.\r\n\r\nUn nouveau jour se l\u00e8ve toujours, telle est la devise de Victor. Sauf qu\u2019il n\u2019avait pas envisag\u00e9 qu\u2019une nouvelle aube changerait tout...","author":["48"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["4"],"subgenre":["11"],"cover":"cover\/1739223296_343d1a9f531e174885c2.jpg"}
+DEBUG - 2025-02-10 21:34:56 --> Author: ["48"]
+DEBUG - 2025-02-10 21:34:56 --> Genre: ["4"]
+DEBUG - 2025-02-10 21:34:56 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 21:34:56 --> Price: "0,99"
+ERROR - 2025-02-10 21:34:56 --> Validation failed. Errors: {"link":"L'URL ne peut pas d\u00e9passer 300 caract\u00e8res."}
+DEBUG - 2025-02-10 21:34:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:34:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:35:43 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 81nvXnS6jyL._SL1500_.jpg
+            [full_path] => 81nvXnS6jyL._SL1500_.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC8D8.tmp
+            [error] => 0
+            [size] => 171091
+        )
+
+)
+
+DEBUG - 2025-02-10 21:35:43 --> File name: 81nvXnS6jyL._SL1500_.jpg
+DEBUG - 2025-02-10 21:35:43 --> File temporary path: C:\xampp\tmp\phpC8D8.tmp
+DEBUG - 2025-02-10 21:35:43 --> File validation passed.
+DEBUG - 2025-02-10 21:35:43 --> File moved to: cover/1739223343_64377859ccc7c796c57c.jpg
+DEBUG - 2025-02-10 21:35:43 --> Received data: {"title":"Un nouveau jour se l\u00e8ve toujours","publisher":"12","publication":"2025-02-12","preorder":0,"language":"FR","isbn":"","price":"0,99","format":"Ebook","link":"https:\/\/www.amazon.fr\/nouveau-jour-toujours-nouvelle-Saint-Valentin-ebook\/dp\/B0DWDWNWT3","description":"Le jour de la Saint-Valentin et sur un malentendu orchestr\u00e9, voil\u00e0 comment vont se rencontrer Victor et Anita.\r\n\r\nLui trompe le destin et le fa\u00e7onne de ses mains. Elle est veuve d\u2019un grand homme d\u2019affaires et ne ressemble en rien \u00e0 la proie id\u00e9ale.\r\n\r\nUn nouveau jour se l\u00e8ve toujours, telle est la devise de Victor. Sauf qu\u2019il n\u2019avait pas envisag\u00e9 qu\u2019une nouvelle aube changerait tout...","author":["48"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["4"],"subgenre":["11"],"cover":"cover\/1739223343_64377859ccc7c796c57c.jpg"}
+DEBUG - 2025-02-10 21:35:43 --> Author: ["48"]
+DEBUG - 2025-02-10 21:35:43 --> Genre: ["4"]
+DEBUG - 2025-02-10 21:35:43 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 21:35:43 --> Price: "0,99"
+INFO - 2025-02-10 21:35:43 --> Validation successful.
+ERROR - 2025-02-10 21:35:43 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 21:35:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:35:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:37:49 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 41YOhm5tUxL.jpg
+            [full_path] => 41YOhm5tUxL.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpB44E.tmp
+            [error] => 0
+            [size] => 28302
+        )
+
+)
+
+DEBUG - 2025-02-10 21:37:49 --> File name: 41YOhm5tUxL.jpg
+DEBUG - 2025-02-10 21:37:49 --> File temporary path: C:\xampp\tmp\phpB44E.tmp
+DEBUG - 2025-02-10 21:37:49 --> File validation passed.
+DEBUG - 2025-02-10 21:37:49 --> File moved to: cover/1739223469_5df04bbe336f8afdfff0.jpg
+DEBUG - 2025-02-10 21:37:49 --> Received data: {"title":"Perdoname","publisher":"12","publication":"2025-02-24","preorder":0,"language":"FR","isbn":"9782379936531","price":"19","format":"Softcover","link":"https:\/\/blackinkeditions.com\/product\/perdoname\/","description":"\r\n\r\nIl y a dix ans, Louna a vu son monde s\u2019effondrer. Il a suffi d\u2019une sombre journ\u00e9e pour qu\u2019elle perde les seules personnes qui comptaient pour elle.\r\n\r\nEnfant ill\u00e9gitime d\u2019un p\u00e8re qui n\u2019a jamais voulu la reconna\u00eetre, elle tente de survivre sans grand facteur chance dans sa triste existence.\r\n\r\nMais le jour o\u00f9 Charlie, ce demi-fr\u00e8re qu\u2019elle n\u2019a jamais fr\u00e9quent\u00e9, frappe \u00e0 sa porte, elle voit enfin les nuages se disperser.\r\n\r\nD\u00e9sireux de l\u2019int\u00e9grer dans sa vie, il lui offre l\u2019opportunit\u00e9 exceptionnelle d\u2019entrer dans la plus grande \u00e9cole d\u2019art parisienne dont elle r\u00eave depuis toujours. Elle y d\u00e9couvre une bande d\u2019amis soud\u00e9s et fid\u00e8les.\r\n\r\nParmi eux, Diego Solenna, danseur \u00e9m\u00e9rite au charme redoutable et meilleur ami de Charlie.\r\n\r\nSi seulement Diego n\u2019\u00e9tait que \u00e7a\u2026\r\n\r\nComment Louna aurait-elle pu imaginer que dix ans apr\u00e8s son calvaire, elle se retrouverait face \u00e0 ce Colombien qu\u2019elle a tant aim\u00e9 et qui l\u2019a abandonn\u00e9e sans un mot ?\r\n\r\nIl est des retrouvailles douces. Les leurs sont am\u00e8res, car plus que jamais, elles les renvoient vers ce pass\u00e9 auquel ils vont devoir se confronter.\r\n","author":["38"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["4"],"subgenre":["11"],"cover":"cover\/1739223469_5df04bbe336f8afdfff0.jpg"}
+DEBUG - 2025-02-10 21:37:49 --> Author: ["38"]
+DEBUG - 2025-02-10 21:37:49 --> Genre: ["4"]
+DEBUG - 2025-02-10 21:37:49 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 21:37:49 --> Price: "19"
+INFO - 2025-02-10 21:37:49 --> Validation successful.
+ERROR - 2025-02-10 21:37:49 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 21:37:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:37:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:38:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:38:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:38:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:40:07 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => MACALLAN.png
+            [full_path] => MACALLAN.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\phpCF11.tmp
+            [error] => 0
+            [size] => 498018
+        )
+
+)
+
+DEBUG - 2025-02-10 21:40:07 --> File name: MACALLAN.png
+DEBUG - 2025-02-10 21:40:07 --> File temporary path: C:\xampp\tmp\phpCF11.tmp
+DEBUG - 2025-02-10 21:40:07 --> File validation passed.
+DEBUG - 2025-02-10 21:40:07 --> File moved to: cover/1739223607_f73aedf08fb4b37aaf8d.png
+DEBUG - 2025-02-10 21:40:07 --> Received data: {"title":"MacAllan","publisher":"12","publication":"2025-03-12","preorder":0,"language":"FR","isbn":"9782379936579","price":"19","format":"Softcover","link":"https:\/\/blackinkeditions.com\/product\/macallan\/","description":"\r\n\r\nL\u2019\u00c9cosse, ses jeux traditionnels, ses kilts, sa culture et ses l\u00e9gendes font de moi celui que je suis.\r\n\r\nPropri\u00e9taire avec mon grand-p\u00e8re du ch\u00e2teau familial, je passe mon temps \u00e0 tout g\u00e9rer et \u00e0 trouver des solutions pour pallier nos difficult\u00e9s financi\u00e8res. Angus, mon a\u00efeul, a eu l\u2019id\u00e9e saugrenue d\u2019engager une relieuse d\u2019art pour restaurer les livres de la biblioth\u00e8que afin d\u2019attirer davantage de touristes.\r\n\r\nIl l\u2019adore, je la d\u00e9teste. Elle, c\u2019est Harmony\u2026 une pipelette, certes talentueuse, mais surtout tr\u00e8s maladroite !\r\n\r\nMe voil\u00e0 donc oblig\u00e9 de cohabiter et de chercher avec elle un soi-disant tr\u00e9sor cach\u00e9 dans les profondeurs du ch\u00e2teau. Pire encore ! Moi, v\u00e9ritable handicap\u00e9 des sentiments, c\u00e9libataire qui ne vit que pour ses terres et les Highland Games, je sens mes certitudes s\u2019effriter les unes apr\u00e8s les autres, face \u00e0 son sourire ravageur.\r\n\r\nEt si le plus pr\u00e9cieux des tr\u00e9sors \u00e9tait juste sous mes yeux ?\r\n","author":["51"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["4"],"subgenre":["11"],"cover":"cover\/1739223607_f73aedf08fb4b37aaf8d.png"}
+DEBUG - 2025-02-10 21:40:07 --> Author: ["51"]
+DEBUG - 2025-02-10 21:40:07 --> Genre: ["4"]
+DEBUG - 2025-02-10 21:40:07 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 21:40:07 --> Price: "19"
+INFO - 2025-02-10 21:40:07 --> Validation successful.
+ERROR - 2025-02-10 21:40:07 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 21:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:40:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:40:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:40:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:40:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:43:29 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => THE-CHALLENGE.png
+            [full_path] => THE-CHALLENGE.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\phpE5D7.tmp
+            [error] => 0
+            [size] => 885671
+        )
+
+)
+
+DEBUG - 2025-02-10 21:43:29 --> File name: THE-CHALLENGE.png
+DEBUG - 2025-02-10 21:43:29 --> File temporary path: C:\xampp\tmp\phpE5D7.tmp
+DEBUG - 2025-02-10 21:43:29 --> File validation passed.
+DEBUG - 2025-02-10 21:43:29 --> File moved to: cover/1739223809_5551f642737e25ee1269.png
+DEBUG - 2025-02-10 21:43:29 --> Received data: {"title":"The Challenge: Delta phi kappa","publisher":"12","publication":"2025-03-28","preorder":0,"language":"FR","isbn":"9782379936593","price":"19","format":"Softcover","link":"https:\/\/blackinkeditions.com\/product\/the-challenge\/","description":"Pour \u00eatre tranquille, Kathleen Johnson doit suivre deux r\u00e8gles. La premi\u00e8re, ne pas \u00e9tudier \u00e0 Columbia o\u00f9 son p\u00e8re entra\u00eene l\u2019\u00e9quipe de foot. La seconde, ne jamais fr\u00e9quenter l\u2019un de ces irresponsables de joueurs. Pas de bol\u2026 elle s\u2019est fait virer de la NYU et elle a toujours eu un faible pour Ethan Dixon, son idole.\r\n\r\nDepuis qu\u2019il a suivi sa s\u0153ur \u00e0 New York, Ethan voit sa vie se compliquer de jour en jour. Devenu quarterback titulaire, le nouveau pr\u00e9sident des Delta Phi Kappa se passerait bien du scandale m\u00e9diatique provoqu\u00e9 bien involontairement par Kathleen. Afin de calmer la presse, le conseil de discipline l\u2019incite \u00e0 pr\u00e9tendre \u00eatre son petit copain. Cela risque d\u2019\u00eatre compliqu\u00e9, car en plus d\u2019\u00eatre l\u2019amie de sa s\u0153ur, elle est aussi la fille de son coach.\r\n\r\nMais que risquent-ils \u00e0 jouer la com\u00e9die ? Apr\u00e8s tout, publier quelques vid\u00e9os, participer \u00e0 des \u00e9v\u00e9nements caritatifs et faire semblant d\u2019\u00eatre en couple n\u2019engage \u00e0 rien.\r\n\r\nQuant \u00e0 Kathleen, elle n\u2019a qu\u2019une envie\u2026 fuir. Cependant, d\u00e9couvrir l\u2019homme derri\u00e8re le joueur l\u2019aiderait s\u00fbrement \u00e0 avancer. \u00c0 mieux le conna\u00eetre, peut-\u00eatre qu\u2019elle abandonnera enfin cette admiration maladive qu\u2019elle lui voue ?\r\n\r\nSortez le pop-corn, que le jeu commence !","author":["45"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["4"],"subgenre":["11"],"cover":"cover\/1739223809_5551f642737e25ee1269.png"}
+DEBUG - 2025-02-10 21:43:29 --> Author: ["45"]
+DEBUG - 2025-02-10 21:43:29 --> Genre: ["4"]
+DEBUG - 2025-02-10 21:43:29 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 21:43:29 --> Price: "19"
+INFO - 2025-02-10 21:43:29 --> Validation successful.
+ERROR - 2025-02-10 21:43:29 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 21:43:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:43:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:44:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:45:49 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 81QzpZvtFLL._SL1500_.jpg
+            [full_path] => 81QzpZvtFLL._SL1500_.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpA2F.tmp
+            [error] => 0
+            [size] => 204379
+        )
+
+)
+
+DEBUG - 2025-02-10 21:45:49 --> File name: 81QzpZvtFLL._SL1500_.jpg
+DEBUG - 2025-02-10 21:45:49 --> File temporary path: C:\xampp\tmp\phpA2F.tmp
+DEBUG - 2025-02-10 21:45:50 --> File validation passed.
+DEBUG - 2025-02-10 21:45:50 --> File moved to: cover/1739223950_eba1bc4c83df7caeade5.jpg
+DEBUG - 2025-02-10 21:45:50 --> Received data: {"title":"Stuck in the middle of nowhere","publisher":"12","publication":"2025-02-12","preorder":0,"language":"FR","isbn":"","price":"","format":"Ebook","link":"https:\/\/www.amazon.fr\/Stuck-middle-nowhere-nouvelle-Saint-Valentin-ebook\/dp\/B0DWDLRZ1P","description":"Madeline, alias Mad est une cheerleader f\u00e9ministe engag\u00e9e. Donovan, quarterback de talent, est le capitaine de l\u2019\u00e9quipe de football am\u00e9ricain de l\u2019universit\u00e9 de New York. Tous deux se vouent une haine r\u00e9ciproque depuis le jardin d\u2019enfants.\r\n\r\nAlors, quand ils se retrouvent c\u00f4te \u00e0 c\u00f4te sur le m\u00eame vol, les vacances d\u2019hiver tournent au drame. D\u2019autant plus quand c\u2019est le 14 f\u00e9vrier... et qu\u2019on sait \u00e0 quel point Mad d\u00e9teste la Saint-Valentin...\r\n\r\nEntre quiproquos et joutes verbales, parviendront-ils \u00e0 ne pas s\u2019\u00e9charper ?","author":["36","44"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["4"],"subgenre":["11"],"cover":"cover\/1739223950_eba1bc4c83df7caeade5.jpg"}
+DEBUG - 2025-02-10 21:45:50 --> Author: ["36","44"]
+DEBUG - 2025-02-10 21:45:50 --> Genre: ["4"]
+DEBUG - 2025-02-10 21:45:50 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 21:45:50 --> Price: ""
+ERROR - 2025-02-10 21:45:50 --> Validation failed. Errors: {"price":"The price field is not in the correct format."}
+DEBUG - 2025-02-10 21:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:47:18 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 81QzpZvtFLL._SL1500_.jpg
+            [full_path] => 81QzpZvtFLL._SL1500_.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php6432.tmp
+            [error] => 0
+            [size] => 204379
+        )
+
+)
+
+DEBUG - 2025-02-10 21:47:18 --> File name: 81QzpZvtFLL._SL1500_.jpg
+DEBUG - 2025-02-10 21:47:18 --> File temporary path: C:\xampp\tmp\php6432.tmp
+DEBUG - 2025-02-10 21:47:18 --> File validation passed.
+DEBUG - 2025-02-10 21:47:18 --> File moved to: cover/1739224038_cb261a764ce664e99fd7.jpg
+DEBUG - 2025-02-10 21:47:18 --> Received data: {"title":"Stuck in the middle of nowhere","publisher":"12","publication":"2025-02-12","preorder":0,"language":"FR","isbn":"","price":"0,99","format":"Ebook","link":"https:\/\/www.amazon.fr\/Stuck-middle-nowhere-nouvelle-Saint-Valentin-ebook\/dp\/B0DWDLRZ1P","description":"Madeline, alias Mad est une cheerleader f\u00e9ministe engag\u00e9e. Donovan, quarterback de talent, est le capitaine de l\u2019\u00e9quipe de football am\u00e9ricain de l\u2019universit\u00e9 de New York. Tous deux se vouent une haine r\u00e9ciproque depuis le jardin d\u2019enfants.\r\n\r\nAlors, quand ils se retrouvent c\u00f4te \u00e0 c\u00f4te sur le m\u00eame vol, les vacances d\u2019hiver tournent au drame. D\u2019autant plus quand c\u2019est le 14 f\u00e9vrier... et qu\u2019on sait \u00e0 quel point Mad d\u00e9teste la Saint-Valentin...\r\n\r\nEntre quiproquos et joutes verbales, parviendront-ils \u00e0 ne pas s\u2019\u00e9charper ?","author":["36","44"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["4"],"subgenre":["11"],"cover":"cover\/1739224038_cb261a764ce664e99fd7.jpg"}
+DEBUG - 2025-02-10 21:47:18 --> Author: ["36","44"]
+DEBUG - 2025-02-10 21:47:18 --> Genre: ["4"]
+DEBUG - 2025-02-10 21:47:18 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 21:47:18 --> Price: "0,99"
+INFO - 2025-02-10 21:47:18 --> Validation successful.
+ERROR - 2025-02-10 21:47:18 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 21:47:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:47:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:47:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:51:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:51:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:52:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:58:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:59:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:59:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:59:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:59:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 21:59:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:00:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:01:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:02:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:03:14 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9782362316203.jpg
+            [full_path] => 9782362316203.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpFB01.tmp
+            [error] => 0
+            [size] => 796901
+        )
+
+)
+
+DEBUG - 2025-02-10 22:03:14 --> File name: 9782362316203.jpg
+DEBUG - 2025-02-10 22:03:14 --> File temporary path: C:\xampp\tmp\phpFB01.tmp
+DEBUG - 2025-02-10 22:03:14 --> File validation passed.
+DEBUG - 2025-02-10 22:03:14 --> File moved to: cover/1739224994_5cd47bdf9a16d094e1ac.jpg
+DEBUG - 2025-02-10 22:03:14 --> Received data: {"title":"Never","publisher":"13","publication":"2025-02-19","preorder":0,"language":"FR","isbn":"9782362316203","price":"20","format":"Softcover","link":"https:\/\/milady.fr\/catalogue\/9782362316203-never\/","description":"Un gar\u00e7on l\u00e9gendaire peuple les contes transmis dans ma famille. Il glisse sur les rayons du soleil, chevauche le vent, et la libert\u00e9 coule dans ses veines. D\u2019apr\u00e8s la l\u00e9gende, son c\u0153ur est sauvage.\r\n\r\nCe gar\u00e7on vivait dans une terre lointaine cach\u00e9e derri\u00e8re une \u00e9toile, une terre o\u00f9 les pirates \u00e9taient encore r\u00e9els, o\u00f9 les sir\u00e8nes vivaient au grand jour, et o\u00f9 les f\u00e9es voletaient dans les airs comme des feuilles d\u2019automne dans la brise. Il a emmen\u00e9 ma m\u00e8re dans ce pays, comme ma grand-m\u00e8re et mon arri\u00e8re-grand-m\u00e8re avant elle.\r\n\r\nEt, un jour, il viendra pour moi.\r\n\r\nArrach\u00e9e \u00e0 sa vie londonienne pour explorer un lieu au-del\u00e0 des \u00e9toiles, la petite-fille de Wendy, Daphne, est d\u00e9chir\u00e9e entre le gar\u00e7on l\u00e9gendaire \u2013 Peter Pan, dont le destin est irr\u00e9vocablement li\u00e9 \u00e0 celui de sa famille \u2013 et Jem Hook, le pirate qui a su s\u2019emparer de son c\u0153ur malgr\u00e9 elle.\r\n\r\nRempli d\u2019espoir et de peines de c\u0153ur, de beaut\u00e9 et de trahison, de r\u00eaves et d\u2019une r\u00e9alit\u00e9 d\u00e9vastatrice, Never nous interroge : peut-on r\u00e9ellement \u00eatre libre si on s\u2019accroche \u00e0 son pass\u00e9 ? Et qu\u2019arriverait-il si nous l\u00e2chions totalement prise \u2013 rien qu\u2019une fois ?","author":["52"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":[],"subgenre":["2"],"cover":"cover\/1739224994_5cd47bdf9a16d094e1ac.jpg"}
+DEBUG - 2025-02-10 22:03:14 --> Author: ["52"]
+DEBUG - 2025-02-10 22:03:14 --> Genre: []
+DEBUG - 2025-02-10 22:03:14 --> Subgenre: ["2"]
+DEBUG - 2025-02-10 22:03:14 --> Price: "20"
+ERROR - 2025-02-10 22:03:14 --> Validation failed. Errors: {"genre.*":"The genre.* field must contain a previously existing value in the database."}
+DEBUG - 2025-02-10 22:03:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:03:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:04:12 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9782362316203.jpg
+            [full_path] => 9782362316203.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpDBCD.tmp
+            [error] => 0
+            [size] => 796901
+        )
+
+)
+
+DEBUG - 2025-02-10 22:04:12 --> File name: 9782362316203.jpg
+DEBUG - 2025-02-10 22:04:12 --> File temporary path: C:\xampp\tmp\phpDBCD.tmp
+DEBUG - 2025-02-10 22:04:12 --> File validation passed.
+DEBUG - 2025-02-10 22:04:12 --> File moved to: cover/1739225052_09e8dfbd90ae0a564139.jpg
+DEBUG - 2025-02-10 22:04:12 --> Received data: {"title":"Never","publisher":"13","publication":"2025-02-19","preorder":0,"language":"FR","isbn":"9782362316203","price":"20","format":"Softcover","link":"https:\/\/milady.fr\/catalogue\/9782362316203-never\/","description":"Un gar\u00e7on l\u00e9gendaire peuple les contes transmis dans ma famille. Il glisse sur les rayons du soleil, chevauche le vent, et la libert\u00e9 coule dans ses veines. D\u2019apr\u00e8s la l\u00e9gende, son c\u0153ur est sauvage.\r\n\r\nCe gar\u00e7on vivait dans une terre lointaine cach\u00e9e derri\u00e8re une \u00e9toile, une terre o\u00f9 les pirates \u00e9taient encore r\u00e9els, o\u00f9 les sir\u00e8nes vivaient au grand jour, et o\u00f9 les f\u00e9es voletaient dans les airs comme des feuilles d\u2019automne dans la brise. Il a emmen\u00e9 ma m\u00e8re dans ce pays, comme ma grand-m\u00e8re et mon arri\u00e8re-grand-m\u00e8re avant elle.\r\n\r\nEt, un jour, il viendra pour moi.\r\n\r\nArrach\u00e9e \u00e0 sa vie londonienne pour explorer un lieu au-del\u00e0 des \u00e9toiles, la petite-fille de Wendy, Daphne, est d\u00e9chir\u00e9e entre le gar\u00e7on l\u00e9gendaire \u2013 Peter Pan, dont le destin est irr\u00e9vocablement li\u00e9 \u00e0 celui de sa famille \u2013 et Jem Hook, le pirate qui a su s\u2019emparer de son c\u0153ur malgr\u00e9 elle.\r\n\r\nRempli d\u2019espoir et de peines de c\u0153ur, de beaut\u00e9 et de trahison, de r\u00eaves et d\u2019une r\u00e9alit\u00e9 d\u00e9vastatrice, Never nous interroge : peut-on r\u00e9ellement \u00eatre libre si on s\u2019accroche \u00e0 son pass\u00e9 ? Et qu\u2019arriverait-il si nous l\u00e2chions totalement prise \u2013 rien qu\u2019une fois ?","author":["52"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["1","4"],"subgenre":["2"],"cover":"cover\/1739225052_09e8dfbd90ae0a564139.jpg"}
+DEBUG - 2025-02-10 22:04:12 --> Author: ["52"]
+DEBUG - 2025-02-10 22:04:12 --> Genre: ["1","4"]
+DEBUG - 2025-02-10 22:04:12 --> Subgenre: ["2"]
+DEBUG - 2025-02-10 22:04:12 --> Price: "20"
+INFO - 2025-02-10 22:04:12 --> Validation successful.
+ERROR - 2025-02-10 22:04:12 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 22:04:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:04:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:05:38 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 9782811229702.jpg
+            [full_path] => 9782811229702.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2CA8.tmp
+            [error] => 0
+            [size] => 522614
+        )
+
+)
+
+DEBUG - 2025-02-10 22:05:38 --> File name: 9782811229702.jpg
+DEBUG - 2025-02-10 22:05:38 --> File temporary path: C:\xampp\tmp\php2CA8.tmp
+DEBUG - 2025-02-10 22:05:38 --> File validation passed.
+DEBUG - 2025-02-10 22:05:38 --> File moved to: cover/1739225138_6eb7e300a7dab679362b.jpg
+DEBUG - 2025-02-10 22:05:38 --> Received data: {"title":"Isaiah Hale","publisher":"13","publication":"2025-02-19","preorder":0,"language":"FR","isbn":"9782811229702","price":"8,89","format":"Pocket","link":"https:\/\/milady.fr\/catalogue\/9782811229702-isaiah-hale\/","description":"Rien n\u2019est plus fort que l\u2019amour.\r\n\r\nRejet\u00e9e par son \u00e2me s\u0153ur, Quinley jette son d\u00e9volu sur un site de rencontre pour m\u00e9tamorphes, sp\u00e9cialis\u00e9 dans les unions arrang\u00e9es. Elle ne s\u2019attend pas \u00e0 ressentir un intense d\u00e9sir pour Isaiah d\u00e8s leur premier contact. Celui-ci tombe tr\u00e8s vite sous le charme, mais son animal int\u00e9rieur ne consid\u00e8re pas encore la jeune femme comme sa compagne. Cependant, quand l\u2019\u00e2me s\u0153ur de Quinley semble avoir des remords et revenir vers elle, et que les ennemis d\u2019Isaiah commencent \u00e0 r\u00f4der un peu trop pr\u00e8s, Isaiah et son chat sont enfin d\u2019accord : plus jamais ils ne se s\u00e9pareront de Quinley.","author":["53"],"actor_name":[""],"actor_role":[""],"serie":"14","volume":"6","genre":["1","4"],"subgenre":["13"],"cover":"cover\/1739225138_6eb7e300a7dab679362b.jpg"}
+DEBUG - 2025-02-10 22:05:38 --> Author: ["53"]
+DEBUG - 2025-02-10 22:05:38 --> Genre: ["1","4"]
+DEBUG - 2025-02-10 22:05:38 --> Subgenre: ["13"]
+DEBUG - 2025-02-10 22:05:38 --> Price: "8,89"
+INFO - 2025-02-10 22:05:38 --> Validation successful.
+ERROR - 2025-02-10 22:05:38 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 22:05:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:05:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:07:40 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+DEBUG - 2025-02-10 22:07:40 --> No file uploaded or file input is missing.
+DEBUG - 2025-02-10 22:07:40 --> Received data: {"title":"Fast & Reckless","publisher":"13","publication":"2025-04-16","preorder":0,"language":"FR","isbn":"9782811233662","price":"14,95","format":"Softcover","link":"https:\/\/milady.fr\/catalogue\/9782811233662-fast-reckless\/","description":"Mira Wentworth sait que Will Hawley ne lui apportera que des ennuis. M\u00eame s\u2019il fait battre son c\u0153ur, elle compte tenir \u00e0 distance le nouveau membre de l\u2019\u00e9curie de son p\u00e8re. Depuis l\u2019erreur d\u00e9sastreuse qui lui a tout co\u00fbt\u00e9 pendant son adolescence, Mira s\u2019est jur\u00e9 de ne jamais retomber amoureuse sur les circuits de Formule 1, et maintenant qu\u2019elle a la chance de r\u00e9int\u00e9grer ce milieu en tant qu\u2019assistante au sein de l\u2019\u00e9quipe, hors de question de laisser un pilote arrogant tout g\u00e2cher.\r\n\r\nApr\u00e8s que ses frasques de f\u00eatard ont stopp\u00e9 net sa carri\u00e8re, Will est enfin de retour derri\u00e8re le volant, chang\u00e9 et d\u00e9termin\u00e9 \u00e0 monter sur le podium. Mais d\u00e8s qu\u2019il pose le regard sur la fille de son patron, ses r\u00e9solutions sont mises \u00e0 mal.\r\n\r\nTandis que la tension monte, Mira et Will ont de plus en plus de mal \u00e0 nier leurs sentiments, et quand le pass\u00e9 refait surface, leur relation est mise \u00e0 l\u2019\u00e9preuve.\r\n\r\nLeur amour franchira-t-il la ligne d\u2019arriv\u00e9e ?\r\n\r\n\u00ab Weaver nous livre une romance sexy et fine qui s\u2019inscrit \u00e0 merveille dans l\u2019univers explosif de la Formule 1. Que vous soyez d\u00e9j\u00e0 fan du sport ou que vous le d\u00e9couvriez \u00e0 peine, vous ne voudrez pas manquer l\u2019histoire de Mira et Will ! \u00bb Grace Reilly, autrice de First Down\r\n\r\n\u00ab Une histoire d\u2019amour passionnante entre un bad boy pilote et une assistante s\u00e9rieuse hant\u00e9e par son pass\u00e9. Fast & Reckless offre un aper\u00e7u fascinant du monde de la Formule 1. \u00bb Liana De la Rosa, autrice d\u2019Ana Mar\u00eda and the Fox\r\n\r\n\u00ab Un amour interdit intense qui se d\u00e9ploie sur la sc\u00e8ne mondiale de la Formule 1. Cette romance sinc\u00e8re est mise en valeur par son d\u00e9cor glamour et par des sc\u00e8nes de course o\u00f9 l\u2019adr\u00e9naline monte. \u00bb Adele Buck, autrice de Fake Flame","author":["54"],"actor_name":[""],"actor_role":[""],"serie":"15","volume":"1","genre":["4"],"subgenre":["11"],"cover":null}
+DEBUG - 2025-02-10 22:07:40 --> Author: ["54"]
+DEBUG - 2025-02-10 22:07:40 --> Genre: ["4"]
+DEBUG - 2025-02-10 22:07:40 --> Subgenre: ["11"]
+DEBUG - 2025-02-10 22:07:40 --> Price: "14,95"
+INFO - 2025-02-10 22:07:40 --> Validation successful.
+ERROR - 2025-02-10 22:07:40 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 22:07:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:07:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:09:16 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+DEBUG - 2025-02-10 22:09:16 --> No file uploaded or file input is missing.
+DEBUG - 2025-02-10 22:09:16 --> Received data: {"title":"Le Chant de l'hiver","publisher":"13","publication":"2025-04-16","preorder":0,"language":"FR","isbn":"9782811239138","price":"22","format":"Softcover","link":"https:\/\/milady.fr\/catalogue\/9782811239138-le-chant-de-lhiver\/","description":"Dans le monde surnaturel, il existe des cr\u00e9atures qui appartiennent \u00e0 l\u2019hiver. Mercy n\u2019en fait pas partie mais, en v\u00e9ritable coyote, elle sait s\u2019adapter. \r\n\r\nSon compagnon, Adam, dirige la meute du bassin du Columbia, qui a pour mission de prot\u00e9ger les habitants des Tri-Cities. Une lourde responsabilit\u00e9 gourmande en temps et en \u00e9nergie. C\u2019est pourquoi quand il devient \u00e9vident que son fr\u00e8re Gary a besoin d\u2019aide, Mercy a l\u2019intention de se rendre seule dans le Montana. Mais Adam ne laisserait jamais sa compagne aller au-devant du danger sans lui.\r\n\r\nBloqu\u00e9s par une temp\u00eate d\u2019une violence extraordinaire, Mercy et Adam se retrouvent pi\u00e9g\u00e9s dans une auberge perdue au milieu des montagnes, o\u00f9 ils d\u00e9couvrent que les difficult\u00e9s de Gary ne repr\u00e9sentent qu\u2019une infime partie d\u2019un probl\u00e8me bien plus grave. Une magie ancienne est \u00e0 l\u2019\u0153uvre et, \u00e0 moins de r\u00e9ussir \u00e0 la contrer, elle pourrait bien provoquer la fin du monde...","author":["55"],"actor_name":[""],"actor_role":[""],"serie":"16","volume":"14","genre":["1","4"],"subgenre":["13"],"cover":null}
+DEBUG - 2025-02-10 22:09:16 --> Author: ["55"]
+DEBUG - 2025-02-10 22:09:16 --> Genre: ["1","4"]
+DEBUG - 2025-02-10 22:09:16 --> Subgenre: ["13"]
+DEBUG - 2025-02-10 22:09:16 --> Price: "22"
+INFO - 2025-02-10 22:09:16 --> Validation successful.
+ERROR - 2025-02-10 22:09:16 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 22:09:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:09:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:10:13 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+DEBUG - 2025-02-10 22:10:13 --> No file uploaded or file input is missing.
+DEBUG - 2025-02-10 22:10:13 --> Received data: {"title":"The Fake Mate","publisher":"13","publication":"2025-05-21","preorder":0,"language":"FR","isbn":"9782811223830","price":"14,95","format":"Softcover","link":"https:\/\/milady.fr\/catalogue\/9782811223830-the-fake-mate\/","description":"Mackenzie, m\u00e9tamorphe om\u00e9ga, encha\u00eene les mauvais rendez-vous amoureux depuis des mois. Sa carri\u00e8re d\u2019urgentiste commence \u00e0 peine, et sa grand-m\u00e8re insiste d\u00e9j\u00e0 pour la voir se caser avec le compagnon id\u00e9al. Dans l\u2019espoir d\u2019avoir la paix, Mackenzie raconte donc un petit mensonge. Elle pr\u00e9tend avoir rencontr\u00e9 quelqu\u2019un. Quelqu\u2019un avec qui elle n\u2019a pourtant pas envie de sortir : Noah Taylor, grand m\u00e9chant loup de l\u2019h\u00f4pital de Denver.\r\n\r\nNoah a toujours cach\u00e9 sa nature controvers\u00e9e d\u2019alpha sans \u00e2me s\u0153ur. Mais le conseil administratif finit par l\u2019apprendre, et deux choix s\u2019offrent d\u00e9sormais \u00e0 ce cardiologue grincheux : reconna\u00eetre la v\u00e9rit\u00e9 et dire adieu \u00e0 sa promotion ou se trouver une partenaire. Alors, quand le destin met sur son chemin une urgentiste bavarde et trop amicale qui lui demande de pr\u00e9tendre \u00eatre son petit ami, la solution \u00e0 son probl\u00e8me semble toute trouv\u00e9e. \r\n\r\nTr\u00e8s vite, cependant, leurs instincts de loup donnent une autre tournure \u00e0 cet arrangement\u2026","author":["56"],"actor_name":[""],"actor_role":[""],"serie":"","volume":"","genre":["1","4"],"subgenre":["13"],"cover":null}
+DEBUG - 2025-02-10 22:10:13 --> Author: ["56"]
+DEBUG - 2025-02-10 22:10:13 --> Genre: ["1","4"]
+DEBUG - 2025-02-10 22:10:13 --> Subgenre: ["13"]
+DEBUG - 2025-02-10 22:10:13 --> Price: "14,95"
+INFO - 2025-02-10 22:10:13 --> Validation successful.
+ERROR - 2025-02-10 22:10:13 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 22:10:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:10:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:11:15 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+DEBUG - 2025-02-10 22:11:15 --> No file uploaded or file input is missing.
+DEBUG - 2025-02-10 22:11:15 --> Received data: {"title":"Un royaume de poison et de serments","publisher":"13","publication":"2025-05-21","preorder":0,"language":"FR","isbn":"9782811229542","price":"20","format":"Softcover","link":"https:\/\/milady.fr\/catalogue\/9782811229542-un-royaume-de-poison-et-de-serments\/","description":"Je t\u2019ai cherch\u00e9e dans une centaine de vies, princesse, et je te chercherai encore dans une centaine d\u2019autres s\u2019il le faut.\r\n\r\nAdara a renonc\u00e9 \u00e0 sa libert\u00e9 pour sauver son \u00e2me s\u0153ur. La jeune femme retourne \u00e0 Citlali o\u00f9 elle d\u00e9couvre que Gavril est pr\u00eat \u00e0 commettre les pires atrocit\u00e9s dans sa qu\u00eate de puissance. Pour lier leurs destins \u00e0 jamais, il compte l\u2019\u00e9pouser au plus vite, et Adara, priv\u00e9e de son pouvoir, est d\u00e9sormais \u00e0 sa merci.\r\n\r\nDe son c\u00f4t\u00e9, Evren \u00e9labore un plan, d\u00e9termin\u00e9 \u00e0 lib\u00e9rer celle qu\u2019il aime avant la c\u00e9r\u00e9monie. Mais la rivalit\u00e9 entre ces deux princes que tout oppose laisse bient\u00f4t la place \u00e0 un conflit de plus grande ampleur entre les souveraines des royaumes fae et vampyre. La guerre gronde, et il est temps pour Adara de se battre\u2026\r\n\r\nLa conclusion \u00e9pique et sensuelle de L\u2019\u00c9toile et l\u2019Ombre ! ","author":["57"],"actor_name":[""],"actor_role":[""],"serie":"17","volume":"3","genre":["1","4"],"subgenre":["2"],"cover":null}
+DEBUG - 2025-02-10 22:11:15 --> Author: ["57"]
+DEBUG - 2025-02-10 22:11:15 --> Genre: ["1","4"]
+DEBUG - 2025-02-10 22:11:15 --> Subgenre: ["2"]
+DEBUG - 2025-02-10 22:11:15 --> Price: "20"
+INFO - 2025-02-10 22:11:15 --> Validation successful.
+ERROR - 2025-02-10 22:11:15 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 22:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:12:53 --> File upload data: Array
+(
+    [cover] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+DEBUG - 2025-02-10 22:12:53 --> No file uploaded or file input is missing.
+DEBUG - 2025-02-10 22:12:53 --> Received data: {"title":"Trayis","publisher":"13","publication":"2025-06-18","preorder":0,"language":"FR","isbn":"9782811226213","price":"8,95","format":"Pocket","link":"https:\/\/milady.fr\/catalogue\/9782811226213-trayis\/","description":"En raison de son sang humain, Shay est une paria dans la meute lycanne de ses parents adoptifs. Alors, elle se garde bien de r\u00e9v\u00e9ler son attirance pour Trayis, demi-fr\u00e8re vamplycan de leur alpha. Lors d\u2019une rare visite de sa part, elle prend cependant son courage \u00e0 deux mains et l\u2019approche dans l\u2019espoir de vivre une nuit de passion avant de passer le restant de ses jours seule. Trayis est surpris de d\u00e9couvrir l\u2019int\u00e9r\u00eat de la timide et douce Shay. Pour sauver la jeune femme de l\u2019humiliation, il ne voit rien de mal \u00e0 accepter sa proposition d\u2019aventure sans lendemain. C\u2019\u00e9tait sans compter les sentiments qu\u2019elle lui inspire soudainement\u2026","author":["58"],"actor_name":[""],"actor_role":[""],"serie":"18","volume":"11","genre":["1","4"],"subgenre":["13"],"cover":null}
+DEBUG - 2025-02-10 22:12:53 --> Author: ["58"]
+DEBUG - 2025-02-10 22:12:53 --> Genre: ["1","4"]
+DEBUG - 2025-02-10 22:12:53 --> Subgenre: ["13"]
+DEBUG - 2025-02-10 22:12:53 --> Price: "8,95"
+INFO - 2025-02-10 22:12:54 --> Validation successful.
+ERROR - 2025-02-10 22:12:54 --> Données invalides pour l'auteur:  avec rôle: ""
+DEBUG - 2025-02-10 22:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-10 22:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

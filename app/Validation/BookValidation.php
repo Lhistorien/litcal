@@ -7,24 +7,23 @@ class BookValidation
     public static $BookRules = 
     [
         'title' => 'required|max_length[200]',
-        'author[]' => 'required|max_length[100]|is_not_unique[author.id]',
+        'author.*' => 'required|max_length[100]|is_not_unique[author.id]',
         'actor_name[]' => 'if_exist|required_with[actor_role]|max_length[100]|is_not_unique[author.id]',
         'actor_role[]' => 'if_exist|required_with[actor_name]|max_length[50]|is_not_unique[role.roleName]',
         'publisher' => 'required|max_length[100]|is_not_unique[publisher.id]',
         'publication' => 'required|valid_date',
         'preorder' => 'if_exist',
         'language' => 'required|max_length[50]|is_not_unique[language.abbreviation]',
-        'price' => 'numeric',
-        'isbn' => 'if_exist|max_length[13]',
+        'price' => 'regex_match[/^\d+(\,|\.)?\d*$/]',
+        'isbn' => 'if_exist|max_length[20]',
         'format' => 'required|max_length[50]|is_not_unique[format.format]',
         'link' => 'if_exist|max_length[300]|valid_url',
-        'description' => 'if_exist|max_length[800]',
-        'cover' => 'max_size[cover,4096]|is_image[cover]',
-        'cover_url' => 'if_exist|max_length[300]|valid_url',
-        'serie' => 'if_exist|required_with[tome]|max_length[100]|is_not_unique[serie.id]',
-        'tome' => 'if_exist|required_with[serie]|max_length[3]',
-        'genre[]' => 'required|max_length[50]|is_not_unique[genre.id]',
-        'subgenre[]' => 'required|max_length[50]|is_not_unique[subgenre.id]',
+        'description' => 'if_exist|max_length[2000]',
+        // 'cover' => 'max_size[cover,4096]|is_image[cover]',
+        'serie' => 'permit_empty|required_with[volume]|max_length[100]|is_not_unique[serie.id]',
+        'volume' => 'permit_empty|required_with[serie]|max_length[3]',
+        'genre.*' => 'if_exist|max_length[50]|is_not_unique[genre.id]',
+        'subgenre.*' => 'if_exist|max_length[50]|is_not_unique[subgenre.id]',
     ];
 
     public static $BookMessages = 
@@ -90,18 +89,13 @@ class BookValidation
         ],
         'description' => 
         [
-            'max_length' => 'Le résumé ne peut pas dépasser 800 caractères.',
+            'max_length' => 'Le résumé ne peut pas dépasser 2000 caractères.',
         ],
-        'cover' =>
-        [
-            'max_size' => 'Ce fichier est trop volumineux. La taille maximale autorisée est 4MB',
-            'is_image' => 'Vous ne pouvez uploader que des images',
-        ],
-        'cover_url' =>
-        [
-            'max_length' => 'L\'URL ne peut pas dépasser 300 caractères.',
-            'valid_url' => 'Cette URL n\'est pas valide',
-        ],
+        // 'cover' =>
+        // [
+        //     'max_size' => 'Ce fichier est trop volumineux. La taille maximale autorisée est 4MB',
+        //     'is_image' => 'Vous ne pouvez uploader que des images',
+        // ],
         'serie' => 
         [
             'required_with' => 'Vous devez choisir une série.',

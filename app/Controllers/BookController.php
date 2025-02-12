@@ -11,6 +11,7 @@ use App\Models\AuthorModel;
 use App\Models\RoleModel;
 use App\Models\SerieModel;
 use App\Controllers\BaseController;
+use App\Validation\BookValidation;
 use Config\Database;
 
 class BookController extends BaseController
@@ -65,39 +66,137 @@ class BookController extends BaseController
         return view('bookEditor', $data);
     }      
     
+
+public function editBook($id)
+{
+    $bookModel = new BookModel();
+
+    $book = $bookModel->getBookById($id);
+
+
+    if (!$book) {
+        return redirect()->to('/books')->with('error', 'Le livre n\'existe pas');
+    }
+
+
+    return view('editBook', ['book' => $book[0], 'meta_title' => 'Édition']);
+}
+
     public function updateBook()
     {
         $bookId = $this->request->getPost('bookId');
-        $field = $this->request->getPost('field');
-        $newValue = $this->request->getPost('newValue');
-        
-        $bookModel = new BookModel();
+        $post = $this->request->getPost();
 
-        $result = $bookModel->updateBook($bookId, $field, $newValue);
-    
-        if ($result['success']) {
-            return $this->response->setJSON(['success' => true]);
-        } else {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Erreur de validation',
-                'errors' => $result['errors']
-            ]);
-        }
-    }    
+        $bookModel = new BookModel();
+        
+        $data = [
+            'title' => $post['title'],
+            'publisher' => 5,
+            'price' => $post['price'],
+            'language' => $post['languageAbbreviation'],
+            'isbn' => $post['isbn']
+        ];
+
+        // $result = $bookModel->updateBook($bookId, $data);
+        $bookModel->update('bookId', ['status'=>0]);
+
+        // if ($result['success']) {
+        //     return redirect()->to('/book/'.$bookId)->with('success', 'Le livre a été mis à jour.');
+        // } else {
+        //     return view('editBook', [
+        //         'book' => $data,  // Passer les données à la vue
+        //         'errors' => $result['errors'],  // Passer les erreurs à la vue
+        //         'meta_title' => 'coucou',
+        //     ]);
+        // }
+    }
 
     public function addBook()
     {
         $bookModel = new BookModel();
-
-        $bookName = $this->request->getPost('bookName');
-
-        $result = $bookModel->addBook($bookName);
-
-        if (!$result['success']) {
+        
+        log_message('debug', 'File upload data: ' . print_r($_FILES, true));
+    
+        $bookData = [
+            'title' => $this->request->getPost('title'),
+            'publisher' => $this->request->getPost('publisher'),
+            'publication' => $this->request->getPost('publication'),
+            'preorder' => $this->request->getPost('preorder', FILTER_VALIDATE_BOOLEAN) ?? 0,
+            'language' => $this->request->getPost('language'),
+            'isbn' => preg_replace('/\D/', '', $this->request->getPost('isbn')) ?? null,
+            'price' => $this->request->getPost('price') ?? null,
+            'format' => $this->request->getPost('format'),
+            'link' => $this->request->getPost('link') ?? null,
+            'description' => $this->request->getPost('description'),
+            'author' => $this->request->getPost('author') ?? [],
+            'actor_name' => $this->request->getPost('actor_name') ?? [],
+            'actor_role' => $this->request->getPost('actor_role') ?? [],
+            'serie' => $this->request->getPost('serie'),
+            'volume' => $this->request->getPost('volume'),
+            'genre' => $this->request->getPost('genre') ?? [],
+            'subgenre' => $this->request->getPost('subgenre') ?? [],
+        ];
+    
+        // 🔹 Gérer l'upload de l'image AVANT d'envoyer les données au modèle
+        $file = $this->request->getFile('cover');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            log_message('debug', 'File name: ' . $file->getName());
+            log_message('debug', 'File temporary path: ' . $file->getTempName());
+    
+            // 🔹 Valider le fichier avant de le déplacer
+            $validation = \Config\Services::validation();
+            $validation->setRules([
+                'cover' => 'uploaded[cover]|max_size[cover,4096]|is_image[cover]',
+            ]);
+    
+            if (!$validation->withRequest($this->request)->run()) {
+                log_message('debug', 'File validation failed: ' . print_r($validation->getErrors(), true));
+                return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+            }
+    
+            log_message('debug', 'File validation passed.');
+    
+            // 🔹 Déplacer le fichier seulement après validation
+            $newName = $file->getRandomName();
+            $file->move('cover', $newName);
+            $bookData['cover'] = 'cover/' . $newName;
+    
+            log_message('debug', 'File moved to: ' . $bookData['cover']);
+        } else {
+            log_message('debug', 'No file uploaded or file input is missing.');
+            $bookData['cover'] = null;
+        }
+    
+        // 🔹 Envoyer les données validées au modèle
+        $result = $bookModel->addBook($bookData);
+    
+        if (!$result['validation']) {
             return redirect()->back()->withInput()->with('errors', $result['errors']);
         }
+    
+        return redirect()->back()->with('success', 'Le livre a été ajouté avec succès.');
+    }
+    public function bookPage($id)
+    {
+        $bookModel = new \App\Models\BookModel();
+        $book = $bookModel->getBookById($id);
+    
+        if (!$book) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Livre non trouvé");
+        }
+    
+        return view('bookPage', [
+            'book' => $book[0],
+            'meta_title' => $book[0]['title']
+        ]);
+    }      
+    public function getAuthorBooks()
+    {
+        $authorId = $this->request->getPost('id');
 
-        return redirect()->back()->with('success', 'Le livre a été ajoutée avec succès.');
-    }    
+        $bookModel = new \App\Models\BookModel();
+        $books = $bookModel->getBooksByAuthor($authorId);
+        
+        return view('partials/bookAuthor_modal', ['books' => $books]);
+    }
 }

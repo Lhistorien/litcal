@@ -84,6 +84,11 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#subGenresTable').DataTable();
+        
+    });
+
     $('#subGenresTable tbody').on('dblclick', '.editable', function () {
         var currentElement = $(this);
         var originalValue = currentElement.text().trim();

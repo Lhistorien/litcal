@@ -13,9 +13,9 @@ class AuthorValidation
     public static $AuthorMessages = [
         'authorName' => [
             'required' => 'Le nom de la série est requis.',
-            'min_length' => 'Le nom de la série doit contenir au moins 3 caractères.',
-            'max_length' => 'Le nom de la série ne doit pas dépasser 100 caractères.',
-            'is_unique' => 'Ce nom de série est déjà utilisé.',
+            'min_length' => 'Le nom de l\'auteur doit contenir au moins 3 caractères.',
+            'max_length' => 'Le nom de l\'auteur ne doit pas dépasser 100 caractères.',
+            'is_unique' => 'Cet auteur existe déjà.',
         ],
     ];
 

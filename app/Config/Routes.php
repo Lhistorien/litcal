@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'HomeController::index');
 $routes->get('home', 'HomeController::index');
-$routes->get('home/bookpage/', 'home::bookPage');
+$routes->get('book/(:num)', 'BookController::bookPage/$1');
 
 $routes->get('user', 'UserController::index');
 $routes->get('user/(:num)', 'UserController::profile/$1');
@@ -54,3 +54,6 @@ $routes->post('authors/add', 'AuthorController::addAuthor');
 
 $routes->get('books', 'BookController::index');
 $routes->post('books/add', 'BookController::addBook');
+$routes->get('book/edit/(:num)', 'BookController::editBook/$1');
+$routes->post('book/updateBook', 'BookController::updateBook');
+$routes->post('getAuthorBooks', 'BookController::getAuthorBooks');

@@ -2,28 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Models\BookModel;
+
 class HomeController extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        $user = session()->get('user');
-    
-        $data = [
-            'meta_title' => 'Accueil',
-            'title' => 'Bienvenue sur la page d\'accueil',
-            'books' => ['Livre 1', 'Livre 2', 'Livre 3', 'Livre 4', 'Livre 5', 'Livre 6'],
-            'user' => $user,
-        ];
-    
+        $bookModel = new BookModel();
+        
+        $data['recentBooks'] = $bookModel->getRecentBooks();
+        $data['upcomingBooks'] = $bookModel->getUpcomingBooks();
+        $data['meta_title'] = 'Bienvenue sur Litcal !';
+        
+        // Vous pouvez ajouter d'autres données à passer à la vue...
         return view('home', $data);
-    }
-
-    public function bookPage() 
-    {
-        $data = [
-            'meta_title' => 'Livre',
-            'title' => 'Ceci est une page Livre',
-        ];
-        return view('bookPage');
     }
 }

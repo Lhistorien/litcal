@@ -69,6 +69,9 @@
             </div>
         </div>
     </nav>
+    <div class="container-fluid p-0">
+        <img src="/cover/banniere.jpg" class="img-fluid w-100" alt="Banniere">
+    </div>
 
 
     <?php if ($errors = session()->getFlashdata('errors')): ?>
