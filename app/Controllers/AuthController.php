@@ -34,7 +34,7 @@ class AuthController extends BaseController
             'is_logged_in' => true,
           ]);
     
-        return redirect()->to('/')->with('success', 'Connexion réussie.');
+        return redirect()->back()->with('success', 'Connexion réussie.');
 
     }
     

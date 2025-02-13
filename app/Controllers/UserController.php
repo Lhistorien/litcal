@@ -97,5 +97,34 @@ class UserController extends BaseController
                 return redirect()->back()->withInput()->with('errors', $result['errors'] ?? 'Une erreur est survenue.');
             }
         }
-    }     
+    }   
+    public function subscriptions($userId)
+    {
+        // Vérifier que l'utilisateur connecté correspond à l'utilisateur dont on affiche les abonnements
+        if ($userId != session()->get('user_id')) {
+            return redirect()->to('/')->with('errors', 'Accès refusé.');
+        }
+        
+        // Connexion à la base de données
+        $db = \Config\Database::connect();
+        
+        // Préparer la requête pour récupérer les abonnements actifs de l'utilisateur
+        $builder = $db->table('BookSubscription as bs');
+        $builder->select('b.id, b.title, b.cover, b.publication, p.publisherName');
+        $builder->join('Book as b', 'b.id = bs.book');
+        $builder->join('Publisher as p', 'p.id = b.publisher');
+        $builder->where('bs.user', $userId);
+        $builder->where('bs.status', 1);
+        
+        $query = $builder->get();
+        $subscriptions = $query->getResult();
+        
+        $data = [
+            'subscriptions' => $subscriptions,
+            'meta_title'    => 'Mes abonnements'
+        ];
+        
+        return view('userSubscriptions', $data);
+    }
+    
 }

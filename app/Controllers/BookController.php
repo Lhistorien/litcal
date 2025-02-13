@@ -10,23 +10,16 @@ use App\Models\SubGenreModel;
 use App\Models\AuthorModel;
 use App\Models\RoleModel;
 use App\Models\SerieModel;
+use App\Models\BookSubscriptionModel;
 use App\Controllers\BaseController;
 use App\Validation\BookValidation;
 use Config\Database;
+
 
 class BookController extends BaseController
 {
     public function index()
     {
-        if (!session()->get('is_logged_in')) 
-        {
-            return redirect()->to('/auth')->with('errors', 'Vous devez être connecté.');
-        }
-    
-        $allowedRoles = ['Administrator', 'Contributor'];
-        if (!in_array(session()->get('user_role'), $allowedRoles)) {
-            return redirect()->to('/')->with('errors', 'Accès refusé.');
-        }
     
         $bookModel = new BookModel();
         $publisherModel = new PublisherModel();
@@ -63,7 +56,7 @@ class BookController extends BaseController
             'series' => $series,
         ];
     
-        return view('bookEditor', $data);
+        return view('books', $data);
     }      
     
 
@@ -137,13 +130,12 @@ public function editBook($id)
             'subgenre' => $this->request->getPost('subgenre') ?? [],
         ];
     
-        // 🔹 Gérer l'upload de l'image AVANT d'envoyer les données au modèle
+        //  Gére l'upload de l'image AVANT d'envoyer les données au modèle
         $file = $this->request->getFile('cover');
         if ($file && $file->isValid() && !$file->hasMoved()) {
             log_message('debug', 'File name: ' . $file->getName());
             log_message('debug', 'File temporary path: ' . $file->getTempName());
     
-            // 🔹 Valider le fichier avant de le déplacer
             $validation = \Config\Services::validation();
             $validation->setRules([
                 'cover' => 'uploaded[cover]|max_size[cover,4096]|is_image[cover]',
@@ -156,7 +148,6 @@ public function editBook($id)
     
             log_message('debug', 'File validation passed.');
     
-            // 🔹 Déplacer le fichier seulement après validation
             $newName = $file->getRandomName();
             $file->move('cover', $newName);
             $bookData['cover'] = 'cover/' . $newName;
@@ -167,7 +158,6 @@ public function editBook($id)
             $bookData['cover'] = null;
         }
     
-        // 🔹 Envoyer les données validées au modèle
         $result = $bookModel->addBook($bookData);
     
         if (!$result['validation']) {
@@ -176,20 +166,7 @@ public function editBook($id)
     
         return redirect()->back()->with('success', 'Le livre a été ajouté avec succès.');
     }
-    public function bookPage($id)
-    {
-        $bookModel = new \App\Models\BookModel();
-        $book = $bookModel->getBookById($id);
-    
-        if (!$book) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Livre non trouvé");
-        }
-    
-        return view('bookPage', [
-            'book' => $book[0],
-            'meta_title' => $book[0]['title']
-        ]);
-    }      
+   
     public function getAuthorBooks()
     {
         $authorId = $this->request->getPost('id');
@@ -197,6 +174,116 @@ public function editBook($id)
         $bookModel = new \App\Models\BookModel();
         $books = $bookModel->getBooksByAuthor($authorId);
         
-        return view('partials/bookAuthor_modal', ['books' => $books]);
+        return view('components/bookAuthorModal', ['books' => $books]);
     }
+
+    public function getBookDetails($id)
+    {
+        $bookModel = new \App\Models\BookModel();
+        $book = $bookModel->getBookById($id);
+        
+        if (empty($book)) {
+            return 'Livre non trouvé.';
+        }
+        
+        if ($this->request->isAJAX()) {
+            // Si la requête est AJAX, renvoyer la version pour la Home Page
+            return view('components/bookDetailsContent', ['book' => $book]);
+        } else {
+            // Sinon, renvoyer la vue complète du modal pour books
+            return view('components/bookDetailsModal', ['book' => $book]);
+        }
+    }
+    
+    public function deactivateBook($id)
+    {
+        $bookModel = new \App\Models\BookModel();
+        if($bookModel->update($id, ['status' => 0])){
+            return $this->response->setJSON(['success' => true]);
+        } else {
+            return $this->response->setStatusCode(500)->setJSON(['success' => false]);
+        }
+    }    
+
+    public function subscribeBook($id)
+    {
+        // Vérifier que l'utilisateur est connecté
+        if (!session()->get('is_logged_in')) {
+            if ($this->request->isAJAX()) {
+                return $this->response->setStatusCode(403)->setJSON([
+                    'success' => false,
+                    'message' => 'Vous devez être connecté pour suivre un livre.'
+                ]);
+            } else {
+                return redirect()->to('/auth')->with('errors', 'Vous devez être connecté pour suivre un livre.');
+            }
+        }
+        
+        $userId = session()->get('user_id');
+        $subscriptionModel = new \App\Models\BookSubscriptionModel();
+        
+        // Rechercher si une souscription existe déjà pour ce livre et cet utilisateur
+        $subscription = $subscriptionModel->where('book', $id)
+                                          ->where('user', $userId)
+                                          ->first();
+        
+        if ($subscription) {
+            // Une souscription existe déjà, vérifier son statut
+            if ($subscription['status'] == 1) {
+                // Le livre est suivi (status = 1) : on passe le status à 0 pour "ne plus suivre"
+                $updateData = ['status' => 0];
+                $subscriptionModel->update($subscription['id'], $updateData);
+                if ($this->request->isAJAX()) {
+                    return $this->response->setJSON([
+                        'success' => true,
+                        'message' => 'Vous ne suivez plus ce livre.',
+                        'action'  => 'unfollow'
+                    ]);
+                } else {
+                    return redirect()->back()->with('success', 'Vous ne suivez plus ce livre.');
+                }
+            } else {
+                // Le livre n'est pas suivi (status = 0) : on passe le status à 1 pour "suivre"
+                $updateData = ['status' => 1];
+                $subscriptionModel->update($subscription['id'], $updateData);
+                if ($this->request->isAJAX()) {
+                    return $this->response->setJSON([
+                        'success' => true,
+                        'message' => 'Vous suivez désormais ce livre.',
+                        'action'  => 'follow'
+                    ]);
+                } else {
+                    return redirect()->back()->with('success', 'Vous suivez désormais ce livre.');
+                }
+            }
+        } else {
+            // Aucune souscription n'existe, on en crée une avec status = 1
+            $data = [
+                'book'   => $id,
+                'user'   => $userId,
+                'status' => 1
+            ];
+            if ($subscriptionModel->insert($data)) {
+                if ($this->request->isAJAX()) {
+                    return $this->response->setJSON([
+                        'success' => true,
+                        'message' => 'Vous suivez désormais ce livre.',
+                        'action'  => 'follow'
+                    ]);
+                } else {
+                    return redirect()->back()->with('success', 'Vous suivez désormais ce livre.');
+                }
+            } else {
+                $error = $subscriptionModel->errors();
+                if ($this->request->isAJAX()) {
+                    return $this->response->setStatusCode(500)->setJSON([
+                        'success' => false,
+                        'message' => 'Erreur lors du suivi du livre: ' . implode(', ', $error)
+                    ]);
+                } else {
+                    return redirect()->back()->with('errors', 'Erreur lors du suivi du livre: ' . implode(', ', $error));
+                }
+            }
+        }
+    }     
 }

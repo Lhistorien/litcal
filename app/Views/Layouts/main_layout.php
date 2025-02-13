@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="<?= base_url('public/css/styles.css'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        var site_url = "<?= site_url() ?>";
+        console.log("site_url defined as:", site_url);
+    </script>
   </head>
 
   <body>
@@ -24,19 +28,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/books">Livres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/authors">Auteurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/series">Séries</a>
                     </li>
                     <?php if (session()->get('is_logged_in') && (session()->get('user_role') === 'Administrator' || session()->get('user_role') === 'Contributor')): ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="bddDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                BDD
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="bddDropdown">
-                                <li><a class="dropdown-item" href="/books">Livres</a></li>
-                                <li><a class="dropdown-item" href="/authors">Auteurs</a></li>
-                                <li><a class="dropdown-item" href="/series">Série</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/dashboard">Dashboard</a>
                         </li>
@@ -54,7 +54,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="/user/<?= session()->get('user_id') ?>">Votre compte</a></li>
-                                <li><a class="dropdown-item" href="#">Vos abonnements</a></li>
+                                <li><a class="dropdown-item" href="/user/<?= session()->get('user_id') ?>/subscriptions">Vos abonnements</a></li>
                                 <li>
                                     <form action="/logout" method="post" style="margin: 0;">
                                         <button type="submit" class="dropdown-item">Se déconnecter</button>
@@ -127,7 +127,6 @@
           </div>
         </div>
     </div>
-
    <script>
     $(document).ready(function () 
     {

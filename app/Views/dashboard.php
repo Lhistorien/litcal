@@ -9,6 +9,12 @@
     $allowedRoles = ['Administrator', 'Contributor'];
     if (in_array(session()->get('user_role'), $allowedRoles)): ?>
         <li class="nav-item" role="presentation">
+            <button class="nav-link" id="labels-tab" data-bs-toggle="tab" data-bs-target="#authors" type="button" role="tab">Auteurs</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="labels-tab" data-bs-toggle="tab" data-bs-target="#series" type="button" role="tab">Séries</button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="publishers-tab" data-bs-toggle="tab" data-bs-target="#publishers" type="button" role="tab">Éditeurs</button>
         </li>
         <li class="nav-item" role="presentation">
@@ -39,6 +45,12 @@
 
 
     <?php if (in_array(session()->get('user_role'), $allowedRoles)): ?>
+        <div class="tab-pane fade" id="authors" role="tabpanel">
+            <?= $this->include('components/authors_table') ?>
+        </div>
+        <div class="tab-pane fade" id="series" role="tabpanel">
+            <?= $this->include('components/series_table') ?>
+        </div>
         <div class="tab-pane fade" id="publishers" role="tabpanel">
             <?= $this->include('components/publishers_table') ?>
         </div>

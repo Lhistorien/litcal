@@ -7,11 +7,11 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'HomeController::index');
 $routes->get('home', 'HomeController::index');
-$routes->get('book/(:num)', 'BookController::bookPage/$1');
 
 $routes->get('user', 'UserController::index');
 $routes->get('user/(:num)', 'UserController::profile/$1');
 //$routes->post('user/update', 'UserController::updateUser');
+$routes->get('user/(:num)/subscriptions', 'UserController::subscriptions/$1');
 
 
 $routes->get('register', 'RegisterController::register');
@@ -43,17 +43,22 @@ $routes->post('dashboard/genres/add', 'GenreController::addGenre');
 $routes->post('dashboard/subgenres/update', 'SubgenreController::updateSubgenre');
 $routes->post('dashboard/subgenres/add', 'SubGenreController::addSubgenre');
 $routes->post('dashboard/subgenres/associate', 'SubGenreController::associateSubgenreToGenre');
+$routes->post('dashboard/authors/update', 'AuthorController::updateAuthor'); 
+$routes->post('dashboard/authors/add', 'AuthorController::addAuthor');
+$routes->post('dashboard/series/update', 'SerieController::updateSerie'); 
+$routes->post('dashboard/series/add', 'SerieController::addSerie');
 
 $routes->get('series', 'SerieController::index');
-$routes->post('series/update', 'SerieController::updateSerie'); 
-$routes->post('series/add', 'SerieController::addSerie');
-
 $routes->get('authors', 'AuthorController::index');
-$routes->post('authors/update', 'AuthorController::updateAuthor'); 
-$routes->post('authors/add', 'AuthorController::addAuthor');
 
 $routes->get('books', 'BookController::index');
 $routes->post('books/add', 'BookController::addBook');
 $routes->get('book/edit/(:num)', 'BookController::editBook/$1');
 $routes->post('book/updateBook', 'BookController::updateBook');
 $routes->post('getAuthorBooks', 'BookController::getAuthorBooks');
+$routes->get('book/details/(:num)', 'BookController::getBookDetails/$1');
+$routes->post('book/deactivate/(:num)', 'BookController::deactivateBook/$1');
+$routes->post('serie/details/(:num)', 'SerieController::getSerieDetails/$1');
+
+$routes->post('book/subscribe/(:num)', 'BookController::subscribeBook/$1');
+

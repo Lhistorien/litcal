@@ -9,6 +9,8 @@ use App\Models\RoleModel;
 use App\Models\GenreModel;
 use App\Models\SubGenreModel;
 use App\Models\LabelModel;
+use App\Models\AuthorModel;
+use App\Models\SerieModel;
 
 class DashboardController extends BaseController
 {
@@ -31,6 +33,8 @@ class DashboardController extends BaseController
         $genreModel = new GenreModel();
         $subGenreModel = new SubGenreModel();
         $labelModel = new LabelModel();
+        $authorModel = new AuthorModel();
+        $serieModel = new SerieModel();
 
         $users = $userModel->findAll();
         $publishers = $publisherModel->findAll();
@@ -39,6 +43,8 @@ class DashboardController extends BaseController
         $genres = $genreModel->findAll();
         $subgenres = $subGenreModel->getSubgenresWithGenres();
         $labels = $labelModel->findAll();
+        $authors = $authorModel->findAll();
+        $series = $serieModel->findAll();
 
         $data = [
             'meta_title' => 'Dashboard',
@@ -50,6 +56,8 @@ class DashboardController extends BaseController
             'genres' => $genres,
             'subgenres' => $subgenres,
             'labels' => $labels,
+            'authors' => $authors,
+            'series' => $series,
         ];
 
         return view('dashboard', $data);

@@ -15,12 +15,14 @@
             <div class="row">
               <?php foreach($chunk as $book): ?>
                 <div class="col-2">
-                  <div class="card">
-                    <img src="<?= esc($book->cover) ?>" class="card-img-top img-fluid" alt="<?= esc($book->title) ?>">
-                    <div class="card-body p-2">
-                      <p class="card-text small"><?= esc($book->title) ?></p>
+                  <a href="#" class="book-link" data-id="<?= esc($book->id) ?>">
+                    <div class="card">
+                      <img src="<?= esc($book->cover) ?>" class="card-img-top img-fluid" alt="<?= esc($book->title) ?>">
+                      <div class="card-body p-2">
+                        <p class="card-text small"><?= esc($book->title) ?></p>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               <?php endforeach; ?>
             </div>
@@ -42,7 +44,7 @@
 <?php endif; ?>
 
 <!-- Carousel pour les livres à paraître dans les 30 prochains jours -->
-<h2>À parraître</h2>
+<h2>À paraître</h2>
 <?php if(!empty($upcomingBooks)): ?>
   <?php $chunksUpcoming = array_chunk($upcomingBooks, 6); ?>
   <div class="carousel-container">
@@ -53,12 +55,14 @@
             <div class="row">
               <?php foreach($chunk as $book): ?>
                 <div class="col-2">
-                  <div class="card">
-                    <img src="<?= esc($book->cover) ?>" class="card-img-top img-fluid" alt="<?= esc($book->title) ?>">
-                    <div class="card-body p-2">
-                      <p class="card-text small"><?= esc($book->title) ?></p>
+                  <a href="#" class="book-link" data-id="<?= esc($book->id) ?>">
+                    <div class="card">
+                      <img src="<?= esc($book->cover) ?>" class="card-img-top img-fluid" alt="<?= esc($book->title) ?>">
+                      <div class="card-body p-2">
+                        <p class="card-text small"><?= esc($book->title) ?></p>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               <?php endforeach; ?>
             </div>
@@ -79,15 +83,41 @@
   <p>Aucun livre à paraître prochainement.</p>
 <?php endif; ?>
 
+<!-- Modal pour afficher les détails d'un livre -->
+<div class="modal fade" id="bookDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookDetailsModalLabel">Détails du livre</h5>
+        <?php if (session()->get('user_role') === 'Administrator' || session()->get('user_role') === 'Contributor'): ?>
+          <a id="editBookBtn" href="#" class="btn btn-warning btn-sm ms-3" title="Modifier ce livre">
+            Modifier
+          </a>
+          <button id="deactivateBookBtn" type="button" class="btn btn-danger btn-sm ms-3 me-2" title="Désactiver ce livre">
+            <i class="fas fa-times"></i>
+          </button>
+        <?php endif; ?>
+        <?php if (session()->get('is_logged_in')): ?>
+          <button id="subscribeBookBtn" type="button" class="btn btn-success btn-sm ms-3" title="Suivre ce livre">
+            Suivre ce livre
+          </button>
+        <?php endif; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Chargement en cours...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
-  /* Affiche l'image en entier sans la découper */
   .card-img-top {
-      max-height: 150px; /* Ajustez cette valeur selon vos besoins */
+      max-height: 150px; 
       width: 100%;
       object-fit: contain;
   }
 
-  /* Inverser les couleurs et ajouter un fond aux icônes */
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
       filter: invert(100%);
@@ -96,13 +126,11 @@
       padding: 10px;
   }
 
-  /* Conteneur pour autoriser le débordement des contrôles */
   .carousel-container {
       position: relative;
       overflow: visible;
   }
 
-  /* Décaler les boutons de contrôle à l'extérieur */
   .carousel-control-prev {
       left: -40px !important;
   }
@@ -110,5 +138,9 @@
       right: -40px !important;
   }
 </style>
+
+
+<!-- Inclusion du script externe pour la gestion des actions sur les livres -->
+<script src="/js/bookActions.js"></script>
 
 <?= $this->endSection() ?>
