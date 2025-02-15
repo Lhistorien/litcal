@@ -33,27 +33,6 @@
     </table>
 </div>
 
-<h3>Ajouter un auteur à la base de données</h3>
-
-<div class="table-container">
-    <form action="/authors/add" method="POST">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nom de l'auteur</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" name="authorName" class="form-control" required></td>
-                    <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-</div>
-
 <!-- Modal pour afficher le profil d'un auteur -->
 <div class="modal fade" id="booksModal" tabindex="-1" aria-labelledby="booksModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

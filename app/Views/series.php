@@ -44,6 +44,7 @@
                 <p>Chargement...</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="subscribeSerieBtn">S'abonner à la série</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
             </div>
         </div>
@@ -51,8 +52,8 @@
 </div>
 
 <script>
-    // Traduit la datatable en français
 $(document).ready(function() {
+    // Traduit la DataTable en français
     $('#seriesTable').DataTable({
         "language": {
             "sProcessing":     "Traitement en cours...",
@@ -76,22 +77,45 @@ $(document).ready(function() {
             }
         }
     });
-
-
+    
+    var currentSeriesId = null;
+    
     $('#seriesTable tbody').on('click', '.series-link', function(e) {
         e.preventDefault();
-        var seriesId = $(this).data('id');
-        // Récupérer le nom de la série depuis le lien cliqué
+        currentSeriesId = $(this).data('id');
         var seriesName = $(this).text();
-        // Mettre à jour le titre de la modal avec le nom de la série
+        
+        // Mise à jour du titre du modal avec le nom de la série
         $('#seriesBooksModalLabel').text("Livres liés à " + seriesName);
         
         $.ajax({
-            url: '/serie/details/' + seriesId,
+            url: '/serie/details/' + currentSeriesId,
             type: 'POST',
             success: function(response) {
-                console.log('Réponse AJAX reçue:', response);
                 $('#seriesBooksModal .modal-body').html(response);
+                
+                $.ajax({
+                    url: '<?= site_url("checkSerieSubscription") ?>',
+                    type: 'POST',
+                    data: { serieId: currentSeriesId },
+                    success: function(res) {
+                        if (res.subscribed) {
+                            $("#subscribeSerieBtn")
+                                .text("Se désabonner")
+                                .removeClass('btn-primary')
+                                .addClass('btn-danger');
+                        } else {
+                            $("#subscribeSerieBtn")
+                                .text("S'abonner à la série")
+                                .removeClass('btn-danger')
+                                .addClass('btn-primary');
+                        }
+                    },
+                    error: function() {
+                        console.error("Erreur lors de la vérification de la souscription.");
+                    }
+                });
+                
                 $('#seriesBooksModal').modal('show');
             },
             error: function(xhr, status, error) {
@@ -99,7 +123,38 @@ $(document).ready(function() {
             }
         });
     });
+    
+    $('#subscribeSerieBtn').click(function() {
+        if (!currentSeriesId) {
+            alert('Aucune série sélectionnée.');
+            return;
+        }
+        $.ajax({
+            url: '<?= site_url("subscribeSerieLabel") ?>',
+            type: 'POST',
+            data: { serieId: currentSeriesId },
+            success: function(response) {
+                alert(response.message);
+                if (response.action === 'subscribed') {
+                    $("#subscribeSerieBtn")
+                        .text("Se désabonner")
+                        .removeClass('btn-primary')
+                        .addClass('btn-danger');
+                } else if (response.action === 'unsubscribed') {
+                    $("#subscribeSerieBtn")
+                        .text("S'abonner à la série")
+                        .removeClass('btn-danger')
+                        .addClass('btn-primary');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Erreur lors de la souscription:', error);
+                alert("Erreur lors de la souscription. Veuillez réessayer.");
+            }
+        });
+    });
 });
 </script>
+
 
 <?= $this->endSection() ?>

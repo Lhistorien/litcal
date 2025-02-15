@@ -122,7 +122,6 @@ class UserController extends BaseController
                                                 ->findAll();
         }
         
-        // Enrichir chaque abonnement aux labels avec la propriété "subscribed"
         // Comme on récupère uniquement les abonnements actifs (status=1), on définit subscribed à true
         foreach ($labelSubscriptions as $sub) {
             $sub->subscribed = true;
@@ -163,7 +162,6 @@ class UserController extends BaseController
             return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
         }
         
-        // Créez une instance du modèle des abonnements aux labels
         $labelSubModel = new LabelSubscriptionModel();
         $subscription = $labelSubModel->where('id', $subscriptionId)
                                       ->where('user', $userId)

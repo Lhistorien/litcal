@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\SerieModel;
 use App\Models\BookModel;
+use App\Models\LabelSubscriptionModel;
 use App\Controllers\BaseController;
 
 class SerieController extends BaseController
@@ -88,5 +89,54 @@ class SerieController extends BaseController
         }
         
         return view('components/bookSerieModal', ['serie' => $serie, 'books' => $books]);
-    }    
+    } 
+
+    public function subscribeSerieLabel()
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setStatusCode(400)->setJSON([
+                'success' => false,
+                'message' => 'Requête invalide'
+            ]);
+        }
+        
+        if (!session()->get('is_logged_in')) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Veuillez vous connecter'
+            ]);
+        }
+        
+        $serieId = $this->request->getPost('serieId');
+        $labelId = 'SE' . $serieId;
+        $userId  = session()->get('user_id');
+        
+        $labelSubscriptionModel = new LabelSubscriptionModel();
+        $result = $labelSubscriptionModel->toggleSubscription($userId, $labelId);
+        
+        return $this->response->setJSON($result);
+    }
+
+    public function checkSerieSubscription()
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setStatusCode(400)->setJSON([
+                'success' => false,
+                'message' => 'Requête invalide'
+            ]);
+        }
+        
+        if (!session()->get('is_logged_in')) {
+            return $this->response->setJSON(['subscribed' => false]);
+        }
+        
+        $serieId = $this->request->getPost('serieId');
+        $labelId = 'SE' . $serieId;
+        $userId  = session()->get('user_id');
+        
+        $labelSubscriptionModel = new LabelSubscriptionModel();
+        $isSubscribed = $labelSubscriptionModel->isSubscribed($userId, $labelId);
+        
+        return $this->response->setJSON(['subscribed' => $isSubscribed]);
+    }  
 }

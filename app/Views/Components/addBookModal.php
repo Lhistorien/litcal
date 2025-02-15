@@ -6,13 +6,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form id="addBookForm" action="<?= site_url('books/add') ?>" method="post" enctype="multipart/form-data">
+                <form id="addBookForm" action="<?= site_url('books/add') ?>" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Titre</label>
                         <input type="text" class="form-control" id="title" name="title" required>
                     </div>
                     <div class="mb-3">
                         <label for="author" class="form-label">Auteur(s)</label>
+                        <!-- select2 permet de sélectionner plusieurs éléments dans un seul champ de formulaire -->
                         <select class="form-select select2" id="author" name="author[]" multiple required>
                             <?php foreach ($listofauthors as $author): ?>
                                 <option value="<?= esc($author->id) ?>"><?= esc($author->authorName) ?></option>
@@ -20,8 +21,10 @@
                         </select>
                     </div>
 
+                    <!-- Bouton pour afficher des champs supplémentaires pour ajouter d'autres acteurs -->
                     <button type="button" id="add-people-btn" class="btn btn-primary mb-4">Ajouter d'autres acteurs</button>
 
+                    <!-- Section cachée par défaut pour les contributeurs additionnels -->
                     <div id="additional-contributors" style="display: none;">
                         <div class="row mt-3" id="contributor-1">
                             <div class="col-md-6 mb-3">
@@ -44,6 +47,7 @@
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </select>
+                                    <!-- Bouton pour ajouter dynamiquement un nouvel ensemble de champs contributeur -->
                                     <button type="button" class="btn btn-outline-secondary add-more-people ms-2" id="add-more-btn">
                                         <i class="fa fa-plus"></i>
                                     </button>
@@ -51,6 +55,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="publisher" class="form-label">Éditeur</label>
@@ -115,7 +120,7 @@
                             <input type="text" class="form-control" id="volume" name="volume" placeholder="Numéro">
                         </div>
                     </div>
-                    <p style="text-align: right;">Écrivez HS (pour hors-série) s'il n'y a pas de n° de tome</p>
+                    <p style="text-align: right;">Écrivez HS (pour hors-série) s'il n'y a pas de n° de tome et I pour les intégrales</p>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="genre" class="form-label">Genre(s)</label>
@@ -140,7 +145,7 @@
                             <input type="textarea" class="form-control" id="link" name="link">
                         </div>
                         <div class="col-md-6 mb-3">
-                        <label class="form-label">Couverture</label>
+                            <label class="form-label">Couverture</label>
                             <input type="file" class="form-control" id="cover" name="cover" accept="image/*">
                         </div>   
                     </div>

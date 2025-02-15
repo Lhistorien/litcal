@@ -140,7 +140,7 @@
 </style>
 
 
-<!-- Inclusion du script externe pour la gestion des actions sur les livres -->
+<!-- Inclusion du script externe pour la gestion des actions sur les livres pour plus de lisibilité -->
 <script src="/js/bookActions.js"></script>
 
 <?= $this->endSection() ?>

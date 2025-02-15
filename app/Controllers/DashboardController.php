@@ -20,7 +20,7 @@ class DashboardController extends BaseController
         {
             return redirect()->to('/auth')->with('errors', 'Vous devez être connecté.');
         }
-
+        // Limite l'accès à la page aux admins et aux contributeurs
         $allowedRoles = ['Administrator', 'Contributor'];
         if (!in_array(session()->get('user_role'), $allowedRoles)) {
             return redirect()->to('/')->with('errors', 'Accès refusé.');

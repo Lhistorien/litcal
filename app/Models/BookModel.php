@@ -31,7 +31,7 @@ class BookModel extends Model
         'comment',
         'status',
     ];
-
+    //Génère la vue books 
     public function getBooksWithPublisherNameAndAuthors()
     {
         $books = $this->select('book.*, publisher.publisherName, author.authorName, role.roleName, language.languageName, language.abbreviation, 
@@ -83,7 +83,7 @@ class BookModel extends Model
                 'name' => $book->authorName,
                 'role' => $book->roleName
             ];
-            // Permet d'éviter les doublons
+            // Permet d'éviter d'ajouter 2x le même auteur avec le même rôle
             if (!in_array($authorEntry, $result[$bookId]['authors'])) {
                 $result[$bookId]['authors'][] = $authorEntry;
             }
@@ -165,7 +165,6 @@ class BookModel extends Model
     {
         log_message('debug', 'Received data: ' . json_encode($data));
     
-        // Validation
         $validation = \Config\Services::validation();
         $validation->setRules(BookValidation::$BookRules, BookValidation::$BookMessages);
     
@@ -176,24 +175,23 @@ class BookModel extends Model
     
         log_message('info', 'Validation successful.');
     
-        // Démarrer la transaction
+        // Utilisation d'une transaction pour qu'aucune table ne soit modifiée s'il y a une erreur quelque part
         $this->db->transStart();
     
-        // Préparer les données du livre
         $bookData = [
             'title' => $data['title'],
             'publisher' => $data['publisher'],
             'publication' => $data['publication'],
             'preorder' => $data['preorder'] ?? 0,
             'language' => $data['language'],
-            'isbn' => isset($data['isbn']) ? preg_replace('/\D/', '', $data['isbn']) : null,
+            'isbn' => isset($data['isbn']) ? preg_replace('/\D/', '', $data['isbn']) : null, // Supprime tous les caractères non numériques
             'price' => $data['price'] ?? null,
             'format' => $data['format'],
             'link' => $data['link'] ?? null,
             'description' => $data['description'],
             'cover' => $data['cover'] ?? null,
         ];
-    
+        // Rollback en cas d'erreur
         if (!$this->insert($bookData)) {
             $this->db->transRollback();
             return ['validation' => false, 'errors' => "Échec de l'ajout du livre."];
@@ -201,7 +199,7 @@ class BookModel extends Model
     
         $bookId = $this->insertID();
     
-        // 🔹 Ajout des relations et vérification après chaque opération
+        // Ajout aux autres tables avec roolback en cas d'erreur
         if (!$this->addAuthors($bookId, $data['author'] ?? [])) {
             $this->db->transRollback();
             return ['validation' => false, 'errors' => "Échec de l'ajout des auteurs."];
@@ -227,7 +225,6 @@ class BookModel extends Model
             return ['validation' => false, 'errors' => "Échec de l'ajout des sous-genres."];
         }
     
-        // Finaliser la transaction
         $this->db->transComplete();
     
         if ($this->db->transStatus() === false) {
@@ -249,7 +246,7 @@ class BookModel extends Model
                 ];
             }
             if (!$this->db->table('bookauthor')->insertBatch($bookAuthors)) {
-                return false; // ⛔ Retourner false en cas d'échec
+                return false; // 
             }
         }
         return true;
@@ -261,7 +258,7 @@ class BookModel extends Model
             $bookActors = [];
             foreach ($actorNames as $key => $actorId) {
                 $role = $actorRoles[$key] ?? null;
-                if (!empty($actorId) && !empty($role)) {  // On évite d'insérer des valeurs vides
+                if (!empty($actorId) && !empty($role)) {  
                     $bookActors[] = [
                         'book' => $bookId,
                         'author' => $actorId,
@@ -272,7 +269,7 @@ class BookModel extends Model
                 }
             }
             if (!$this->db->table('bookauthor')->insertBatch($bookActors)) {
-                return false; // ⛔ Retourner false en cas d'échec
+                return false;  
             }
         }
         return true;
@@ -287,7 +284,7 @@ class BookModel extends Model
                 'volume' => $volume,
             ];
             if (!$this->db->table('bookserie')->insert($bookSeries)) {
-                return false; // ⛔ Retourner false en cas d'échec
+                return false; 
             }
         }
         return true;
@@ -304,7 +301,7 @@ class BookModel extends Model
                 ];
             }
             if (!$this->db->table('bookgenre')->insertBatch($bookGenres)) {
-                return false; // ⛔ Retourner false en cas d'échec
+                return false; 
             }
         }
         return true;
@@ -321,7 +318,7 @@ class BookModel extends Model
                 ];
             }
             if (!$this->db->table('booksubgenre')->insertBatch($bookSubGenres)) {
-                return false; // ⛔ Retourner false en cas d'échec
+                return false; 
             }
         }
         return true;
@@ -329,6 +326,7 @@ class BookModel extends Model
 
     public function getBookById($id)
     {
+        // Permet de récupérer toutes les informations d'un livre en fonction de son ID
         $builder = $this->select('
             book.*, 
             publisher.publisherName, publisher.id as publisherId, 
@@ -388,7 +386,6 @@ class BookModel extends Model
         ];
     
         foreach ($rows as $row) {
-            // Pour les auteurs
             $authorEntry = [
                 'name' => $row->authorName,
                 'role' => $row->roleName,
@@ -398,12 +395,10 @@ class BookModel extends Model
                 $result['authors'][] = $authorEntry;
             }
     
-            // Pour les genres (en stockant id et nom)
             if (!empty($row->genreName) && !in_array(['id' => $row->genreId, 'name' => $row->genreName], $result['genres'])) {
                 $result['genres'][] = ['id' => $row->genreId, 'name' => $row->genreName];
             }
     
-            // Pour les sous-genres
             if (!empty($row->subgenreName) && !in_array(['id' => $row->subgenreId, 'name' => $row->subgenreName], $result['subgenres'])) {
                 $result['subgenres'][] = ['id' => $row->subgenreId, 'name' => $row->subgenreName];
             }
@@ -411,7 +406,7 @@ class BookModel extends Model
     
         return $result;
     }    
-
+    // Affiche les livres d'un auteur sur la page authors
     public function getBooksByAuthor($authorId)
     {
         $builder = $this->db->table($this->table);
@@ -422,7 +417,7 @@ class BookModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
-
+    // Affiche les livres d'une série sur la page series
     public function getBooksBySerie($serieId)
     {
         $builder = $this->db->table($this->table); 
@@ -432,7 +427,7 @@ class BookModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
-
+    // Génère le carousel des livres sortis ces 30 derniers jours
     public function getRecentBooks()
     {
         $date30DaysAgo = date('Y-m-d', strtotime('-30 days'));
@@ -443,7 +438,7 @@ class BookModel extends Model
                     ->where('status', 1)
                     ->findAll();
     }
-    
+    // Génère le carousel des livres à paraître dans les 30 prochains jours
     public function getUpcomingBooks()
     {
         $today = date('Y-m-d');

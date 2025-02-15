@@ -86,6 +86,5 @@ class AuthorModel extends Model
         $this->insert(['authorName' => $authorName]);
 
         return ['success' => true];
-    }
-    
+    } 
 }

@@ -66,6 +66,7 @@ class AuthorController extends BaseController
     
         return redirect()->to('/dashboard#authors')->with('success', 'L\'auteur a été ajouté avec succès.');
     } 
+    
     public function subscribeAuthorLabel()
     {
         $userId = session()->get('user_id');

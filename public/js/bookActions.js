@@ -9,7 +9,6 @@ $(document).ready(function() {
             url: site_url + '/book/details/' + bookId,  // Voir ci-dessous pour définir site_url
             type: 'GET',
             success: function(response) {
-                console.log("Réponse AJAX :", response); 
                 $('#bookDetailsModal .modal-body').html(response);
                 // Stocke l'ID du livre dans le modal pour l'utiliser lors de la souscription
                 $('#bookDetailsModal').data('book-id', bookId);
@@ -36,7 +35,6 @@ $(document).ready(function() {
             url: site_url + '/book/subscribe/' + bookId,
             type: 'POST',
             success: function(response) {
-                console.log("Réponse AJAX (subscribe):", response);
                 if(response.success) {
                     alert(response.message);
                     // Met à jour l'apparence du bouton selon l'action
@@ -55,5 +53,31 @@ $(document).ready(function() {
             }
         });
     });
+    // Gestion du clic sur le bouton "Désactiver ce livre"
+    $(document).on('click', '#deactivateBookBtn', function(e) {
+        e.preventDefault();
+        var bookId = $('#bookDetailsModal').data('book-id');
+        if (!bookId) {
+            alert("Livre non identifié.");
+            return;
+        }
+        
+        $.ajax({
+            url: site_url + '/book/deactivate/' + bookId, 
+            type: 'POST',
+            success: function(response) {
+                if(response.success) {
+                    alert(response.message);
+                    $('#bookDetailsModal').modal('hide');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Erreur AJAX lors de la désactivation :', error);
+                alert("Une erreur est survenue lors de la désactivation du livre.");
+            }
+        });
+    });
 });
-console.log('bookActions.js loaded');
+

@@ -11,7 +11,7 @@
           <tbody>
               <?php foreach ($labelSubscriptions as $sub): ?>
                   <?php 
-                      // Ici, $sub->label contient l'identifiant du label (par exemple "AU27")
+                      // Déduit le type de label à partir du préfixe (on extrait les 2 premiers caractères)
                       $prefix = substr($sub->label, 0, 2);
                       switch ($prefix) {
                           case 'AU':

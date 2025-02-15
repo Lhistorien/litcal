@@ -12,7 +12,6 @@ use App\Models\RoleModel;
 use App\Models\SerieModel;
 use App\Models\BookSubscriptionModel;
 use App\Controllers\BaseController;
-use App\Validation\BookValidation;
 use Config\Database;
 
 

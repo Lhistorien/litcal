@@ -58,7 +58,7 @@ class BookSubscriptionModel extends Model
                              ->first();
     
         if ($subscription) {
-            // On bascule le statut
+            // S'il y en a déjà une, on change le statut
             $newStatus = ($subscription['status'] == 1) ? 0 : 1;
             $this->update($subscription['id'], ['status' => $newStatus]);
     
@@ -68,7 +68,7 @@ class BookSubscriptionModel extends Model
                 'action'  => ($newStatus == 1) ? 'follow' : 'unfollow'
             ];
         } else {
-            // Création d'une nouvelle souscription avec status = 1
+            // Si pas, on crée une nouvelle souscription avec status = 1
             $data = [
                 'book'   => $bookId,
                 'user'   => $userId,

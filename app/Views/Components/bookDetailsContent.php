@@ -1,3 +1,4 @@
+<!-- Le contenu du modal est stocké à part car il peut être appelé depuis la home ou depuis la page books -->
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -17,6 +18,7 @@
             ?>
             <?php if (!empty($primaryAuthors)): ?>
                 <p>
+                    <!-- Affiche auteur s'il n'y en a qu'un seul (avec le rôle Auteur), Auteurs s'il y en a plusieurs -->
                     <strong><?= count($primaryAuthors) > 1 ? 'Auteurs' : 'Auteur' ?> :</strong>
                     <?php
                         $primaryNames = array_map(function($author) {
@@ -26,7 +28,7 @@
                     ?>
                 </p>
             <?php endif; ?>
-
+            <!-- Affiche les autres acteurs (de la table authhors mais avec un autre rôle que Auteur) -->
             <?php if (!empty($otherAuthors)): ?>
                 <p>
                     <strong>Autres acteurs :</strong>
@@ -129,7 +131,7 @@
             <p><?= esc($book['description'] ?? 'Non renseigné') ?></p>
         </div>
     </div>
-    
+    <!-- Labels servant à s'abonner (série, auteur, genre, sous-genre et éditeur) -->
     <?php if (!empty($labels)): ?>
         <div class="mt-3">
             <h5>Labels associés :</h5>
@@ -157,8 +159,11 @@
                     }
                     // Applique la classe selon l'état de souscription enrichi côté serveur
                     $subscribedClass = $label->subscribed ? 'subscribed' : 'unsubscribed';
+                    
+                    // Ajoute la classe "label-click" uniquement si l'utilisateur est connecté
+                    $clickableClass = session()->get('is_logged_in') ? 'label-click' : '';
                 ?>
-                <span class="badge <?= $colorClass ?> text-light me-1 label-click <?= $subscribedClass ?>" data-label="<?= esc($label->id) ?>">
+                <span class="badge <?= $colorClass ?> text-light me-1 <?= $clickableClass ?> <?= $subscribedClass ?>" data-label="<?= esc($label->id) ?>">
                     <?= esc($label->labelName) ?>
                 </span>
             <?php endforeach; ?>
@@ -169,16 +174,23 @@
 <!-- JavaScript pour la gestion de la souscription sur les labels -->
 <script>
 $(document).ready(function(){
+    // Attache un écouteur d'événement sur tous les éléments ayant la classe "label-click"
     $('.label-click').on('click', function(){
+        // Récupère l'ID du label stocké dans l'attribut data-label
         var labelId = $(this).data('label');
+        // Affiche dans la console l'ID récupéré pour déboguer
+        console.log("Label cliqué, ID du label:", labelId);
+        
+        // 'badge' référence l'élément cliqué (pour pouvoir changer ses classes par la suite)
         var badge = $(this);
+        
+        // Effectue une requête AJAX pour souscrire ou se désabonner au label
         $.ajax({
             url: "<?= site_url('label/subscribeLabel') ?>",
             type: "POST",
             data: { label: labelId },
             success: function(response){
                 alert(response.message);
-                // Bascule les classes en fonction de la réponse
                 if(response.action === 'subscribed'){
                     badge.removeClass('unsubscribed').addClass('subscribed');
                 } else if(response.action === 'unsubscribed'){
@@ -186,6 +198,7 @@ $(document).ready(function(){
                 }
             },
             error: function(xhr, status, error){
+                console.error("Erreur lors de la souscription:", error);
                 alert("Erreur lors de la souscription. Veuillez réessayer.");
             }
         });

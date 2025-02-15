@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="<?= base_url('public/css/styles.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('css/styles.css'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
@@ -127,63 +127,12 @@
     $(document).ready(function () 
     {
       // JS pour afficher les alertes
-      $("#success-alert")
-        .fadeTo(2000, 500)
-        .slideUp(500, () => {
-          $(this).remove(); 
-        });
+      $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+        $(this).remove();
+      });
       $("#danger-alert").fadeTo(2000, 500).slideUp(500, () => {
         $(this).remove(); 
       });
-      // AJAX pour le login dynamique
-        // $("#loginForm").submit(function (event) 
-        // {
-        //     event.preventDefault(); 
-        //     $.ajax
-        //     (
-        //       {
-        //         url: "/auth",
-        //         type: "POST",
-        //         data: $(this).serialize(), 
-        //         dataType: "json",
-        //         success: function (response) 
-        //         {
-        //             if (response.success) 
-        //             {
-        //                 $("#loginModal").modal("hide");
-        //                 $("#success-alert").html(`<p> ${response.message}!</p>`).fadeIn();
-
-        //                 $(".d-flex.align-items-center").html
-        //                 (`
-        //                     <div class="dropdown">
-        //                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        //                             Profil
-        //                         </button>
-        //                         <ul class="dropdown-menu dropdown-menu-end">
-        //                             <li><a class="dropdown-item" href="/user/${response.user_id}">Votre compte</a></li>
-        //                             <li><a class="dropdown-item" href="#">Vos abonnements</a></li>
-        //                             <li>
-        //                                 <form action="/logout" method="get" style="margin: 0;">
-        //                                     <button type="submit" class="dropdown-item">Se déconnecter</button>
-        //                                 </form>
-        //                             </li>
-        //                         </ul>
-        //                     </div>
-        //                 `);
-        //             } 
-        //             else 
-        //             {
-        //                 $("#danger-alert").html(`<p>${response.error}</p>`).fadeIn();
-        //             }
-        //         },
-        //         error: function () 
-        //         {
-        //             $("#danger-alert").html("<p>Une erreur est survenue, veuillez réessayer.</p>").fadeIn();
-        //         }
-        //     }
-        //   );
-        // }
-      // );
     }
   );
     </script>

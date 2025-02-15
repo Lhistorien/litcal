@@ -94,5 +94,7 @@ $routes->post('book/subscribe/(:num)', 'BookController::subscribeBook/$1');
 */
 $routes->post('subscribeAuthorLabel', 'AuthorController::subscribeAuthorLabel');
 $routes->post('checkAuthorSubscription', 'AuthorController::checkAuthorSubscription');
+$routes->post('subscribeSerieLabel', 'SerieController::subscribeSerieLabel');
+$routes->post('checkSerieSubscription', 'SerieController::checkSerieSubscription');
 $routes->post('label/subscribeLabel', 'LabelController::subscribeLabel');
 $routes->post('label/checkLabelSubscription', 'LabelController::checkLabelSubscription');

@@ -13,7 +13,7 @@ class LabelSubscriptionModel extends Model
 
     public function toggleSubscription($userId, $labelId)
     {
-        // Déduire le type de label à partir du préfixe
+        // Déduit le type de label à partir du préfixe (on extrait les 2 premiers caractères)
         $prefix = substr($labelId, 0, 2);
         switch ($prefix) {
             case 'AU':

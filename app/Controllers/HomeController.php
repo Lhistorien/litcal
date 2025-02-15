@@ -14,7 +14,6 @@ class HomeController extends BaseController
         $data['upcomingBooks'] = $bookModel->getUpcomingBooks();
         $data['meta_title'] = 'Bienvenue sur Litcal !';
         
-        // Vous pouvez ajouter d'autres données à passer à la vue...
         return view('home', $data);
     }
 }

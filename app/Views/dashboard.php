@@ -3,16 +3,16 @@
 <?= $this->section('content') ?>
 
 <h1>Bienvenue sur le Dashboard</h1>
-
+<!-- Centralise la gestion des tables par les admins et les contributeurs -->
 <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
     <?php 
     $allowedRoles = ['Administrator', 'Contributor'];
     if (in_array(session()->get('user_role'), $allowedRoles)): ?>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="labels-tab" data-bs-toggle="tab" data-bs-target="#authors" type="button" role="tab">Auteurs</button>
+            <button class="nav-link" id="authors-tab" data-bs-toggle="tab" data-bs-target="#authors" type="button" role="tab">Auteurs</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="labels-tab" data-bs-toggle="tab" data-bs-target="#series" type="button" role="tab">Séries</button>
+            <button class="nav-link" id="series-tab" data-bs-toggle="tab" data-bs-target="#series" type="button" role="tab">Séries</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="publishers-tab" data-bs-toggle="tab" data-bs-target="#publishers" type="button" role="tab">Éditeurs</button>
@@ -33,7 +33,7 @@
             <button class="nav-link" id="labels-tab" data-bs-toggle="tab" data-bs-target="#labels" type="button" role="tab">Labels</button>
         </li>
     <?php endif; ?>
-
+    <!-- L'onglet users est réservé aux admins -->
     <?php if (session()->get('user_role') === 'Administrator'): ?>
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">Utilisateurs</button>
@@ -78,7 +78,7 @@
     <?php endif; ?>
 </div>
 
-<!-- Script permetant de rester sur le bon onglet après une insertion de données -->
+<!-- Script permetant de rester sur le bon onglet après une insertion de données, hash = l'id de l'onglet -->
 <script>
     $(document).ready(function () {
         var hash = window.location.hash;

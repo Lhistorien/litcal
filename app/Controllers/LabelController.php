@@ -54,10 +54,9 @@ class LabelController extends BaseController
         return $this->response->setJSON(['subscribed' => $subscribed]);
     }
     
-    // Nouvelle méthode : récupère les labels et enrichit chacun avec l'état de souscription de l'utilisateur
     public function getEnrichedLabels()
     {
-        // Supposons que nous recevons un tableau d'IDs (optionnel) via POST, sinon on récupère tous les labels
+        // Deux possibilités : récupérer les labels via POST ou récupérer tous les labels
         $labelIds = $this->request->getPost('labelIds');
         $labelModel = new LabelModel();
         if ($labelIds && is_array($labelIds) && !empty($labelIds)) {
