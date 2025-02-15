@@ -432,21 +432,128 @@ class BookModel extends Model
     {
         $date30DaysAgo = date('Y-m-d', strtotime('-30 days'));
         $today = date('Y-m-d');
-        
-        return $this->where('publication >=', $date30DaysAgo)
-                    ->where('publication <=', $today)
-                    ->where('status', 1)
-                    ->findAll();
-    }
-    // Génère le carousel des livres à paraître dans les 30 prochains jours
+    
+        $books = $this->select('
+                book.*, 
+                publisher.publisherName, 
+                publisher.id as publisherId, 
+                author.authorName, 
+                role.roleName, 
+                language.languageName, 
+                language.abbreviation, 
+                serie.serieName, 
+                serie.id as serieId, 
+                bookserie.volume, 
+                genre.genreName, 
+                genre.id as genreId, 
+                subgenre.subgenreName, 
+                subgenre.id as subgenreId, 
+                book.isbn, 
+                book.format
+            ')
+            ->join('publisher', 'publisher.id = book.publisher')
+            ->join('bookauthor', 'bookauthor.book = book.id')
+            ->join('author', 'author.id = bookauthor.author')
+            ->join('role', 'role.id = bookauthor.role')
+            ->join('language', 'language.abbreviation = book.language', 'left')
+            ->join('bookserie', 'bookserie.book = book.id', 'left')
+            ->join('serie', 'serie.id = bookserie.serie', 'left')
+            ->join('bookgenre', 'bookgenre.book = book.id', 'left')
+            ->join('genre', 'genre.id = bookgenre.genre', 'left')
+            ->join('booksubgenre', 'booksubgenre.book = book.id', 'left')
+            ->join('subgenre', 'subgenre.id = booksubgenre.subgenre', 'left')
+            ->where('publication >=', $date30DaysAgo)
+            ->where('publication <=', $today)
+            ->where('book.status', 1)
+            ->groupBy('book.id')
+            ->findAll();
+    
+        return $books;
+    }    
+    // Génère les livres à paraître dans les 30 prochains jours
     public function getUpcomingBooks()
     {
         $today = date('Y-m-d');
         $date30DaysLater = date('Y-m-d', strtotime('+30 days'));
-        
-        return $this->where('publication >', $today)
-                    ->where('publication <=', $date30DaysLater)
-                    ->where('status', 1)
-                    ->findAll();
+    
+        $books = $this->select('
+                book.*, 
+                publisher.publisherName, 
+                publisher.id as publisherId, 
+                author.authorName, 
+                role.roleName, 
+                language.languageName, 
+                language.abbreviation, 
+                serie.serieName, 
+                serie.id as serieId, 
+                bookserie.volume, 
+                genre.genreName, 
+                genre.id as genreId, 
+                subgenre.subgenreName, 
+                subgenre.id as subgenreId, 
+                book.isbn, 
+                book.format
+            ')
+            ->join('publisher', 'publisher.id = book.publisher')
+            ->join('bookauthor', 'bookauthor.book = book.id')
+            ->join('author', 'author.id = bookauthor.author')
+            ->join('role', 'role.id = bookauthor.role')
+            ->join('language', 'language.abbreviation = book.language', 'left')
+            ->join('bookserie', 'bookserie.book = book.id', 'left')
+            ->join('serie', 'serie.id = bookserie.serie', 'left')
+            ->join('bookgenre', 'bookgenre.book = book.id', 'left')
+            ->join('genre', 'genre.id = bookgenre.genre', 'left')
+            ->join('booksubgenre', 'booksubgenre.book = book.id', 'left')
+            ->join('subgenre', 'subgenre.id = booksubgenre.subgenre', 'left')
+            ->where('publication >', $today)
+            ->where('publication <=', $date30DaysLater)
+            ->where('book.status', 1)
+            ->groupBy('book.id')
+            ->findAll();
+    
+        return $books;
+    }    
+    
+    public function enrichBooksWithLabels(array $books)
+    {
+        foreach ($books as $book) {
+            $labelIds = [];
+    
+            if (!empty($book->authors) && is_array($book->authors)) {
+                foreach ($book->authors as $author) {
+                    if (isset($author->id)) {
+                        $labelIds[] = 'AU' . $author->id;
+                    }
+                }
+            }
+
+            if (isset($book->publisherId)) {
+                $labelIds[] = 'PU' . $book->publisherId;
+            }
+
+            if (isset($book->serieId)) {
+                $labelIds[] = 'SE' . $book->serieId;
+            }
+
+            if (!empty($book->genres) && is_array($book->genres)) {
+                foreach ($book->genres as $genre) {
+                    if (isset($genre->id)) {
+                        $labelIds[] = 'GE' . $genre->id;
+                    }
+                }
+            }
+
+            if (!empty($book->subgenres) && is_array($book->subgenres)) {
+                foreach ($book->subgenres as $subgenre) {
+                    if (isset($subgenre->id)) {
+                        $labelIds[] = 'SG' . $subgenre->id;
+                    }
+                }
+            }
+            
+            // Supprime les doublons et ajoute la propriété 'labels' à l'objet
+            $book->labels = array_unique($labelIds);
+        }
+        return $books;
     }
 }

@@ -209,6 +209,5 @@
     });
 </script>
 
-<script src="/js/bookActions.js"></script>
 
 <?= $this->endSection() ?>

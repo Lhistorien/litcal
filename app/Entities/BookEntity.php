@@ -6,9 +6,8 @@ use CodeIgniter\Entity\Entity;
 
 class BookEntity extends Entity
 {
-    protected $attributes = 
-    [
-        'id'            => null,
+    protected $attributes = [
+        'id'           => null,
         'title'        => null,
         'publisher'    => null,
         'preorder'     => null,
@@ -22,5 +21,12 @@ class BookEntity extends Entity
         'price'        => null,
         'comment'      => null,
         'status'       => null,
-    ];  
+        // Attributs additionnels pour les relations
+        'authors'      => [],  
+        'serieId'      => null,
+        'serieName'    => null,
+        'genres'       => [],  
+        'subgenres'    => [],  
+        'labels'       => [],  
+    ];    
 }

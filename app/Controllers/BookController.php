@@ -11,6 +11,7 @@ use App\Models\AuthorModel;
 use App\Models\RoleModel;
 use App\Models\SerieModel;
 use App\Models\BookSubscriptionModel;
+use App\Models\LabelSubscriptionModel;
 use App\Controllers\BaseController;
 use Config\Database;
 
@@ -235,7 +236,7 @@ public function editBook($id)
         // Enrichir chaque label avec l'état de souscription pour l'utilisateur connecté
         $userId = session()->get('user_id');
         if ($userId) {
-            $subscriptionModel = new \App\Models\LabelSubscriptionModel();
+            $subscriptionModel = new LabelSubscriptionModel();
             foreach ($labels as $label) {
                 $label->subscribed = $subscriptionModel->isSubscribed($userId, $label->id);
             }

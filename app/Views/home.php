@@ -3,87 +3,29 @@
 
 <h1>Accueil</h1>
 
-<!-- Carousel pour les livres sortis ces 30 derniers jours -->
-<h2>Dernières sorties</h2>
-<?php if(!empty($recentBooks)): ?>
-  <?php $chunksRecent = array_chunk($recentBooks, 6); ?>
-  <div class="carousel-container">
-    <div id="recentCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <?php foreach($chunksRecent as $index => $chunk): ?>
-          <div class="carousel-item <?= ($index == 0 ? 'active' : '') ?>">
-            <div class="row">
-              <?php foreach($chunk as $book): ?>
-                <div class="col-2">
-                  <a href="#" class="book-link" data-id="<?= esc($book->id) ?>">
-                    <div class="card">
-                      <img src="<?= esc($book->cover) ?>" class="card-img-top img-fluid" alt="<?= esc($book->title) ?>">
-                      <div class="card-body p-2">
-                        <p class="card-text small"><?= esc($book->title) ?></p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              <?php endforeach; ?>
-            </div>
-          </div>
-        <?php endforeach; ?>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#recentCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Précédent</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#recentCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Suivant</span>
-      </button>
-    </div>
-  </div>
-<?php else: ?>
-  <p>Aucun livre récent à afficher.</p>
-<?php endif; ?>
+<ul class="nav nav-tabs" id="homeTabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">
+      Toutes les sorties récentes et à venir
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab" aria-controls="personal" aria-selected="false">
+      Votre sélection personnalisée
+    </button>
+  </li>
+</ul>
 
-<!-- Carousel pour les livres à paraître dans les 30 prochains jours -->
-<h2>À paraître</h2>
-<?php if(!empty($upcomingBooks)): ?>
-  <?php $chunksUpcoming = array_chunk($upcomingBooks, 6); ?>
-  <div class="carousel-container">
-    <div id="upcomingCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <?php foreach($chunksUpcoming as $index => $chunk): ?>
-          <div class="carousel-item <?= ($index == 0 ? 'active' : '') ?>">
-            <div class="row">
-              <?php foreach($chunk as $book): ?>
-                <div class="col-2">
-                  <a href="#" class="book-link" data-id="<?= esc($book->id) ?>">
-                    <div class="card">
-                      <img src="<?= esc($book->cover) ?>" class="card-img-top img-fluid" alt="<?= esc($book->title) ?>">
-                      <div class="card-body p-2">
-                        <p class="card-text small"><?= esc($book->title) ?></p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              <?php endforeach; ?>
-            </div>
-          </div>
-        <?php endforeach; ?>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#upcomingCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Précédent</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#upcomingCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Suivant</span>
-      </button>
-    </div>
+<div class="tab-content" id="homeTabsContent">
+  <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+    <?= $this->include('Components/allBooksCarousels') ?>
   </div>
-<?php else: ?>
-  <p>Aucun livre à paraître prochainement.</p>
-<?php endif; ?>
+  <div class="tab-pane fade" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+    <?= $this->include('Components/personalBooksCarousels') ?>
+  </div>
+</div>
 
-<!-- Modal pour afficher les détails d'un livre -->
+<!-- Ajoutez ici le markup du modal, en dehors des onglets -->
 <div class="modal fade" id="bookDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -117,7 +59,6 @@
       width: 100%;
       object-fit: contain;
   }
-
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
       filter: invert(100%);
@@ -125,12 +66,10 @@
       border-radius: 50%;
       padding: 10px;
   }
-
   .carousel-container {
       position: relative;
       overflow: visible;
   }
-
   .carousel-control-prev {
       left: -40px !important;
   }
@@ -139,8 +78,18 @@
   }
 </style>
 
+<script>
+    $(document).ready(function(){
+        // Initialisation de tous les carousels présents dans la page
+        $('#recentCarousel, #upcomingCarousel, #personalRecentCarousel, #personalUpcomingCarousel').carousel();
+    });
+</script>
+<script>
+  $(document).ready(function(){
+      $('#bookDetailsModal').appendTo('body');
+  });
+  
+</script>
 
-<!-- Inclusion du script externe pour la gestion des actions sur les livres pour plus de lisibilité -->
-<script src="/js/bookActions.js"></script>
 
 <?= $this->endSection() ?>
