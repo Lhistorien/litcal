@@ -78,4 +78,15 @@
     <?php endif; ?>
 </div>
 
+<!-- Script permetant de rester sur le bon onglet après une insertion de données -->
+<script>
+    $(document).ready(function () {
+        var hash = window.location.hash;
+        if (hash) {
+            var tabTrigger = new bootstrap.Tab(document.querySelector('button[data-bs-target="' + hash + '"]'));
+            tabTrigger.show();
+        }
+    });
+</script>
+
 <?= $this->endSection() ?>

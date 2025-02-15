@@ -63,8 +63,9 @@ class SerieController extends BaseController
             return redirect()->back()->withInput()->with('errors', $result['errors']);
         }
     
-        return redirect()->back()->with('success', 'L\'auteur a été ajouté avec succès.');
+        return redirect()->to('/dashboard#series')->with('success', 'L\'auteur a été ajouté avec succès.');
     }     
+    // Affiche les livres d'une série
     public function getSerieDetails($id)
     {
         $serieModel = new SerieModel();

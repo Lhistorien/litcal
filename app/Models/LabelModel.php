@@ -21,4 +21,8 @@ class LabelModel extends Model
     {
         return new LabelEntity($data);
     }
+    public function getLabelsByIds(array $labelIds)
+    {
+        return $this->whereIn('id', $labelIds)->findAll();
+    }    
 }

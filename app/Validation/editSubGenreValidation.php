@@ -5,12 +5,12 @@ namespace App\Validation;
 class EditSubGenreValidation
 {
     public static $EditSubGenreRules = [
-        'newValue' => 'required|min_length[3]|max_length[50]|is_unique[subgenre.subgenreName]',
+        'subgenreName' => 'required|min_length[3]|max_length[50]|is_unique[subgenre.subgenreName,subgenre.id,{id}]',
         'status'   => 'required|in_list[0,1]',  
     ];
 
     public static $EditSubGenreMessages = [
-        'newValue' => [
+        'subgenreName' => [
             'required'    => 'La valeur est requise.',
             'min_length'  => 'La valeur doit contenir au moins 3 caractères.',
             'max_length'  => 'La valeur ne doit pas dépasser 50 caractères.',

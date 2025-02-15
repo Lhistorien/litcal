@@ -19,7 +19,7 @@
   </head>
 
   <body>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">LitCal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,10 +42,6 @@
                         </li>
                     <?php endif; ?>
                 </ul>
-                <form class="d-flex me-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
                 <div class="d-flex align-items-center">
                     <?php if (session()->get('is_logged_in')): ?>
                         <div class="dropdown">

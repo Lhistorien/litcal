@@ -9,8 +9,7 @@ class AuthController extends BaseController
 {
     public function login()
     {
-        if (!$this->request->is('post')) 
-        {
+        if (!$this->request->is('post')) {
             return view('auth', ['meta_title' => 'Se connecter']);
         }
     
@@ -20,30 +19,18 @@ class AuthController extends BaseController
         $auth = new AuthModel();
         $user = $auth->authenticate($email, $password);
     
-        if ($user === null) 
-        {
+        if ($user === null) {
             return redirect()->back()->with('errors', 'Email et/ou mot de passe invalide');
         }
     
-        session()->set
-        ([
-            'user_id' => $user->id,
-            'user_email' => $user->email,
-            'user_pseudo' => $user->pseudo,
-            'user_role' => $user->role, 
-            'is_logged_in' => true,
-          ]);
-    
         return redirect()->back()->with('success', 'Connexion réussie.');
-
     }
     
     public function logout()
     {
+        // Utilisation de cookie pour afficher le message de déconnection puisque la session a été destroy
         setcookie("flash_success", "Déconnexion réussie", time() + 3, "/");
-    
         session()->destroy();
-    
         return redirect()->to('/');
     }
 }

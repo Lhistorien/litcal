@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use \App\Entities\UserEntity;
+use App\Entities\UserEntity;
+use App\Validation\RegisterValidation;
 
 class UserModel extends Model
 {
@@ -26,36 +27,58 @@ class UserModel extends Model
     {
         return new UserEntity($data);
     }
+    
+    public function registerUser(array $data)
+    {
+        $validation = \Config\Services::validation();
+        $validation->setRules(RegisterValidation::$RegistrationRules, RegisterValidation::$RegistrationMessages);
+        
+        if (!$validation->run($data)) {
+            return $validation->getErrors();
+        }
+        
+        $data['status'] = $data['status'] ?? 1;
+        
+        $user = new UserEntity();
+        $user->fill($data);
+        $user->setPassword($data['password']);
+        
+        return $this->save($user) ? true : ['error' => 'Erreur lors de l\'enregistrement'];
+    }    
+
     public function saveProfileChanges($id, $data, $isAjax = false)
     {
         $validation = \Config\Services::validation();
-        $validationRules = \App\Validation\EditProfileValidation::EditProfileRules($id);
-        $validationMessages = \App\Validation\EditProfileValidation::$EditProfileMessages;
-    
-        // Si c'est une requête AJAX, ne valider que le champ modifié
+        
         if ($isAjax) {
-            $field = array_key_first($data); 
-            if (!isset($validationRules[$field])) {
+            // Scénario 1 : un admin modifie un champs du profil d'un utilisateur en ajax, on ne contrôle que celui-là
+            $field = array_key_first($data);
+            $rules = \App\Validation\EditProfileValidation::EditProfileRules($id);
+            $messages = \App\Validation\EditProfileValidation::$EditProfileMessages;
+            
+            if (!isset($rules[$field])) {
                 return ['success' => false, 'message' => 'Champ non valide.'];
             }
-    
-            $validation->setRules([$field => $validationRules[$field]], [$field => $validationMessages[$field] ?? []]);
-            if (!$validation->run([$field => $data[$field]])) {
+            
+            $validation->setRules([$field => $rules[$field]], [$field => $messages[$field]]);
+            if (!$validation->run($data)) {
                 return ['success' => false, 'errors' => $validation->getErrors()];
             }
-        } 
-        // Sinon, validation complète pour le formulaire classique
-        else {
-            $validation->setRules($validationRules, $validationMessages);
+        } else {
+            // Scénario 2 : l'utilisateur modifie son propre profil, on utilise toutes les règles
+            $rules = \App\Validation\EditProfileValidation::EditProfileRules($id);
+            $messages = \App\Validation\EditProfileValidation::$EditProfileMessages;
+            
+            $validation->setRules($rules, $messages);
             if (!$validation->run($data)) {
                 return ['success' => false, 'errors' => $validation->getErrors()];
             }
         }
-    
+        
         if ($this->update($id, $data)) {
             return ['success' => true];
         } else {
             return ['success' => false, 'message' => 'Mise à jour échouée.'];
         }
-    }    
+    }          
 }

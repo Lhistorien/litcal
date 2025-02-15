@@ -7,7 +7,7 @@ use \App\Entities\SubGenreEntity;
 use \App\Validation\EditSubGenreValidation;
 use \App\Validation\SubgenreValidation;
 
-class SubGenreModel extends Model
+class SubGenreModel extends ValidateFieldModel
 {
     protected $table      = 'subgenre';
     protected $primaryKey = 'id';
@@ -25,34 +25,18 @@ class SubGenreModel extends Model
         return new SubGenreEntity($data);
     }
 
-    private function validateSubGenre($data, $field)
+    // Utilisation de l'héritage de ValidateFieldModel pour pouvoir utiliser la même méthode pour les sous-genres et les genres
+    public function validateSubGenre($field, $subgenreName, $subGenreId = null)
     {
-        $validation = \Config\Services::validation();
-    
-        if ($field === 'subgenreName') {
-            $rules = SubgenreValidation::getRules();
-            $messages = SubgenreValidation::getMessages();
-        } elseif (isset(EditSubGenreValidation::$EditSubGenreRules[$field])) {
-            $rules = [$field => EditSubGenreValidation::$EditSubGenreRules[$field]];
-            $messages = isset(EditSubGenreValidation::$EditSubGenreMessages[$field])
-                ? [$field => EditSubGenreValidation::$EditSubGenreMessages[$field]]
-                : [];
-        } else {
-            return ['error' => "Aucune règle définie pour le champ '$field'"];
-        }
-    
-        $validation->setRules($rules, $messages);
-    
-        if (!$validation->run($data)) {
-            return $validation->getErrors();
-        }
-    
-        return true;
+        return $this->validateField(EditSubGenreValidation::$EditSubGenreRules, EditSubGenreValidation::$EditSubGenreMessages, $field, $subgenreName, $subGenreId);
     }
 
     public function addSubgenre($subgenreName)
     {
-        $validationResult = $this->validateSubGenre(['subgenreName' => $subgenreName], 'subgenreName');
+        $rules = SubgenreValidation::getRules();
+        $messages = SubgenreValidation::getMessages();
+        
+        $validationResult = $this->validateField($rules, $messages, 'subgenreName', $subgenreName);
         
         if ($validationResult !== true) {
             return [
@@ -62,9 +46,19 @@ class SubGenreModel extends Model
         }
         
         $this->insert(['subgenreName' => $subgenreName]);
-
+    
         return ['success' => true];
-    }
+    }    
+
+    public function validateNewSubgenre(string $field, $newValue)
+    {
+        return $this->validateField(
+            SubgenreValidation::getRules(), 
+            SubgenreValidation::getMessages(), 
+            $field, 
+            $newValue
+        );
+    }    
 
     public function updateSubGenre($subGenreId, $field, $newValue)
     {
@@ -78,11 +72,11 @@ class SubGenreModel extends Model
             return false;
         }
     
-        $validationResult = $this->validateSubGenre([$field => $newValue], $field);
+        $validationResult = $this->validateSubGenre($field, $newValue, $subGenreId);
         if ($validationResult !== true) {
             return $validationResult;
         }
-        
+    
         $data = [$field => $newValue];
     
         log_message('debug', 'Mise à jour du sous-genre (ID: ' . $subGenreId . ') avec les données: ' . json_encode($data));
@@ -95,7 +89,7 @@ class SubGenreModel extends Model
         }
     
         return true;
-    }    
+    }      
 
     public function getAllSubgenres()
     {

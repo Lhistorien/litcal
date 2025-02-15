@@ -50,7 +50,10 @@ class RoleModel extends Model
         $validation->setRules(RoleValidation::$RoleRules, RoleValidation::$RoleMessages);
     
         if (!$validation->run(['roleName' => $roleName])) {
-            return $validation->getErrors();
+            return [
+                'success' => false,
+                'errors'  => $validation->getErrors()
+            ];
         }
     
         $data = [
@@ -58,8 +61,13 @@ class RoleModel extends Model
         ];
     
         $builder = $this->db->table($this->table);
-        $builder->insert($data);
-    
-        return true;
+        if ($builder->insert($data)) {
+            return ['success' => true];
+        } else {
+            return [
+                'success' => false,
+                'errors'  => ['error' => 'Erreur lors de l\'insertion']
+            ];
+        }
     }    
 }

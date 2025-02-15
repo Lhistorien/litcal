@@ -33,17 +33,12 @@ class RoleController extends BaseController
         
         $roleName = $this->request->getPost('roleName');
         
-        $result = $roleModel->addRole($roleName);  
+        $result = $roleModel->addRole($roleName);
         
-        if ($result === true) 
-        {
-            return redirect()->back()->with('success', 'Le rôle a été ajouté avec succès.');
-        } elseif (is_array($result)) 
-        {
-            return redirect()->back()->withInput()->with('errors', $result);
-        } else 
-        {
-            return redirect()->back()->with('error', 'Erreur lors de l\'ajout du rôle.');
+        if (!$result['success']) {
+            return redirect()->back()->withInput()->with('errors', $result['errors']);
         }
+        
+        return redirect()->to('/dashboard#roles')->with('success', 'Le rôle a été ajouté avec succès.');
     }    
 }

@@ -41,7 +41,7 @@
         </table>
     </form>
 </div>
-
+<!-- L'ajout de langues se fait en AJAX (et les autres pas) car tous les champs sont renseignés à la création donc pas de soucis d'incohérence d'affichage -->
 <script>
     $(document).ready(function () {
         $("#addLanguageForm").on("submit", function (e) {
@@ -81,7 +81,7 @@
         $('#languagesTable tbody').on('dblclick', '.editable', function () {
             var currentElement = $(this);
             var originalValue = currentElement.text().trim();
-
+            // Permet de conserver le contenu actuel de la cellule quand on double-clique
             if (currentElement.find("input").length > 0) {
                 return;
             }
@@ -100,7 +100,7 @@
 
             currentElement.html(input);
             input.focus().select();
-
+            // blur = fermeture du champ, keydown = pression de touches
             input.on("blur keydown", function (e) {
                 if (e.type === "blur" || e.key === "Enter") 
                 {

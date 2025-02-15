@@ -56,7 +56,7 @@ class LanguageController extends BaseController
         } else {
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'Erreur lors de l\'ajout du langage.'
+                'message' => 'Erreur lors de l\'ajout de la langue.'
             ]);
         }
     }

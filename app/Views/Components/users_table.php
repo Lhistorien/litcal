@@ -14,6 +14,7 @@
     </thead>
     <tbody>
         <?php foreach ($users as $user): ?>
+            <!-- Stocke l'id de l'user dans la ligne pour le réutiliser facilement en JS -->
             <tr data-id="<?= esc($user->id) ?>">
                 <td><?= esc($user->id) ?></td>
                 <td class="editable" data-field="pseudo"><?= esc($user->pseudo) ?></td>

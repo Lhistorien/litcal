@@ -51,6 +51,7 @@
 </div>
 
 <script>
+    // Traduit la datatable en français
 $(document).ready(function() {
     $('#seriesTable').DataTable({
         "language": {
@@ -76,11 +77,15 @@ $(document).ready(function() {
         }
     });
 
-    // Ouvrir le modal en cliquant sur le nom d'une série
+
     $('#seriesTable tbody').on('click', '.series-link', function(e) {
         e.preventDefault();
         var seriesId = $(this).data('id');
-        console.log('ID de la série cliqué:', seriesId);
+        // Récupérer le nom de la série depuis le lien cliqué
+        var seriesName = $(this).text();
+        // Mettre à jour le titre de la modal avec le nom de la série
+        $('#seriesBooksModalLabel').text("Livres liés à " + seriesName);
+        
         $.ajax({
             url: '/serie/details/' + seriesId,
             type: 'POST',

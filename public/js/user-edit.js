@@ -1,5 +1,6 @@
 $(document).ready(function () 
-{
+{   
+    // Script permettant d'éditer la datatable en faisant un double clic sur une cellule ayant la classe editable (pas l'id)
     var table = $('#usersTable').DataTable();
 
     $('#usersTable tbody').on('dblclick', '.editable', function () 
@@ -7,7 +8,7 @@ $(document).ready(function ()
         var currentElement = $(this);
         var originalValue = currentElement.text().trim();
 
-        // Permet d'éviter que le contenu de la cellule soit effacé
+        // Permet de conserver le contenu actuel de la cellule quand on double-clique
         if (currentElement.find("input").length > 0) 
         {
             return;
@@ -28,7 +29,7 @@ $(document).ready(function ()
 
         currentElement.html(input);
         input.focus().select();
-
+        // blur = fermeture du champ, keydown = pression de touches
         input.on("blur keydown", function (e) {
             if (e.type === "blur" || e.key === "Enter") {
                 var newValue = input.val().trim();

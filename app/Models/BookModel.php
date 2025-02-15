@@ -329,84 +329,88 @@ class BookModel extends Model
 
     public function getBookById($id)
     {
-        $builder = $this->select('book.*, 
-            publisher.publisherName, 
-            author.authorName, 
+        $builder = $this->select('
+            book.*, 
+            publisher.publisherName, publisher.id as publisherId, 
+            author.authorName, author.id as authorId, 
             role.roleName, 
-            language.languageName, 
-            language.abbreviation, 
-            serie.serieName, 
+            language.languageName, language.abbreviation, 
+            serie.serieName, serie.id as serieId, 
             bookserie.volume, 
-            genre.genreName, 
-            subgenre.subgenreName, 
+            genre.genreName, genre.id as genreId, 
+            subgenre.subgenreName, subgenre.id as subgenreId, 
             book.isbn, 
-            book.format')
-            ->join('publisher', 'publisher.id = book.publisher')
-            ->join('bookauthor', 'bookauthor.book = book.id')
-            ->join('author', 'author.id = bookauthor.author')
-            ->join('role', 'role.id = bookauthor.role')
-            ->join('language', 'language.abbreviation = book.language', 'left')
-            ->join('bookserie', 'bookserie.book = book.id', 'left')
-            ->join('serie', 'serie.id = bookserie.serie', 'left')
-            ->join('bookgenre', 'bookgenre.book = book.id', 'left')
-            ->join('genre', 'genre.id = bookgenre.genre', 'left')
-            ->join('booksubgenre', 'booksubgenre.book = book.id', 'left')
-            ->join('subgenre', 'subgenre.id = booksubgenre.subgenre', 'left')
-            ->where('book.id', $id);
+            book.format
+        ')
+        ->join('publisher', 'publisher.id = book.publisher')
+        ->join('bookauthor', 'bookauthor.book = book.id')
+        ->join('author', 'author.id = bookauthor.author')
+        ->join('role', 'role.id = bookauthor.role')
+        ->join('language', 'language.abbreviation = book.language', 'left')
+        ->join('bookserie', 'bookserie.book = book.id', 'left')
+        ->join('serie', 'serie.id = bookserie.serie', 'left')
+        ->join('bookgenre', 'bookgenre.book = book.id', 'left')
+        ->join('genre', 'genre.id = bookgenre.genre', 'left')
+        ->join('booksubgenre', 'booksubgenre.book = book.id', 'left')
+        ->join('subgenre', 'subgenre.id = booksubgenre.subgenre', 'left')
+        ->where('book.id', $id);
         
-        // Récupérer toutes les lignes correspondant à ce livre
         $rows = $builder->get()->getResult();
     
         if (empty($rows)) {
             return null;
         }
     
-        // Le premier résultat contient les informations communes du livre
         $first = $rows[0];
         $result = [
-            'id'                    => $first->id,
-            'title'                 => $first->title,
-            'publisherName'         => $first->publisherName,
-            'preorder'              => $first->preorder,
-            'publication'           => $first->publication,
-            'languageAbbreviation'  => $first->abbreviation,  // ou $first->language selon votre besoin
-            'languageName'          => $first->languageName,
-            'isbn'                  => $first->isbn,
-            'cover'                 => $first->cover,
-            'description'           => $first->description,
-            'link'                  => $first->link,
-            'price'                 => $first->price,
-            'format'                => $first->format,
-            'comment'               => $first->comment,
-            'status'                => $first->status,
-            'authors'               => [],
-            'serieName'             => $first->serieName,
-            'volume'                => $first->volume,
-            'genres'                => [],
-            'subgenres'             => [],
+            'id'                   => $first->id,
+            'title'                => $first->title,
+            'publisherName'        => $first->publisherName,
+            'publisherId'          => $first->publisherId,
+            'preorder'             => $first->preorder,
+            'publication'          => $first->publication,
+            'languageAbbreviation' => $first->abbreviation,
+            'languageName'         => $first->languageName,
+            'isbn'                 => $first->isbn,
+            'cover'                => $first->cover,
+            'description'          => $first->description,
+            'link'                 => $first->link,
+            'price'                => $first->price,
+            'format'               => $first->format,
+            'comment'              => $first->comment,
+            'status'               => $first->status,
+            'authors'              => [],
+            'serieName'            => $first->serieName,
+            'serieId'              => $first->serieId,
+            'volume'               => $first->volume,
+            'genres'               => [],
+            'subgenres'            => [],
         ];
     
-        // Parcourir toutes les lignes pour récupérer tous les auteurs et autres champs pouvant varier
         foreach ($rows as $row) {
+            // Pour les auteurs
             $authorEntry = [
                 'name' => $row->authorName,
-                'role' => $row->roleName
+                'role' => $row->roleName,
+                'id'   => $row->authorId,
             ];
             if (!in_array($authorEntry, $result['authors'])) {
                 $result['authors'][] = $authorEntry;
             }
-            
-            if (!empty($row->genreName) && !in_array($row->genreName, $result['genres'])) {
-                $result['genres'][] = $row->genreName;
+    
+            // Pour les genres (en stockant id et nom)
+            if (!empty($row->genreName) && !in_array(['id' => $row->genreId, 'name' => $row->genreName], $result['genres'])) {
+                $result['genres'][] = ['id' => $row->genreId, 'name' => $row->genreName];
             }
-            
-            if (!empty($row->subgenreName) && !in_array($row->subgenreName, $result['subgenres'])) {
-                $result['subgenres'][] = $row->subgenreName;
+    
+            // Pour les sous-genres
+            if (!empty($row->subgenreName) && !in_array(['id' => $row->subgenreId, 'name' => $row->subgenreName], $result['subgenres'])) {
+                $result['subgenres'][] = ['id' => $row->subgenreId, 'name' => $row->subgenreName];
             }
         }
     
         return $result;
-    }
+    }    
 
     public function getBooksByAuthor($authorId)
     {

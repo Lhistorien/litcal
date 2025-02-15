@@ -64,6 +64,31 @@
                 </div>
             </div>
             
+            <?php if (!empty($book['serieName'])): ?>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p><strong>Série :</strong> <?= esc($book['serieName']) ?></p>
+                    </div>
+                    <div class="col-md-4">
+                        <?php if (!empty($book['volume'])): ?>
+                            <p>
+                                <strong>Tome :</strong>
+                                <?php 
+                                    $volume = $book['volume'];
+                                    if ($volume === 'I') {
+                                        echo "Intégrale";
+                                    } elseif ($volume === 'HS') {
+                                        echo "Hors-Série";
+                                    } else {
+                                        echo esc($volume);
+                                    }
+                                ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
             <div class="row">
                 <div class="col-md-6">
                     <p><strong>Format :</strong> <?= esc($book['format']) ?></p>
@@ -73,9 +98,27 @@
                 </div>
             </div>
             
-            <p><strong>Genres :</strong> <?= implode(', ', $book['genres']) ?></p>
-            <?php if (!empty($book['subgenres'])): ?>
-                <p><strong>Sous-genres :</strong> <?= implode(', ', $book['subgenres']) ?></p>
+            <?php
+                // Extraction des noms des genres et sous-genres
+                $genreNames = [];
+                if (!empty($book['genres'])) {
+                    $genreNames = array_map(function($genre) {
+                        return $genre['name'];
+                    }, $book['genres']);
+                }
+                $subgenreNames = [];
+                if (!empty($book['subgenres'])) {
+                    $subgenreNames = array_map(function($subgenre) {
+                        return $subgenre['name'];
+                    }, $book['subgenres']);
+                }
+            ?>
+            <?php if (!empty($genreNames)): ?>
+                <p><strong>Genres :</strong> <?= implode(', ', $genreNames) ?></p>
+            <?php endif; ?>
+            
+            <?php if (!empty($subgenreNames)): ?>
+                <p><strong>Sous-genres :</strong> <?= implode(', ', $subgenreNames) ?></p>
             <?php endif; ?>
         </div>
     </div>
@@ -86,4 +129,78 @@
             <p><?= esc($book['description'] ?? 'Non renseigné') ?></p>
         </div>
     </div>
+    
+    <?php if (!empty($labels)): ?>
+        <div class="mt-3">
+            <h5>Labels associés :</h5>
+            <?php foreach ($labels as $label): ?>
+                <?php 
+                    // Détermine la couleur du badge selon le préfixe
+                    $prefix = substr($label->id, 0, 2);
+                    $colorClass = 'bg-secondary';
+                    switch ($prefix) {
+                        case 'AU':
+                            $colorClass = 'bg-info';
+                            break;
+                        case 'PU':
+                            $colorClass = 'bg-primary';
+                            break;
+                        case 'SE':
+                            $colorClass = 'bg-warning';
+                            break;
+                        case 'GE':
+                            $colorClass = 'bg-success';
+                            break;
+                        case 'SG':
+                            $colorClass = 'bg-dark';
+                            break;
+                    }
+                    // Applique la classe selon l'état de souscription enrichi côté serveur
+                    $subscribedClass = $label->subscribed ? 'subscribed' : 'unsubscribed';
+                ?>
+                <span class="badge <?= $colorClass ?> text-light me-1 label-click <?= $subscribedClass ?>" data-label="<?= esc($label->id) ?>">
+                    <?= esc($label->labelName) ?>
+                </span>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </div>
+
+<!-- JavaScript pour la gestion de la souscription sur les labels -->
+<script>
+$(document).ready(function(){
+    $('.label-click').on('click', function(){
+        var labelId = $(this).data('label');
+        var badge = $(this);
+        $.ajax({
+            url: "<?= site_url('label/subscribeLabel') ?>",
+            type: "POST",
+            data: { label: labelId },
+            success: function(response){
+                alert(response.message);
+                // Bascule les classes en fonction de la réponse
+                if(response.action === 'subscribed'){
+                    badge.removeClass('unsubscribed').addClass('subscribed');
+                } else if(response.action === 'unsubscribed'){
+                    badge.removeClass('subscribed').addClass('unsubscribed');
+                }
+            },
+            error: function(xhr, status, error){
+                alert("Erreur lors de la souscription. Veuillez réessayer.");
+            }
+        });
+    });
+});
+</script>
+
+<style>
+.badge.subscribed {
+    opacity: 1 !important; 
+}
+.badge.unsubscribed {
+    opacity: 0.6 !important; 
+}
+.label-click {
+    cursor: pointer;
+}
+</style>

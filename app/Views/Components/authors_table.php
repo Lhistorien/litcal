@@ -29,13 +29,11 @@
             <thead>
                 <tr>
                     <th scope="col">Nom de l'auteur</th>
-                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><input type="text" name="authorName" class="form-control" required></td>
-                    <td><input type="text" name="comment" class="form-control"></td>
                     <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
                 </tr>
             </tbody>
@@ -53,7 +51,7 @@
         $('#authorsTable tbody').on('dblclick', '.editable', function () {
             var currentElement = $(this);
             var originalValue = currentElement.text().trim();
-
+            // Permet de conserver le contenu actuel de la cellule quand on double-clique
             if (currentElement.find("input").length > 0) {
                 return;
             }
@@ -72,7 +70,7 @@
 
             currentElement.html(input);
             input.focus().select();
-
+            // blur = fermeture du champ, keydown = pression de touches
             input.on("blur keydown", function (e) {
                 if (e.type === "blur" || e.key === "Enter") {
                     var newValue = input.val().trim();

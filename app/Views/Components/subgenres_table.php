@@ -15,6 +15,7 @@
                 <tr data-id="<?= esc($subgenre->id) ?>">
                     <td><?= esc($subgenre->id) ?></td>
                     <td class="editable" data-field="subgenreName"><?= esc($subgenre->subgenreName) ?></td>
+                    <!-- Champs affichant tous les genres associés à ce sous-genre -->
                     <td><?= esc($subgenre->genres ?? 'Aucun genre associé') ?></td> 
                     <td class="editable" data-field="status"><?= esc($subgenre->status) ?></td>
                 </tr>
@@ -92,7 +93,7 @@
     $('#subGenresTable tbody').on('dblclick', '.editable', function () {
         var currentElement = $(this);
         var originalValue = currentElement.text().trim();
-
+        // Permet de conserver le contenu actuel de la cellule quand on double-clique
         if (currentElement.find("input").length > 0) {
             return;
         }
@@ -111,7 +112,7 @@
 
         currentElement.html(input);
         input.focus().select();
-
+        // blur = fermeture du champ, keydown = pression de touches
         input.on("blur keydown", function (e) {
             if (e.type === "blur" || e.key === "Enter") {
                 var newValue = input.val().trim();

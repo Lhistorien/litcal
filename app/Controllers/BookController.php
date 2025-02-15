@@ -186,14 +186,69 @@ public function editBook($id)
             return 'Livre non trouvé.';
         }
         
-        if ($this->request->isAJAX()) {
-            // Si la requête est AJAX, renvoyer la version pour la Home Page
-            return view('components/bookDetailsContent', ['book' => $book]);
-        } else {
-            // Sinon, renvoyer la vue complète du modal pour books
-            return view('components/bookDetailsModal', ['book' => $book]);
+        // Construction du tableau des label IDs
+        $labelIds = [];
+        
+        // Pour les auteurs
+        if (!empty($book['authors'])) {
+            foreach ($book['authors'] as $author) {
+                if (isset($author['id'])) {
+                    $labelIds[] = 'AU' . $author['id'];
+                }
+            }
         }
-    }
+        // Pour l'éditeur
+        if (isset($book['publisherId'])) {
+            $labelIds[] = 'PU' . $book['publisherId'];
+        }
+        // Pour la série
+        if (isset($book['serieId'])) {
+            $labelIds[] = 'SE' . $book['serieId'];
+        }
+        // Pour les genres
+        if (!empty($book['genres'])) {
+            foreach ($book['genres'] as $genre) {
+                if (isset($genre['id'])) {
+                    $labelIds[] = 'GE' . $genre['id'];
+                }
+            }
+        }
+        // Pour les sous-genres
+        if (!empty($book['subgenres'])) {
+            foreach ($book['subgenres'] as $subgenre) {
+                if (isset($subgenre['id'])) {
+                    $labelIds[] = 'SG' . $subgenre['id'];
+                }
+            }
+        }
+        
+        // Supprimer les doublons
+        $labelIds = array_unique($labelIds);
+        
+        // Récupérer les labels correspondants via le LabelModel seulement si le tableau n'est pas vide
+        if (!empty($labelIds)) {
+            $labelModel = new \App\Models\LabelModel();
+            $labels = $labelModel->getLabelsByIds($labelIds);
+        } else {
+            $labels = [];
+        }
+        
+        // Enrichir chaque label avec l'état de souscription pour l'utilisateur connecté
+        $userId = session()->get('user_id');
+        if ($userId) {
+            $subscriptionModel = new \App\Models\LabelSubscriptionModel();
+            foreach ($labels as $label) {
+                $label->subscribed = $subscriptionModel->isSubscribed($userId, $label->id);
+            }
+        }
+        
+        $data = [
+            'book'   => $book,
+            'labels' => $labels,
+        ];
+        
+            return view('components/bookDetailsContent', $data);
+    }  
     
     public function deactivateBook($id)
     {
@@ -220,70 +275,17 @@ public function editBook($id)
         }
         
         $userId = session()->get('user_id');
-        $subscriptionModel = new \App\Models\BookSubscriptionModel();
+        $subscriptionModel = new BookSubscriptionModel();
+        $result = $subscriptionModel->toggleSubscription($id, $userId);
         
-        // Rechercher si une souscription existe déjà pour ce livre et cet utilisateur
-        $subscription = $subscriptionModel->where('book', $id)
-                                          ->where('user', $userId)
-                                          ->first();
-        
-        if ($subscription) {
-            // Une souscription existe déjà, vérifier son statut
-            if ($subscription['status'] == 1) {
-                // Le livre est suivi (status = 1) : on passe le status à 0 pour "ne plus suivre"
-                $updateData = ['status' => 0];
-                $subscriptionModel->update($subscription['id'], $updateData);
-                if ($this->request->isAJAX()) {
-                    return $this->response->setJSON([
-                        'success' => true,
-                        'message' => 'Vous ne suivez plus ce livre.',
-                        'action'  => 'unfollow'
-                    ]);
-                } else {
-                    return redirect()->back()->with('success', 'Vous ne suivez plus ce livre.');
-                }
-            } else {
-                // Le livre n'est pas suivi (status = 0) : on passe le status à 1 pour "suivre"
-                $updateData = ['status' => 1];
-                $subscriptionModel->update($subscription['id'], $updateData);
-                if ($this->request->isAJAX()) {
-                    return $this->response->setJSON([
-                        'success' => true,
-                        'message' => 'Vous suivez désormais ce livre.',
-                        'action'  => 'follow'
-                    ]);
-                } else {
-                    return redirect()->back()->with('success', 'Vous suivez désormais ce livre.');
-                }
-            }
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON($result);
         } else {
-            // Aucune souscription n'existe, on en crée une avec status = 1
-            $data = [
-                'book'   => $id,
-                'user'   => $userId,
-                'status' => 1
-            ];
-            if ($subscriptionModel->insert($data)) {
-                if ($this->request->isAJAX()) {
-                    return $this->response->setJSON([
-                        'success' => true,
-                        'message' => 'Vous suivez désormais ce livre.',
-                        'action'  => 'follow'
-                    ]);
-                } else {
-                    return redirect()->back()->with('success', 'Vous suivez désormais ce livre.');
-                }
+            if ($result['success']) {
+                return redirect()->back()->with('success', $result['message']);
             } else {
-                $error = $subscriptionModel->errors();
-                if ($this->request->isAJAX()) {
-                    return $this->response->setStatusCode(500)->setJSON([
-                        'success' => false,
-                        'message' => 'Erreur lors du suivi du livre: ' . implode(', ', $error)
-                    ]);
-                } else {
-                    return redirect()->back()->with('errors', 'Erreur lors du suivi du livre: ' . implode(', ', $error));
-                }
+                return redirect()->back()->with('errors', $result['message']);
             }
         }
-    }     
+    }       
 }

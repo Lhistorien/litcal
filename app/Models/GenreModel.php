@@ -7,7 +7,7 @@ use \App\Entities\GenreEntity;
 use App\Validation\EditGenreValidation;
 use App\Validation\GenreValidation;
 
-class GenreModel extends Model
+class GenreModel extends ValidateFieldModel
 {
     protected $table      = 'genre';
     protected $primaryKey = 'id';
@@ -34,7 +34,7 @@ class GenreModel extends Model
             ];
         }
 
-        $validationResult = $this->validateGenreRules($field, $newValue, $genreId);
+        $validationResult = $this->validateGenre($field, $newValue, $genreId);
         if ($validationResult !== true) {
             return [
                 'success' => false,
@@ -46,48 +46,29 @@ class GenreModel extends Model
             $field => $newValue
         ];
 
-        // Mise à jour
         return $this->update($genreId, $data) ? ['success' => true] : ['success' => false, 'errors' => ['Échec de la mise à jour']];
     }
 
-    public function validateGenreRules($field, $newValue, $genreId = null)
+    // Utilisation de l'héritage de ValidateFieldModel pour pouvoir utiliser la même méthode pour les sous-genres et les genres
+    public function validateGenre($field, $newValue, $genreId = null)
     {
-        $validation = \Config\Services::validation();
-    
-        $rules = [];
-    
-        if ($field == 'genreName') {
-            $rules = EditGenreValidation::$EditGenreRules['newValue'];
-            $rules = str_replace('{genreId}', $genreId, $rules);  
-        } elseif ($field == 'status') {
-            $rules = EditGenreValidation::$EditGenreRules['status'];
-        }
-    
-        $validation->setRules([$field => $rules], EditGenreValidation::$EditGenreMessages);
-    
-        if (!$validation->run([$field => $newValue])) {
-            return $validation->getErrors();
-        }
-    
-        return true;
+        return $this->validateField(EditGenreValidation::$EditGenreRules, EditGenreValidation::$EditGenreMessages, $field, $newValue, $genreId);
     }
 
     public function addGenre($genreName)
     {
-        // Validation
         $validation = \Config\Services::validation();
-        $validation->setRules(GenreValidation::getRules(), GenreValidation::getMessages());
-
+        $validation->setRules(\App\Validation\GenreValidation::getRules(), \App\Validation\GenreValidation::getMessages());
+    
         if (!$validation->run(['genreName' => $genreName])) {
             return [
                 'success' => false,
                 'errors' => $validation->getErrors()
             ];
         }
-
-        // Insertion
+    
         $this->insert(['genreName' => $genreName]);
-
+    
         return ['success' => true];
-    }
+    }    
 }

@@ -31,15 +31,14 @@ class GenreController extends BaseController
     public function addGenre()
     {
         $genreModel = new GenreModel();
-
         $genreName = $this->request->getPost('genreName');
-
+    
         $result = $genreModel->addGenre($genreName);
-
+    
         if (!$result['success']) {
             return redirect()->back()->withInput()->with('errors', $result['errors']);
         }
-
-        return redirect()->back()->with('success', 'Le genre a été ajouté avec succès.');
-    }    
+    
+        return redirect()->to('/dashboard#genres')->with('success', 'Le genre a été ajouté avec succès.');
+    }     
 }

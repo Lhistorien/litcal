@@ -50,7 +50,7 @@
         $('#rolesTable tbody').on('dblclick', '.editable', function () {
             var currentElement = $(this);
             var originalValue = currentElement.text().trim();
-
+            // Permet de conserver le contenu actuel de la cellule quand on double-clique
             if (currentElement.find("input").length > 0) {
                 return;
             }
@@ -69,7 +69,7 @@
 
             currentElement.html(input);
             input.focus().select();
-
+            // blur = fermeture du champ, keydown = pression de touches
             input.on("blur keydown", function (e) {
                 if (e.type === "blur" || e.key === "Enter") 
                 {

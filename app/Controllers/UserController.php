@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\BookSubscriptionModel;
+use App\Models\LabelSubscriptionModel;
 use App\Controllers\BaseController;
 
 class UserController extends BaseController
@@ -78,6 +80,7 @@ class UserController extends BaseController
                 'pseudo' => $this->request->getPost('pseudo'),
                 'email' => $this->request->getPost('email'),
                 'birthday' => $this->request->getPost('birthday'),
+                'id' => $id,
             ];
     
             if (!empty($this->request->getPost('newPassword'))) 
@@ -97,34 +100,82 @@ class UserController extends BaseController
                 return redirect()->back()->withInput()->with('errors', $result['errors'] ?? 'Une erreur est survenue.');
             }
         }
-    }   
+    }    
     public function subscriptions($userId)
     {
-        // Vérifier que l'utilisateur connecté correspond à l'utilisateur dont on affiche les abonnements
         if ($userId != session()->get('user_id')) {
             return redirect()->to('/')->with('errors', 'Accès refusé.');
         }
         
-        // Connexion à la base de données
-        $db = \Config\Database::connect();
+        // Récupération des abonnements aux livres
+        $bookSubscriptionModel = new BookSubscriptionModel();
+        $bookSubscriptions = $bookSubscriptionModel->getUserSubscriptionsWithAuthors($userId);
         
-        // Préparer la requête pour récupérer les abonnements actifs de l'utilisateur
-        $builder = $db->table('BookSubscription as bs');
-        $builder->select('b.id, b.title, b.cover, b.publication, p.publisherName');
-        $builder->join('Book as b', 'b.id = bs.book');
-        $builder->join('Publisher as p', 'p.id = b.publisher');
-        $builder->where('bs.user', $userId);
-        $builder->where('bs.status', 1);
+        // Récupération des abonnements aux labels
+        $labelSubModel = new LabelSubscriptionModel();
+        // Utilise la méthode enrichie si disponible
+        if (method_exists($labelSubModel, 'getUserLabelSubscriptions')) {
+            $labelSubscriptions = $labelSubModel->getUserLabelSubscriptions($userId);
+        } else {
+            $labelSubscriptions = $labelSubModel->where('user', $userId)
+                                                ->where('status', 1)
+                                                ->findAll();
+        }
         
-        $query = $builder->get();
-        $subscriptions = $query->getResult();
+        // Enrichir chaque abonnement aux labels avec la propriété "subscribed"
+        // Comme on récupère uniquement les abonnements actifs (status=1), on définit subscribed à true
+        foreach ($labelSubscriptions as $sub) {
+            $sub->subscribed = true;
+        }
         
         $data = [
-            'subscriptions' => $subscriptions,
-            'meta_title'    => 'Mes abonnements'
+            'subscriptions'       => $bookSubscriptions,  
+            'labelSubscriptions'  => $labelSubscriptions, 
+            'meta_title'          => 'Mes abonnements'
         ];
         
         return view('userSubscriptions', $data);
+    }         
+
+    public function unsubscribe($subscriptionId)
+    {
+        $userId = session()->get('user_id');
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+        
+        $subscriptionModel = new BookSubscriptionModel();
+        $subscription = $subscriptionModel->where('id', $subscriptionId)
+                                          ->where('user', $userId)
+                                          ->first();
+        
+        if (!$subscription) {
+            return redirect()->back()->with('error', 'Accès non autorisé ou abonnement inexistant.');
+        }
+        
+        $subscriptionModel->unsubscribe($subscriptionId, $userId);
+        return redirect()->back()->with('message', 'Désabonnement effectué.');
+    }
+    public function unsubscribeLabel($subscriptionId)
+    {
+        $userId = session()->get('user_id');
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+        
+        // Créez une instance du modèle des abonnements aux labels
+        $labelSubModel = new LabelSubscriptionModel();
+        $subscription = $labelSubModel->where('id', $subscriptionId)
+                                      ->where('user', $userId)
+                                      ->first();
+        
+        if (!$subscription) {
+            return redirect()->back()->with('error', 'Accès non autorisé ou abonnement inexistant.');
+        }
+        
+        // Désactive l'abonnement en mettant le status à 0
+        $labelSubModel->update($subscriptionId, ['status' => 0]);
+        return redirect()->back()->with('message', 'Désabonnement effectué.');
     }
     
 }

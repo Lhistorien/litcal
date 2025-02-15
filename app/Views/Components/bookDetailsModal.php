@@ -112,6 +112,38 @@
                       <p><?= esc($book['description'] ?? 'Non renseigné') ?></p>
                   </div>
               </div>
+                <?php if (!empty($labels)): ?>
+                    <div class="mt-3">
+                        <h5>Labels associés :</h5>
+                        <?php foreach ($labels as $label): ?>
+                            <?php 
+                                // Déterminer la couleur en fonction du préfixe du label
+                                $prefix = substr($label->id, 0, 2);
+                                $colorClass = 'bg-secondary'; // Couleur par défaut
+                                switch ($prefix) {
+                                    case 'AU':
+                                        $colorClass = 'bg-info';
+                                        break;
+                                    case 'PU':
+                                        $colorClass = 'bg-primary';
+                                        break;
+                                    case 'SE':
+                                        $colorClass = 'bg-warning';
+                                        break;
+                                    case 'GE':
+                                        $colorClass = 'bg-success';
+                                        break;
+                                    case 'SG':
+                                        $colorClass = 'bg-dark';
+                                        break;
+                                }
+                            ?>
+                            <span class="badge <?= $colorClass ?> text-light me-1">
+                                <?= esc($label->labelName) ?>
+                            </span>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
           </div>
         <?php endif; ?>
       </div>

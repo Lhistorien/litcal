@@ -15,7 +15,7 @@ class PublisherController extends BaseController
         $field = $this->request->getPost('field');
         $newValue = $this->request->getPost('newValue');
 
-        $validationResult = $publisherModel->validatePublisherRules($field, $newValue);
+        $validationResult = $publisherModel->validatePublisherRules($field, $newValue, $publisherId);
         
         if ($validationResult !== true) {
             return $this->response->setJSON([
@@ -50,6 +50,6 @@ class PublisherController extends BaseController
             return redirect()->back()->withInput()->with('errors', $result['errors']);
         }
     
-        return redirect()->back()->with('success', 'L\'éditeur a été ajouté avec succès.');
+        return redirect()->to('/dashboard#publishers')->with('success', 'L\'éditeur a été ajouté avec succès.');
     }    
 }

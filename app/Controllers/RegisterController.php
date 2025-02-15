@@ -2,10 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Validation\RegisterValidation; // Permet d'accéder aux règles de validation
 use App\Controllers\BaseController;
-use App\Entities\UserEntity;
 use App\Models\UserModel;
+use App\Models\AuthModel;
 
 class RegisterController extends BaseController
 {
@@ -13,43 +12,35 @@ class RegisterController extends BaseController
     {
         helper(['form']);
 
-        if (!$this->request->is('post')) 
-        {
+        if (!$this->request->is('post')) {
             return view('register', ['meta_title' => 'Créer un compte']);
         }
-        else
-        {
-            $validation = \Config\Services::validation();
-            $validation->setRules(RegisterValidation::$RegistrationRules, RegisterValidation::$RegistrationMessages);
+        
+        $data = [
+            'pseudo'    => $this->request->getPost('pseudo'),
+            'email'     => $this->request->getPost('email'),
+            'birthday'  => $this->request->getPost('birthday'),
+            'password'  => $this->request->getPost('password'),
+            'pwdcontrol'=> $this->request->getPost('pwdcontrol'),
+        ];
+        
+        $userModel = new UserModel();
+        $result = $userModel->registerUser($data);
 
-            if (!$validation->withRequest($this->request)->run())
-            {
-                return redirect()->back()->withInput()->with('errors', $validation->getErrors());
-            }
-    
-            $data = 
-            [
-                'pseudo' => $this->request->getPost('pseudo'),
-                'email' => $this->request->getPost('email'),
-                'birthday' => $this->request->getPost('birthday'),
-                'password' => $this->request->getPost('pwdcontrol'),
-            ];
+        // Connecte automatiquement l'utilisateur si l'enregistrement s'est bien déroulé
+        if ($result === true) 
+        {
+            $authModel = new AuthModel();
+            $user = $authModel->authenticate($data['email'], $data['password']);
             
-            $user = new UserEntity();
-            $user->fill($data);
-            //Modifie le mdp après l'avoir ajouté à $data grâce à une méthode se trouvant dans UserEntity
-            $user->setPassword($data['password']);
-    
-            $userModel = new UserModel();
-    
-            if ($userModel->save($user)) 
-            {
-                return redirect()->to('/')->withInput()->with('success','Utilisateur enregistré avec succès'); 
-            } 
-            else 
-            {
-                return redirect()->back()->withInput()->with('errors', 'Je suis ici');
+            if ($user) {
+                return redirect()->to('/')->with('success', 'Utilisateur enregistré et connecté avec succès');
+            } else {
+                // Ne devrait pas arriver puisque l'enregistrement vient d'être vérifié avec le formulaire mais on ne sait jamais...
+                return redirect()->to('/login')->with('error', 'Erreur lors de la connexion automatique.');
             }
+        } else {
+            return redirect()->back()->withInput()->with('errors', $result);
         }
     }
 }
