@@ -88,7 +88,14 @@
   $(document).ready(function(){
       $('#bookDetailsModal').appendTo('body');
   });
-  
+  $(document).on('click', '.book-link', function(e) {
+    e.preventDefault();
+    var bookId = $(this).data('id');
+    // Met à jour le lien du bouton "Modifier" dans le modal
+    $('#editBookBtn').attr('href', "<?= site_url('book/edit') ?>/" + bookId);
+    $('#bookDetailsModal').modal('show');
+});
+
 </script>
 
 

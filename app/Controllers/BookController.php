@@ -60,49 +60,65 @@ class BookController extends BaseController
     }      
     
 
-public function editBook($id)
-{
-    $bookModel = new BookModel();
-
-    $book = $bookModel->getBookById($id);
-
-
-    if (!$book) {
-        return redirect()->to('/books')->with('error', 'Le livre n\'existe pas');
-    }
-
-
-    return view('editBook', ['book' => $book[0], 'meta_title' => 'Édition']);
-}
+    public function editBook($id)
+    {
+        $bookModel      = new BookModel();
+        $authorModel    = new AuthorModel();
+        $publisherModel = new PublisherModel();
+        $languageModel  = new LanguageModel();
+        $genreModel     = new GenreModel();
+        $subGenreModel  = new SubGenreModel();
+        $roleModel      = new RoleModel();
+        $serieModel     = new SerieModel();
+        
+        $db = \Config\Database::connect();
+        $formats = $db->table('format')->get()->getResult();
+        
+        $book = $bookModel->getBookById($id);
+        if (!$book) {
+            return redirect()->to('/books')->with('error', 'Le livre n\'existe pas');
+        }
+        
+        $data = [
+            'meta_title'    => 'Édition du livre',
+            'book'          => $book,
+            'listofauthors' => $authorModel->where('status', 1)->orderBy('authorName', 'ASC')->findAll(),
+            'publishers'    => $publisherModel->where('status', 1)->orderBy('publisherName', 'ASC')->findAll(),
+            'languages'     => $languageModel->findAll(),
+            'genres'        => $genreModel->where('status', 1)->findAll(),
+            'subgenres'     => $subGenreModel->where('status', 1)->findAll(),
+            'roles'         => $roleModel->orderBy('roleName', 'ASC')->findAll(),
+            'series'        => $serieModel->orderBy('serieName', 'ASC')->findAll(),
+            'formats'       => $formats,
+        ];
+        
+        return view('editBook', $data);
+    }      
 
     public function updateBook()
     {
         $bookId = $this->request->getPost('bookId');
-        $post = $this->request->getPost();
-
-        $bookModel = new BookModel();
+        $post   = $this->request->getPost();
         
-        $data = [
-            'title' => $post['title'],
-            'publisher' => 5,
-            'price' => $post['price'],
-            'language' => $post['languageAbbreviation'],
-            'isbn' => $post['isbn']
-        ];
-
-        // $result = $bookModel->updateBook($bookId, $data);
-        $bookModel->update('bookId', ['status'=>0]);
-
-        // if ($result['success']) {
-        //     return redirect()->to('/book/'.$bookId)->with('success', 'Le livre a été mis à jour.');
-        // } else {
-        //     return view('editBook', [
-        //         'book' => $data,  // Passer les données à la vue
-        //         'errors' => $result['errors'],  // Passer les erreurs à la vue
-        //         'meta_title' => 'coucou',
-        //     ]);
-        // }
-    }
+        // Gestion de l'upload de la couverture
+        $file = $this->request->getFile('cover');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $file->move('cover', $newName);
+            $post['cover'] = 'cover/' . $newName;
+        }
+        
+        $bookModel = new BookModel();
+        $result = $bookModel->updateBook($bookId, $post);
+        
+        if (is_array($result) && isset($result['validation']) && $result['validation'] === false) {
+            return redirect()->back()->withInput()->with('error', json_encode($result['errors']));
+        } elseif ($result === true) {
+            return redirect()->to('/books')->with('success', 'Le livre a été mis à jour avec succès.');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Une erreur est survenue lors de la mise à jour.');
+        }
+    }       
 
     public function addBook()
     {

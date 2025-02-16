@@ -27,7 +27,6 @@
         </thead>
         <tbody>
             <?php foreach ($books as $book): ?>
-                <!-- N'affiche que les livres actifs (status = 1) -->
                 <?php if ($book['status'] == 1): ?>
                     <tr>
                         <td>
@@ -38,7 +37,7 @@
                         <td>
                             <?php
                             $authors = array_filter($book['authors'], function($author) {
-                                return $author['role'] === 'Auteur';  
+                                return $author['role'] === 'Auteur';
                             });
                             
                             $authorNames = array_map(function($author) {
@@ -94,22 +93,22 @@
 
 <script>
     $(document).ready(function () {
-        // select2 permet de sélectionner plusieurs éléments dans un seul champ de formulaire
+        // Initialisation de select2 dans le modal d'ajout
         $('#genre').select2({
-            dropdownParent: $('#addBookModal')  
+            dropdownParent: $('#addBookModal')
         }).trigger('change');
 
         $('#subgenre').select2({
-            dropdownParent: $('#addBookModal') 
-        }).trigger('change'); 
+            dropdownParent: $('#addBookModal')
+        }).trigger('change');
 
         $('#author').select2({
-            dropdownParent: $('#addBookModal') 
-        }).trigger('change'); 
+            dropdownParent: $('#addBookModal')
+        }).trigger('change');
 
         $('.select2-container').css('width', '100%');
 
-        // Traduit la DataTable en français
+        // Initialisation de DataTable
         $('#booksTable').DataTable({
             "autoWidth": true,
             "responsive": true,
@@ -137,33 +136,21 @@
         });
     });
 
-    // Utilisation de DOMContentLoaded pour s'assurer que l'intégralité du DOM est chargée avant d'attacher les listeners
+    // Gestion de l'ajout de contributeurs additionnels
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialisation d'un compteur pour attribuer un ID unique à chaque ensemble de champs acteurs (puisqu'il peut y en avoir un nombre indéfini)
         let contributorCount = 1;
-
-        // Lors du clic sur le bouton "add-people-btn", afficher la section des contributeurs additionnels et masquer ce bouton
         document.getElementById("add-people-btn").addEventListener("click", function() {
             var additionalContributors = document.getElementById("additional-contributors");
             additionalContributors.style.display = "block";
-            // Masquer le bouton après clic pour éviter les clics répétés inutiles
             this.style.display = "none"; 
         });
 
-        // Ajoute un écouteur sur le conteneur des contributeurs additionnels
-        // Cet écouteur détecte un clic sur n'importe quel élément à l'intérieur, notamment les boutons "add-more-people"
         document.getElementById('additional-contributors').addEventListener('click', function(e) {
-            // Vérifie que l'élément cliqué possède la classe 'add-more-people'
             if (e.target && e.target.classList.contains('add-more-people')) {
-                // Incrémente le compteur pour le nouvel ensemble de champs
                 contributorCount++;
-                
-                // Crée dynamiquement une nouvelle div qui contiendra les champs pour un contributeur supplémentaire
                 const newRow = document.createElement('div');
-                newRow.classList.add('row', 'mt-3'); // Ajoute les classes Bootstrap pour la mise en page
-                newRow.setAttribute('id', `contributor-${contributorCount}`); // Attribue un identifiant unique à la nouvelle ligne
-
-                // Ajoute le HTML nécessaire pour sélectionner l'acteur et son rôle, avec des IDs dynamiques
+                newRow.classList.add('row', 'mt-3');
+                newRow.setAttribute('id', `contributor-${contributorCount}`);
                 newRow.innerHTML = `
                     <div class="col-md-6 mb-3">
                         <label for="actor_name_${contributorCount}" class="form-label">Nom de l'acteur</label>
@@ -185,29 +172,28 @@
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
-                            <!-- Bouton pour ajouter un autre ensemble de contributeurs -->
                             <button type="button" class="btn btn-outline-secondary add-more-people ms-2" id="add-more-btn-${contributorCount}">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
                     </div>
                 `;
-
-                // Ajoute la nouvelle ligne créée dans le conteneur des contributeurs additionnels
                 document.getElementById('additional-contributors').appendChild(newRow);
-
-                // Masque le bouton "add-more-people" qui a été cliqué pour éviter d'ajouter plusieurs fois pour le même contributeur
                 e.target.style.display = "none";
-
-                // Attache un écouteur sur le nouveau bouton ajouté pour permettre l'ajout d'un autre contributeur lors d'un futur clic
                 document.getElementById(`add-more-btn-${contributorCount}`).addEventListener('click', function() {
-                    // Déclenche un événement de clic sur le conteneur pour réutiliser l'écouteur et ajouter un nouveau champ
                     document.getElementById('additional-contributors').dispatchEvent(new Event('click'));
                 });
             }
         });
     });
-</script>
 
+    // Mise à jour dynamique du lien "Modifier" dans le modal
+    $(document).on('click', '.book-link', function(e) {
+        e.preventDefault();
+        var bookId = $(this).data('id');
+        $('#editBookBtn').attr('href', "<?= site_url('book/edit') ?>/" + bookId);
+        $('#bookDetailsModal').modal('show');
+    });
+</script>
 
 <?= $this->endSection() ?>
